@@ -15,16 +15,16 @@ Model Selection.
 1. [train_test_split](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split): split arrays or matrices into random train and test subsets. 
 2. [cross_val_score](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html#sklearn.model_selection.cross_val_score): evaluate a score by cross-validation. 
 
-## CSC2515
 
-Link to the courses.
 
-http://www.cs.toronto.edu/~rgrosse/courses/csc2515_2019/
+## Discription
 
-## Information Theory
+[Course CSC2515](http://www.cs.toronto.edu/~rgrosse/courses/csc2515_2019/): Course I took part in at the university of Toronto.
 
-Useful slides about Information Theory from Univ of Washington.  
+[Information Theory](https://homes.cs.washington.edu/~anuprao/pubs/CSE533Autumn2010/): Useful slides about Information Theory from Univ of Washington.  
 
-https://homes.cs.washington.edu/~anuprao/pubs/CSE533Autumn2010/
+
+
+
 
 ### 
