@@ -20,9 +20,9 @@ Model Selection.
 
 ## Discription
 
-[Course CSC2515](http://www.cs.toronto.edu/~rgrosse/courses/csc2515_2019/): Course I took part in at the university of Toronto.
+[Course CSC2515](http://www.cs.toronto.edu/~rgrosse/courses/csc2515_2019/): Course I took part in at the University of Toronto.
 
-[Information Theory](https://homes.cs.washington.edu/~anuprao/pubs/CSE533Autumn2010/): Useful slides about Information Theory from Univ of Washington.  
+[Information Theory](https://homes.cs.washington.edu/~anuprao/pubs/CSE533Autumn2010/): Useful slides about Information Theory from the Univ. of Washington.  
 
 
 
