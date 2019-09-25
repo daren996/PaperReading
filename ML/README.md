@@ -4,7 +4,13 @@ Some resources about machine learning.
 
 
 
-### Information Theory
+## CSC2515
+
+Link to the courses.
+
+http://www.cs.toronto.edu/~rgrosse/courses/csc2515_2019/
+
+## Information Theory
 
 Useful slides about Information Theory from Univ of Washington.  
 
