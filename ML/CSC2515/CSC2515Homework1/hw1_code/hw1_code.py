@@ -34,16 +34,16 @@ class DecisionTree:
     def __init__(self, max_depth, criterion):
         self.clf = tree.DecisionTreeClassifier(criterion=criterion, splitter='best', max_depth=max_depth,
                                                min_samples_split=2, min_samples_leaf=1,
-                                               min_weight_fraction_leaf=0.0, random_state=None)
+                                               min_weight_fraction_leaf=0.0, random_state=1)
 
     def fit_train_data(self, train_data_vec_, train_target_):
-        self.clf.fit(train_data_vec_.toarray(), train_target_)
+        self.clf.fit(train_data_vec_, train_target_)
 
     def get_predict(self, test_data_vec_):
         return self.clf.predict(test_data_vec_)
 
     def get_score(self, test_data_vec_, test_target_):
-        return self.clf.score(test_data_vec_.toarray(), test_target_)
+        return self.clf.score(test_data_vec_, test_target_)
 
     def get_feature_importance(self):
         print(self.clf.feature_importances_)
@@ -86,7 +86,7 @@ def load_data(fake_file, real_file, divide_point):
     :param fake_file: fake news file
     :param real_file: real news file
     :param divide_point: points for division (should take into account that once divide it a smaller total left)
-    :return: train_vec, valid_vec，test_vec: [vec_docs]; to use them, train_vec.toarray()
+    :return: train_vec, valid_vec，test_vec: [vec_docs]; to use them in array, train_vec.toarray()
     :return: train_target, valid_target, test_target：[targets]
     :return: dictionary: [features]
     """
@@ -141,11 +141,11 @@ if __name__ == '__main__':
     train_vec, train_target, valid_vec, valid_target, test_vec, test_target, vectorizer = \
         load_data("./fake_news.txt", "./real_news.txt", divide_point=[0.7, 0.5])
 
-    depth_set = [5, 10, 12, 14, 15, 16, 18, 20, 25, 30, 35, 40]
+    depth_set = list(range(5, 50))
     decision_tree, best_criterion, best_depth = \
         select_model(train_vec, train_target, valid_vec,
                      valid_target_=valid_target, depth_set_=depth_set)
 
-    decision_tree.save_tree_graph("./tree.dot", vectorizer.get_dictionary())
+    # decision_tree.save_tree_graph("./tree.dot", vectorizer.get_dictionary())
 
     print("test set acc:", decision_tree.get_score(test_vec, test_target))
