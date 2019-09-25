@@ -1,0 +1,285 @@
+\documentclass{myhw}
+\linespread{1.05}        % Palatino needs more leading (space between lines)
+\usepackage{extarrows}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\titleformat{\section}[runin]{\sffamily\bfseries}{}{}{}[]
+\titleformat{\subsection}[runin]{\sffamily\bfseries}{}{}{}[]
+\renewcommand{\exname}{Question }
+\renewcommand{\subexcounter}{(\alph{homeworkSectionCounter})}
+\newcommand{\id}{\text{Id}}
+\newcommand{\tr}{\text{Tr}}
+\newcommand{\rib}{\text{Rib}}
+
+
+\title{CSC 2515 Homework 1}
+
+
+\begin{document}
+
+
+%% Question 1
+\begin{homeworkProblem}
+Nearest Neighbours and the Curse of Dimensionality.
+%%% Subquestion 1
+\begin{homeworkSection}
+First, consider two independent univariate random variables $X$ and $Y$ sampled uniformly from the unit interval [0,1]. Determine the expectation and variance of the random variable $Z$, defined as the squared distance $Z=(X-Y)^2$. \\
+\\
+I use $\mathbb{E}[Z]$ to represent the expectation of random variable Z. \\
+From the properties of expectation, we have 
+\begin{gather*}
+\mathbb{E}[Z] = \mathbb{E}[(X-Y)^2] = \mathbb{E}[X^2-2XY+Y^2] = \mathbb{E}[X^2] - 2\mathbb{E}[XY] + \mathbb{E}[Y^2]
+\end{gather*}
+For random variables X sampled uniformly from the interval [a,b], its expectation 
+\begin{gather*}
+\mathbb{E}[X] = \int_{a}^{b}{xf(x)dx} = \int_{a}^{b}{x\frac{1}{b-a}dx}
+\end{gather*}
+According to the definition of expectation, the expectation of $X^2$ is 
+\begin{gather*}
+\mathbb{E}[X^2]=\int_{a}^{b}{x^2\frac{1}{b-a}dx}
+\end{gather*}
+Put in $a=0$ and $b=1$, we get
+\begin{gather*}
+\mathbb{E}[X] = \int_{0}^{1}{xdx} = \frac{1}{2} \\
+\mathbb{E}[X^2]=\int_{0}^{1}{x^2dx}=\frac{1}{3}
+\end{gather*}
+$Y$ has the same distribution as $X$, hence, 
+\begin{gather*}
+\mathbb{E}[Y] = \int_{0}^{1}{ydy} = \frac{1}{2} \\
+\mathbb{E}[Y^2]=\int_{0}^{1}{y^2dy}=\frac{1}{3}
+\end{gather*}
+According the properties of covariance, 
+\begin{gather*}
+\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]+Cov[X, Y]
+\end{gather*}
+Due to the independence between $X$ and $Y$, 
+\begin{gather*}
+Cov[X, Y] = 0
+\end{gather*}
+Hence, 
+\begin{gather*}
+\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y] = \frac{1}{4}
+\end{gather*}
+Then, 
+\begin{gather*}
+\mathbb{E}[Z] = \mathbb{E}[X^2] - 2\mathbb{E}[XY] + \mathbb{E}[Y^2] = \frac{1}{3} - 2 \times \frac{1}{4} + \frac{1}{3} = \frac{1}{6}
+\end{gather*}
+I use $Var[Z]$ to represent the variance of random variable Z. 
+\begin{gather*}
+\begin{aligned}
+Var[Z] &= Var[(X-Y)^2] = \mathbb{E}[(X-Y)^4] - [\mathbb{E}[(X-Y)^2]]^2 = \mathbb{E}[(X-Y)^4] - \frac{1}{36} \\
+&= \mathbb{E}[X^4-4X^3Y+6X^2Y^2-4XY^3+Y^4] - \frac{1}{36} \\
+&= \mathbb{E}[X^4]-4\mathbb{E}[X^3Y]+6\mathbb{E}[X^2Y^2]-4\mathbb{E}[XY^3]+\mathbb{E}[Y^4] - \frac{1}{36} \\
+&= \mathbb{E}[X^4]-4\mathbb{E}[X^3]\mathbb{E}[Y]+6\mathbb{E}[X^2]\mathbb{E}[Y^2]-4\mathbb{E}[X]\mathbb{E}[Y^3]+\mathbb{E}[Y^4] - \frac{1}{36} \\
+&= \int_{0}^{1}{x^4dx} - 4 \times \int_{0}^{1}{x^3dx} \times \int_{0}^{1}{ydy} + 
+6 \times \int_{0}^{1}{x^2dx} \times \int_{0}^{1}{y^2dy} - 4 \times \int_{0}^{1}{xdx} \times \int_{0}^{1}{y^3dy} + 
+\int_{0}^{1}{y^4dy} - \frac{1}{36} \\
+&= \frac{1}{5} - \frac{1}{2} + \frac{2}{3} - \frac{1}{2} + \frac{1}{5} - \frac{1}{36} = \frac{7}{180}
+\end{aligned}
+\end{gather*}
+I tried to verify the results with the help of a simple program. \\
+%%******* Program *******%%
+I generated 10 datasets of $X$ and $Y$.
+Each dataset contains 1 million random variables of $X^*$ and $Y^*$ sampled from uniform distribution.
+With a function $Z = (X - Y)^2$, the program calculated the means and variances of the results of the function, $Z^*$, given the datasets of $X^*$ and $Y^*$. 
+Then, I calculated the mean of the 10 datasets to get the final answer: \\
+$E(Z^*)=0.16664879, Var(Z^*)=0.03887961$ \\
+which is close to what we calculated.
+\end{homeworkSection}
+%%% Subquestion 2
+\begin{homeworkSection}
+Now suppose we sample two points independently from a unit cube in d dimensions. Observe that each coordinate is sampled independently from [0, 1], i.e. we can view this as sampling random variables $X_1, ... , X_d, Y_1, . . . , Y_d$ independently from [0, 1]. The squared Euclidean distance can be written as $R = Z_1 + ... + Z_d$, where $Z_i = (X_i - Y_i)^2$. Using the properties of expectation and variance, determine $\mathbb{E}[R]$ and $Var[R]$. \\
+\\
+Using the properties of expectation, 
+\begin{gather*}
+\mathbb{E}[R] = \mathbb{E}[Z_1 + Z_2 + ... + Z_d] = \mathbb{E}[Z_1] + ... + \mathbb{E}[Z_d] = \sum_{i=1}^d{\mathbb{E}[Z_i]} = d \times \mathbb{E}[Z] = \frac{d}{6} \approx 0.167d
+\end{gather*}
+Using the properties of variance,
+\begin{gather*}
+Var[R] = Var[\sum_{i=1}^d{Z_i}] = \sum_{i=1}^d{Var[Z_i]} + \sum_{i \ne j}{Cov[Z_i, Z_j]}
+\end{gather*}
+Since all the random variables $X_1, ... , X_d, Y_1, . . . , Y_d$ are independent, $Z_1 , ... , Z_d$ are also independent. As a result, 
+\begin{gather*}
+Cov[Z_i, Z_j] = 0, for\ i, j \in [1, d]\ and\ i \ne j\
+\end{gather*}
+Consequently, 
+\begin{gather*}
+Var[R] = \sum_{i=1}^d{Var[Z_i]} = d \times Var[Z] = \frac{7d}{180}  \approx 0.0389d
+\end{gather*}
+To verify the results with the help of a python program, I generalized a set of $R^*$, with $d=10$, \\
+$E(R^*)=1.66616071, Var(R^*)=0.38834862$, which is close to what we calculated.
+\end{homeworkSection}
+%%% Subquestion 3
+\begin{homeworkSection}
+Based on your answer to part (b), compare the mean and standard deviation of R to the maximum possible squared Euclidean distance (i.e. the distance between opposite corners of the cube). Why does this support the claim that in high dimensions, “most points are far away, and approximately the same distance”? \\
+\\
+The standard deviation of R is, 
+\begin{gather*}
+Std[R] = \sqrt{Var[R]} = \sqrt{\frac{7d}{180}} \approx 0.197\sqrt{d}
+\end{gather*}
+The $X_1, ... , X_d$ and $Y_1, . . . , Y_d$ can be seen as two points with d features. R is the Euclidean distance between the two points. The expectation of the distance is about $0.167d$ and its variance is about $0.197\sqrt{d}$. 
+Because the mean and the variance of the distance are different orders of magnitude, when the number of dimensions increase, the distance between points gets really big. 
+\end{homeworkSection}
+\end{homeworkProblem}
+
+
+%% Question 2
+\begin{homeworkProblem}
+Decision Trees.
+%%% Subquestion 1
+\begin{homeworkSection}
+See hw1\_code.py
+\end{homeworkSection}
+%%% Subquestion 2
+\begin{homeworkSection}
+Write a function select\_model which trains the decision tree classifier using at least 5 different values of max\_depth, as well as two different split criteria (information gain and Gini coefficient), evaluates the performance of each one on the validation set, and prints the resulting accuracies of each model.\\
+\\
+The output of this function is shown in Table \ref{TAB:BEST}. 
+\begin{table}[h]
+  \centering
+    \begin{tabular}{l c c} 
+    \toprule[1pt]  
+    Depth & Gini & Entropy \\
+    \midrule[0.7pt] 
+    5 & 0.7367 & 0.7388 \\
+    10 & 0.7653 & 0.7592 \\
+    12 & 0.7673 & 0.7592 \\
+    14 & 0.7673 & 0.7653 \\
+    15 & 0.7714 & 0.7531 \\
+    16 & 0.7694 & 0.7490 \\
+    18 & 0.7755 & 0.7592 \\
+    20 & \textbf{0.7776} & 0.7531 \\
+    25 & 0.7694 & 0.7714 \\
+    30 & 0.7653 & 0.7612 \\
+    35 & 0.7776 & 0.7653 \\
+    40 & 0.7612 & 0.7755 \\
+    \bottomrule[1pt]  
+    \end{tabular}
+    \caption{Train the classifier using different values of max\_depth, as well as two different split criteria (information gain and Gini coefficient, "Entropy" and "Gini"). }
+    \label{TAB:BEST}
+\end{table}
+\end{homeworkSection}
+%%% Subquestion 3
+\begin{homeworkSection}
+Now let’s stick with the hyperparameters which achieved the highest validation accuracy. Extract and visualize the first two layers of the tree. Your visualization may look something like what is shown below, but it does not have to be an image: it is perfectly fine to display text. It may be hand-drawn. \\
+\\
+With the parameters max\_depth as 20 and criteria as "Gini", the visualization of the first two layers of the decision tree is shown in Figure \ref{FIG:TREE}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{tree.pdf} 
+  \caption{Visualization of the first two layers of the decision tree.}
+  \label{FIG:TREE}
+\end{figure}
+\end{homeworkSection}
+\end{homeworkProblem}
+
+
+%% Question 3
+\begin{homeworkProblem}
+Information Theory.
+%%% Subquestion 1
+\begin{homeworkSection}
+Prove that the entropy $H(X)$ is non-negative. \\
+\\
+The $p(x)$ is the probability mass function; consequently, $0 \le p(x) \le 1$. \\
+As a result, $\frac{1}{p(x)} \ge 1$; then, $log_2(\frac{1}{p(x)}) \ge 0$. \\
+For each term in the summation H(X), $p(x)log_2(\frac{1}{p(x)}) \ge 0$. \\
+So we have 
+\begin{gather*}
+H(X) = \sum_x{p(x)log_2(\frac{1}{p(x)})} \ge 0
+\end{gather*}
+\end{homeworkSection}
+%%% Subquestion 2
+\begin{homeworkSection}
+Prove that $KL(p||q)$ is non-negative. $KL(p||q) = \sum_x{p(x)log_2\frac{p(x)}{q(x)}}$\\
+\\
+Apply Jensen’s inequality and the concavity of log, 
+\begin{gather*}
+\begin{aligned}
+-KL(p||q) &= - \sum_x{p(x)log_2\frac{p(x)}{q(x)}} = \sum_x{p(x)log_2\frac{q(x)}{p(x)}} \\
+&= \mathbb{E}[log_2\frac{q}{p}] \le log_2(\mathbb{E}[\frac{q}{p}]) \\
+&= log_2(\sum_x{p(x)\frac{q(x)}{p(x)}}) = log_2 1 = 0
+\end{aligned}
+\end{gather*}
+As a result, $KL(p||q) \ge 0$.
+\end{homeworkSection}
+%%% Subquestion 3
+\begin{homeworkSection}
+The Information Gain or Mutual Information between X and Y is $I(Y;X) = H(Y) - H(Y|X)$. 
+Show that $I(Y;X) = KL(p(x, y)||p(x)p(y))$,  where $p(x)=\sum_{y}{p(x, y)}$ is the marginal distribution of X. \\
+\\
+The proof is as follows.
+\begin{gather*}
+\begin{aligned}
+KL(p(x, y)||p(x)p(y)) &= \sum_{x, y}{p(x, y)log\frac{p(x, y)}{p(x)p(y)}} \\
+& = \sum_{x, y}{p(x, y)log p(x, y)} - \sum_{x, y}{p(x, y)log p(x)} - \sum_{x, y}{p(x, y)log p(y)} \\
+& = - \sum_{x, y}{p(x, y)log\frac{1}{p(x, y)}} + \sum_{x, y}{p(x, y)log\frac{1}{p(x)}} + \sum_{x, y}{p(x, y)log\frac{1}{p(y)}} \\
+&= -H(X, Y) + H(X) + H(Y) 
+\end{aligned}
+\end{gather*}
+Using the chain rule of entropy,
+\begin{gather*}
+\begin{aligned}
+KL(p(x, y)||p(x)p(y)) &= -H(X, Y) + H(X) + H(Y) \\ 
+&= H(Y) - H(Y|X) \\
+&= I(Y;X)
+\end{aligned}
+\end{gather*}
+\end{homeworkSection}
+\end{homeworkProblem}
+\end{document}
+
+%\begin{gather*}
+%\end{gather*}
+
+%\begin{homeworkProblem}
+%\begin{homeworkSection}
+%Since for any $\sigma \in S_n$ there is $b_\lambda \sigma a_\lambda = \set{\pm p_\lambda, 0}$, then for any $\pi \in S_n$ \[
+%\phi_\lambda(\phi_\lambda(\pi))=\pi p_\lambda p_\lambda=\pi b_\lambda (a_\lambda b_\lambda) a_\lambda = \pi b_\lambda \sum _{\sigma \in S_n}c_\sigma \sigma a_\lambda = \pi \sum_{\sigma \in S_n}c_\sigma b_\lambda \sigma a_\lambda=\pi K_\lambda p_\lambda=K_\lambda \pi p_\lambda=K_\lambda \phi_\lambda(\pi)
+%\] for some $K_\lambda \in \mathbb{C}$.
+%Hence $\phi_\lambda \circ \phi_\lambda(\pi)=K_\lambda\phi_\lambda$.
+%\end{homeworkSection}
+%\begin{homeworkSection}
+%Notice $A_\lambda \cap B_\lambda= \id$ since the only permutation which is both row stabilizer and column stabilizer is the identity permutation, and there is no inverse for $\alpha \in A_\lambda$ in $\beta \in B_\lambda$, hence $p_\lambda=a_\lambda b_\lambda=\id + \sum_{\pi \neq \id}c_\pi \pi$. Consider the matrix with all permutations as bases, then $\phi_\lambda(\pi)=\pi p_\lambda = \pi + \sum_{\sigma \neq \pi}d_\sigma \sigma$, which means there are 1's on the diagonal, hence $\tr(\phi_\lambda)=\dim(\mathbb{C}(S_n))=|S_n|=n!$. 
+%\end{homeworkSection}
+%\begin{homeworkSection}
+%By the hint, since $\tr(\phi_\lambda)=\sum_{i \in [n!]} \lambda_i \neq 0$, there exists a non-zero eigenvalue. Since every operator has an upper-triangular matrix over $\mathbb{C}$, we can find the upper-triangular matrix $M$ for $\phi_\lambda$, which has its eigenvalues on the diagonal. Then the diagonal elements of $M^2$ should be the square of each eigenvalue, which means $\tr(\phi_\lambda^2)=\sum _{i \in [n!]} \lambda_i^2 >0$. Also, $\tr(\phi_\lambda^2)=\tr(K_\lambda \phi_\lambda)=K_\lambda \tr(\phi_\lambda)$. Hence $K_\lambda = \tr(\phi_\lambda^2)/\tr(\phi_\lambda) \neq 0$. 
+%\end{homeworkSection}
+%\begin{homeworkSection}
+%By the hint, $\Psi_\lambda^2=\frac{1}{K_\lambda^2}\phi_\lambda^2=\frac{K_\lambda}{K_\lambda^2}\phi_\lambda=\Psi_\lambda$, hence it is projector which is the identity map on the image it projects to, hence its matrix should be a diagonal matrix with number of 1's equal to the dimension of its image and 0 as other diagonal elements. The image of $\Psi_\lambda$ is $\mathbb{C}[S_n]p_\lambda=S^\lambda$, hence $\tr(\Psi_\lambda)=\dim(S^\lambda)=|SYT(\lambda)|$. Also $\tr(\Psi_\lambda)=\tr(\frac{1}{K_\lambda}\phi_\lambda)= \frac{1}{K_\lambda}\tr(\phi_\lambda)$. Hence $|SYT(\lambda)|=\frac{1}{K_\lambda}n! \implies K_\lambda = \frac{n!}{|SYT(\lambda)}$.
+%\end{homeworkSection}
+%\end{homeworkProblem}
+%\begin{homeworkProblem}
+%Say the cycle type of $\pi$ is $\mu$, then
+%\[
+%  \chi_{\lambda'}(\pi)=\chi_{\lambda'}(\mu)=\braket{s_{\lambda'},p_\mu}=\braket{\omega(s_{\lambda'}), \omega(p_\mu)}=\braket{s_\lambda, \varepsilon_\mu p_\mu}=\varepsilon_\mu \braket{s_\lambda,p_\mu}=\varepsilon_\mu\chi_\lambda(\mu)=\varepsilon_\pi\chi_\lambda(\pi).
+%\]
+%
+%Also, we can use Murnaghan-Nakayama rule to give a combinatorial proof, i.e., to prove $\rib_{\lambda'}(\mu)=\varepsilon_\mu\rib_\lambda(\mu)$. Notice there is a bijection between the ribbon tableaux of $\lambda$ and $\lambda'$ by conjugate. For each ribbon $R$, since it can be projected to a hook diagram, $size(R) + 1 = \#row + \#column = height(R)+1 + height(R')+1$. Then for each ribbon tableau $T$ of shape $\lambda$ weight $\mu$, \[
+%  n-length(\mu)-height(T)=\sum_{i \leq length(\mu)}\mu_i-1-height(R_i)=\sum_{i \leq length(\mu)}height(R_i')=height(T').
+%\] Hence \[
+%  \varepsilon_\mu\rib_\lambda(\mu)=(-1)^{n-length(\mu)}\sum_T (-1)^{-height(T)}=\sum_T(-1)^{n-length(\mu)-height(T)}=\sum_T (-1)^{height(T')}=\rib_{\lambda'}(\mu).
+%\]
+%\end{homeworkProblem}
+%\begin{homeworkProblem}
+%\begin{homeworkSection}
+%For $n \geq \ell$, $s_\lambda(x_1, \ldots, x_n)=\frac{a_{\lambda+\delta}}{a_\delta}$. Let $x_i=q^{i-1}$, then $a_\delta=\det(x_j^{n-i})_{i,j \in [n]}=\prod_{1 \leq i<j \leq n}(x_i-x_j)=\prod_{1 \leq i<j \leq n}(q^{i-1}-q^{j-1})$. Notice $a_{\lambda+\delta}=\det(x_j^{\lambda_i+n-i})=\det((q^{j-1})^{\lambda_i+n-i})=\det((q^{\lambda_i+n-i})^{j-1})=\prod_{1 \leq i<j \leq n}(q^{\lambda_j+n-j} - q^{\lambda_i+n-i})$ by the expression of Vandermonde determinant. Hence \[
+%  s_\lambda(1,q,\ldots,q^{n-1})=\prod_{1 \leq i<j \leq n}\frac{q^{\lambda_j+n-j} - q^{\lambda_i+n-i}}{q^{i-1}-q^{j-1}}.
+%\]
+%\end{homeworkSection}
+%\begin{homeworkSection}
+%By the definition of Schur function, $s_\lambda=\sum _{T \in SSYT(\lambda)} x ^{w(T)}$, then $s_\lambda(1^n)=\sum_{\stackrel{T \in SSYT(\lambda)}{length(w(T)) \leq n}} 1$, which is the number of SSYT of shape $\lambda$ with all entries no larger than $n$.
+%
+%Notice \[
+%  s_\lambda(1,q,\ldots,q^{n-1})=\prod_{1 \leq i<j \leq n}\frac{q^{\lambda_j+n-j} - q^{\lambda_i+n-i}}{q^{i-1}-q^{j-1}}=\prod_{1 \leq i<j \leq n} \frac{q^{\lambda_j+n-j}(1-q^{\lambda_i- \lambda_j+j-i})}{q^{i-1}(1-q^{j-i})},
+%\]
+%since $1-q^n=(1-q)(1+q+\ldots+q^{n-1})$, $1-q$ is canceled out in the fraction, Now let $q=1$, then \[
+%  s_\lambda(1^n)=\prod_{1 \leq i<j \leq n}\frac{\lambda_i- \lambda_j+j-i}{j-i}.
+%\]
+%\end{homeworkSection}
+%\end{homeworkProblem}
+%\begin{gather*}
+%\braket{p_\lambda,m_\mu}=\braket{p_\lambda,\sum_\nu c_\nu p_\nu}=c_\lambda z_\lambda=z_\lambda [p_\lambda]m_\mu \\
+%\braket{p_\lambda,m_\mu}=\braket{\sum_\nu d_\nu h_\nu, m_\mu}=d_\mu=[h_\mu]p_\lambda
+%\end{gather*}
+
