@@ -4,6 +4,13 @@
 
 ## Realize Decision Tree in Sklearn.
 
+## Random Forests
+
+Random forests = bagged decision trees, with one extra trick to decorrelate the predictions.
+
+> When choosing each node of the decision tree, choose a random set of d input features, and only consider splits on those features
+> Random forests are probably the best black-box machine learning algorithm — they often work well with no tuning whatsoever. One of the most widely used algorithms in Kaggle competitions.
+
 ## Advantage and Drawbacks
 
 ### Advantages of decision trees over KNN
