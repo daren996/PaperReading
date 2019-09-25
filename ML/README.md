@@ -3,9 +3,10 @@
 Some resources about machine learning.
 
 
-## Decision Tree
 
-### Scikit Learn
+
+
+## Scikit Learn
 
 [Decision Tree Classifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
 
