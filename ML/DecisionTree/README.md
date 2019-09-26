@@ -4,6 +4,22 @@
 
 
 
+Three common division methods of classification decision tree (algorithms used to develop decision trees) are:
+
+1. ID3, Information Gain. 
+
+   $$g(D,A)=H(D)-H(D|A)$$
+
+2. C4.5, Ratio of Information Gain. 
+
+   $$g_R(D,A)=\frac{g(D,A)}{H_A(D)}$$
+
+3. CART, Gini Coefficient. 
+
+   $$Gini(D,A)=\frac{|D_1|}{|D|}Gini(D_1)+\frac{|D_2|}{|D|}Gini(D_2)$$
+
+
+
 ## Realize Decision Tree in Sklearn.
 
 [Decision Tree Classifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
