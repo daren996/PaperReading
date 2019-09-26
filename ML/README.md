@@ -2,7 +2,13 @@
 
 Some resources about machine learning.
 
+## Structure
 
+Structure of this folder.
+
+1. Decision Tree. 
+2. Information Theory. 
+3. CSC2515. A Course I took part in at the University of Toronto.
 
 
 
