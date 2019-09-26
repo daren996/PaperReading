@@ -8,19 +8,17 @@ Three common division methods of classification decision tree (algorithms used t
 
 1. ID3, Information Gain. 
 
-   $$g(D,A)=H(D)-H(D|A)$$
+   <img src="http://latex.codecogs.com/gif.latex?g(D,A)=H(D)-H(D|A)" />
 
 2. C4.5, Ratio of Information Gain. 
 
-   $$g_R(D,A)=\frac{g(D,A)}{H_A(D)}$$
+   <img src="http://latex.codecogs.com/gif.latex?g_R(D,A)=\frac{g(D,A)}{H_A(D)}" />
 
 3. CART, Gini Coefficient. 
 
-   $$Gini(D,A)=\frac{|D_1|}{|D|}Gini(D_1)+\frac{|D_2|}{|D|}Gini(D_2)$$
+   <img src="http://latex.codecogs.com/gif.latex?Gini(D,A)=\frac{|D_1|}{|D|}Gini(D_1)+\frac{|D_2|}{|D|}Gini(D_2)" />  
 
-```html
-<img src="http://latex.codecogs.com/gif.latex?\frac{\partial J}{\partial \theta_k^{(j)}}=\sum_{i:r(i,j)=1}{\big((\theta^{(j)})^Tx^{(i)}-y^{(i,j)}\big)x_k^{(i)}}+\lambda \theta_k^{(j)}" />  
-```
+
 
 ## Realize Decision Tree in Sklearn.
 
