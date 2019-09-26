@@ -2,7 +2,7 @@
 
 --------------------------
 
-
+## Approaches
 
 Three common division methods of classification decision tree (algorithms used to develop decision trees) are:
 
