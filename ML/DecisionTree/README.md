@@ -4,6 +4,8 @@
 
 ## Approaches
 
+### Division Methods
+
 Three common division methods of classification decision tree (algorithms used to develop decision trees) are:
 
 1. ID3, Information Gain. 
@@ -17,6 +19,14 @@ Three common division methods of classification decision tree (algorithms used t
 3. CART, Gini Coefficient. 
 
    <img src="http://latex.codecogs.com/gif.latex?Gini(D,A)=\frac{|D_1|}{|D|}Gini(D_1)+\frac{|D_2|}{|D|}Gini(D_2)" />  
+
+
+
+### 剪枝
+
+预剪枝是在生成决策树之前通过改变参数然后在树生成的过程中进行的。比如在上文中我们创建决策树的函数中有`n_tolerance`和`err_tolerance`两个参数，他们可以控制何时停止树的分裂，当增大叶子节点的最小数据量以及增大误差容忍度，树的分裂也会越提前的终止。
+
+后剪枝则是通过测试数据来自动进行剪枝不需要用户干预因此是一种更理想的剪枝技术。剪枝的过程是对拥有同样父节点的一组节点进行检查，判断如果将其合并，熵的增加量是否小于某一阈值。如果确实小，则这一组节点可以合并一个节点，其中包含了所有可能的结果。
 
 
 
@@ -47,15 +57,15 @@ Model Selection.
 
    Gordon V. K. (1980).An Exploratory Technique for Investigating Large Quantities of Categorical Data, Applied Statistics. 29(2): 119–127.
 
-4. 1984 Leo Breiman et al.开发出CART（分类与回归树）。 
+4. **1984** Leo Breiman et al.开发出CART（分类与回归树）。 
 
    Breiman, L.; Friedman, J. H., Olshen, R. A., & Stone, C. J. (1984). Classification and regression trees. Monterey, CA: Wadsworth & Brooks/Cole Advanced Books & Software.
 
-5. 1986 Quinlan开发出ID3算法。 
+5. **1986** Quinlan开发出ID3算法。 
 
    Quinlan, J. R. (1986). Induction of Decision Trees. Mach. Learn. 1(1): 81–106
 
-6. 1993 Quinlan开发出C4.5算法。 
+6. **1993** Quinlan开发出C4.5算法。 
 
    Quinlan, J. R. (1993). C4.5: Programs for machine learning. San Francisco,CA: Morgan Kaufman.
 
