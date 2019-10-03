@@ -32,7 +32,7 @@ Papers about Entity Resolution.
   - Abbreviations / Data truncation
   - Big-Data Setting: Larger and more Datasets, More Heterogeneity, More linked, Multi-Relational, Multi-domain, and Multiple applications. 
 
-  ### Notation
+  #### Notation
 
   - R: set of records / mentions
   - M: set of matches (record pairs that correspond to same entity )
