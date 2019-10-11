@@ -12,8 +12,8 @@ of the total time.
 
 @Darren Oct 1st, 2019
 """
-import time
 
+import time
 import numpy as np
 
 
@@ -32,20 +32,20 @@ def batch_gen(data, batch_size):
 
 def get_data(w_true_, n=50000, d=5, e=10):
     """
-    X is a NxD matrix
-    t is a N-dimension vector
-
+    Get data from a vector of given weights.
+    
     :param n: number of samples of X
     :param d: number of features of X
     :param w_true_: the true w vector
-    :param e: cardinality of error
-    :return x_, t_
+    :param e: scale of error
+    :return x_: a NxD matrix
+    :return t_: a N-dimension vector
     """
-    x_ = np.random.random((n, d)) * 1000 - 500
+    x_ = np.random.random((n, d)) * 2 - 1
     x_ = np.concatenate((x_, np.ones((n, 1))), axis=1)
     error_ = np.random.random((n,)) * e - e / 2
     t_ = np.dot(x_, w_true_) + error_
-    print("x shape:", x_.shape, "error shape:", error_.shape, "y shape:", t_.shape)
+    print("x shape:", x_.shape, "t shape:", t_.shape)
     return x_, t_
 
 
@@ -59,7 +59,7 @@ def general_gradient_descent(x_, t_, func_, batch_size=100, step_size=0.000015, 
     :param max_iter_count
     :param func_: loss function
     :param batch_size: size of batches
-    :return:
+    :return: w_: predicted weights
     """
     # 确定样本数量以及变量的个数初始化theta值
     n, d = x_.shape
@@ -80,7 +80,7 @@ def general_gradient_descent(x_, t_, func_, batch_size=100, step_size=0.000015, 
     return w_
 
 
-def huber_gradient_descent(x_, t_, batch_size=100, delta=50, step_size=0.000015, max_iter_count=1000):
+def huber_gradient_descent(x_, t_, batch_size=100, delta=1, step_size=1, max_iter_count=500):
     """
     The gradient descent algorithm using Huber loss model.
     Without using for loop, we applied the np.where function
@@ -94,7 +94,7 @@ def huber_gradient_descent(x_, t_, batch_size=100, delta=50, step_size=0.000015,
     :param step_size
     :param max_iter_count
     :param batch_size: size of batches
-    :return:
+    :return: w_: predicted weights
     """
     # 确定样本数量以及变量的个数初始化theta值
     n, d = x_.shape
@@ -103,7 +103,7 @@ def huber_gradient_descent(x_, t_, batch_size=100, delta=50, step_size=0.000015,
     iter_count = 0
     gen_x = batch_gen(x_, batch_size)
     gen_t = batch_gen(t_, batch_size)
-    while loss > 0.01 and iter_count < max_iter_count:
+    while loss > 0.001 and iter_count < max_iter_count:
         batch_x = next(gen_x)
         batch_t = next(gen_t)
         y_ = np.dot(batch_x, w_)
@@ -121,24 +121,24 @@ def huber_gradient_descent(x_, t_, batch_size=100, delta=50, step_size=0.000015,
         loss = np.sqrt(np.sum(np.where(np.array([-delta <= yt <= delta for yt in (y_ - batch_t)]),
                                        loss1, loss2))) / batch_x.shape[0]
         iter_count += 1
-        print("%.5f" % loss)
+        print("%.5f" % loss, [round(__, 5) for __ in w_])
     print("loss: %.5f" % loss)
     return w_
 
 
 if __name__ == '__main__':
 
-    # w_truth = [3, 5, -9, 28, -10], b = 0
-    w_truth = np.array([3, 5, -9, 28, -10, 0])
-    x, t = get_data(np.array(w_truth))
+    # w_truth = [3, 5, -9, 28, -10], b = 1
+    w_truth = np.array([3, 5, -9, 28, -10, 1])
+    x, t = get_data(np.array(w_truth), n=50000, d=w_truth.shape[0]-1)
 
     # time1 = time.time()
     # w = general_gradient_descent(x, t, func_=lambda y_, t_: np.sqrt(np.sum(np.square(y_ - t_))), batch_size=50000)
     # print(np.concatenate((w.reshape((6, 1)), w_truth.reshape(6, 1)), axis=1))
     # time2 = time.time()
 
-    w = huber_gradient_descent(x, t, batch_size=50000)
-    print(np.concatenate((w.reshape((6, 1)), w_truth.reshape(6, 1)), axis=1))
+    w = huber_gradient_descent(x, t, batch_size=50000, max_iter_count=200)
+    print(np.concatenate((w.reshape((w_truth.shape[0], 1)), w_truth.reshape(w_truth.shape[0], 1)), axis=1))
 
     # time3 = time.time()
     # print(time2 - time1, time3 - time2)

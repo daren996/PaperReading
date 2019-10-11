@@ -19,7 +19,7 @@
 \textbf{Robust Regression.}
 %%% Subquestion 1
 \begin{homeworkSection}
-Sketch the Huber loss $L_\delta(y,t)$ and squared error loss $L_{SE}(y,t) = \frac{1}{2}(y - t)^2$ for $t = 0$, either by hand or using a plotting library. Based on your sketch, why would you expect the Huber loss to be more robust to outliers? \\
+\emph{Sketch the Huber loss $L_\delta(y,t)$ and squared error loss $L_{SE}(y,t) = \frac{1}{2}(y - t)^2$ for $t = 0$, either by hand or using a plotting library. Based on your sketch, why would you expect the Huber loss to be more robust to outliers? }\\
 \\
 When $t=2$, 
 \begin{gather*}
@@ -44,7 +44,7 @@ On the contrary, for Huber loss function, when $|y|$ exceeds $\delta$, $L_\delta
 %%% Subquestion 2
 \begin{homeworkSection}
 %Just as with linear regression, assume a linear model: $y=\textbf{w}^T\textbf{x}+b$.
-Give formulas for the partial derivatives $\partial L_\delta / \partial \textbf{w}$ and $\partial L_\delta / \partial b$. \\
+\emph{Give formulas for the partial derivatives $\partial L_\delta / \partial \textbf{w}$ and $\partial L_\delta / \partial b$. }\\
 \\
 The formula for the derivative $H_\delta '(a)$ is
 \begin{gather*}
@@ -99,9 +99,9 @@ H_\delta'(y-t) = \frac{\partial H_\delta}{\partial y} & =
 \frac{\partial L_\delta}{\partial \textbf{w}} & = 
 	\left\{ 
 	\begin{array}{lr} 
-	\textbf{x}(\textbf{x}^T\textbf{w} + b - t) & if\ |y-t| \le \delta \\ 
-	\delta \textbf{x} & if\ y > t + \delta \\
-	- \delta \textbf{x} & if\ y < t - \delta
+	\textbf{x}(\textbf{x}^T\textbf{w} + b - t) & if\ - \delta \textbf{1} \le \textbf{y}-\textbf{t} \le \delta \textbf{1} \\ 
+	\delta \textbf{x} & if\ \textbf{y} > \textbf{t} + \delta \textbf{1} \\
+	- \delta \textbf{x} & if\ \textbf{y} < \textbf{t} - \delta \textbf{1} \\
 	\end{array} \right.
 \\
 \end{aligned}
@@ -162,7 +162,7 @@ The partial derivatives can also be represented by matrix-vector format,
 \end{homeworkSection}
 %%% Subquestion 3
 \begin{homeworkSection}
-Write Python code to perform (full batch mode) gradient descent on this model. \\
+\emph{Write Python code to perform (full batch mode) gradient descent on this model. }\\
 \\
 The update rule of gradient descent method is as follows, 
 \begin{gather*}
@@ -173,7 +173,7 @@ Without using \textbf{for} loop, we applied the \textbf{np.where} function to re
 First, we generalized three vectors using $\textbf{y}-\textbf{t}$, $\delta \textbf{1}$ and $-\delta \textbf{1}$ separately; 
 then we used \textbf{np.where} to determine which line of the three vectors should be chosen.
 \\
-I sampled 50000 samples through $y=3x_1 + 5x_2 - 9x_3 + 28x_4 -10x_5 + 0$. Through 1000 iterations, the loss dropped to 0.01384. The predicted w was $[3.000181, 5.00041, -9.00045, 28.000627, -10.000461, 0.000123]$. However, I evaluated the efficiency of the algorithms with Huber loss function or square error loss function, and found that they took 6.6 and 0.24 seconds, respectively. I guessed the \textbf{np.where} function takes up most of the total time.
+I sampled 50000 samples through $y=3x_1 + 5x_2 - 9x_3 + 28x_4 -10x_5 + 1$. Through 1000 iterations, the loss dropped to 0.001384. The predicted w was $[3.000181, 5.00041, -9.00045, 28.000627, -10.000461, 1.000123]$. However, I evaluated the efficiency of the algorithms with Huber loss function or square error loss function, and found that they took 6.6 and 0.24 seconds, respectively. I guessed the \textbf{np.where} function takes up most of the total time.
 \\
 \\
 Code is in q1.py.
@@ -186,30 +186,65 @@ Code is in q1.py.
 \textbf{Locally Weighted Regression.}
 %%% Subquestion 1
 \begin{homeworkSection}
-Show the solution to the weighted least squares problem. \\
+\emph{Show the solution to the weighted least squares problem. }\\
 \\
 We define $\mathscr{E}$ as the function of the weighted least squares problem.
 \begin{gather*}
-\mathscr{E} = \frac{1}{2} \sum_{i=1}^N{a^{(i)} (y^{(i)} - \textbf{w}^T \textbf{x}^{(i)})^2} + \frac{\lambda}{2} ||\textbf{w}||^2
+\begin{aligned}
+\mathscr{E} & = \frac{1}{2} \sum_{i=1}^N{a^{(i)} (y^{(i)} - \textbf{w}^T \textbf{x}^{(i)})^2} + \frac{\lambda}{2} ||\textbf{w}||^2 \\
+& = \frac{1}{2} (\textbf{y} - \textbf{Xw})^T \textbf{A} (\textbf{y} - \textbf{Xw}) + \frac{\lambda}{2} \textbf{w}^T \textbf{w} \\
+& = \frac{1}{2} [(\textbf{y}^T \textbf{A} - \textbf{w}^T \textbf{X}^T \textbf{A})(\textbf{y} - \textbf{Xw})] + \frac{\lambda}{2} \textbf{w}^T \textbf{w} \\
+& = \frac{1}{2} (\textbf{y}^T \textbf{A} \textbf{y} - \textbf{y}^T \textbf{AXw} - \textbf{w}^T \textbf{X}^T \textbf{Ay} + \textbf{w}^T \textbf{X}^T \textbf{AXw}) + \frac{\lambda}{2} \textbf{w}^T \textbf{w} \\
+& = \frac{1}{2} [\textbf{y}^T \textbf{A} \textbf{y} - 2 \textbf{w}^T \textbf{X}^T \textbf{Ay} + (\textbf{Xw})^T \textbf{AXw}] + \frac{\lambda}{2} \textbf{w}^T \textbf{w} \\
+\end{aligned}
 \end{gather*}
 To get solution for the problem, $\textbf{w}^*$, we need partial derivatives to zero.
 \begin{gather*}
 \begin{aligned}
-\frac{\partial \mathscr{E}}{\partial w_j} = \sum_{i=1}^N{a^{(i)} (y^{(i)} - \textbf{w}^T \textbf{x}^{(i)})x_j^{(i)}} + \lambda w_j & = 0 \\
-\sum_{i=1}^N{a^{(i)} y^{(i)} x_j^{(i)}} - \sum_{i=1}^N{a^{(i)} x_j^{(i)} \textbf{w}^T \textbf{x}^{(i)}} + \lambda w_j & = 0 \\
-\sum_{i=1}^N{a^{(i)} x_j^{(i)} \textbf{w}^T \textbf{x}^{(i)}} - \lambda w_j & = \sum_{i=1}^N{a^{(i)} y^{(i)} x_j^{(i)}} \\
-\textbf{X}^T \textbf{AXw} - \lambda \textbf{1w} & = \textbf{X}^T \textbf{Ay} \\
-\textbf{w} & = (\textbf{X}^T \textbf{AX} - \lambda \textbf{1})^{-1} \textbf{X}^T \textbf{Ay}
+\frac{\partial \mathscr{E}}{\partial \textbf{w}} = -\textbf{X}^T \textbf{Ay} + \textbf{X}^T \textbf{AXw} + \lambda \textbf{w} & = 0 \\
+(\textbf{X}^T \textbf{AX} + \lambda \textbf{I}) \textbf{w} & = \textbf{X}^T \textbf{Ay} \\
+\textbf{w} & = (\textbf{X}^T \textbf{AX} - \lambda \textbf{I})^{-1} \textbf{X}^T \textbf{Ay}
 \end{aligned}
 \end{gather*}
+%\begin{gather*}
+%\begin{aligned}
+%\frac{\partial \mathscr{E}}{\partial w_j} = \sum_{i=1}^N{a^{(i)} (y^{(i)} - \textbf{w}^T \textbf{x}^{(i)})x_j^{(i)}} + \lambda w_j & = 0 \\
+%\sum_{i=1}^N{a^{(i)} y^{(i)} x_j^{(i)}} - \sum_{i=1}^N{a^{(i)} x_j^{(i)} \textbf{w}^T \textbf{x}^{(i)}} + \lambda w_j & = 0 \\
+%\sum_{i=1}^N{a^{(i)} x_j^{(i)} \textbf{w}^T \textbf{x}^{(i)}} - \lambda w_j & = \sum_{i=1}^N{a^{(i)} y^{(i)} x_j^{(i)}} \\
+%\textbf{X}^T \textbf{AXw} - \lambda \textbf{1w} & = \textbf{X}^T \textbf{Ay} \\
+%\textbf{w} & = (\textbf{X}^T \textbf{AX} - \lambda \textbf{1})^{-1} \textbf{X}^T \textbf{Ay}
+%\end{aligned}
+%\end{gather*}
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}
-
+\emph{Complete the implementation of locally reweighted least squares by providing the missing parts for q2.py. }\\
+\\
+See q2.py.
 \end{homeworkSection}
 %%% Subquestion 3
 \begin{homeworkSection}
-
+\emph{Based on our understanding of overfitting and underfitting, how would you expect the training error and the validation error to vary as a function of $\tau$? (I.e., what do you expect the curves to look like?) \\
+Run the experiment. }\\
+\\
+I think the curve of both of them falls first and then rises. 
+The curve of validation set is above the curve of training set.
+Too little $\tau$ or too much $\tau$ is underfitting for both training set and validation set.
+However, they may reach the lowest point at different $\tau$s, because when the train set curve reaches the lowest point, it may have been overfitting, and the lowest point of validation set needs to be found near this value. \\
+\\
+%If the $\tau$ is very small, the positive weights $A_{ii}$ will often become 0, which makes it impossible to calculate the invertion of $\textbf{X}^T\textbf{AX}+\lambda \textbf{I}$. 
+%As a result, in my experiment, $\tau$ is between $10^{1.5}$ and $10^3$.
+%\\
+We've drawn the training and validation losses as a function of $\tau$ (using a log scale for $\tau$, which is between $10^{1}$ and $10^3$), as shown in Figure \ref{fig:q2.2}. \\
+The picture is not exactly what I guesses.
+As can be seen in the Figure \ref{fig:q2.2}, the smaller the $\tau$ is, the better the result of training set is, but the result of the validation set is not the best, which indicates that the model has been overfitted when $\tau$ is small.
+When $\tau$ is around $10^2$, the results of validation set are optimized, and then the losses of both sets kept increasing, which indicates that the model is underfitting then.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.7\textwidth]{q2.png} 
+  \caption{The losses of the training and validation dataset. }
+  \label{fig:q2.2}
+\end{figure}
 \end{homeworkSection}
 \end{homeworkProblem}
 
@@ -217,11 +252,43 @@ To get solution for the problem, $\textbf{w}^*$, we need partial derivatives to 
 %% Question 3
 \begin{homeworkProblem}
 \textbf{AdaBoost.} \\
+\emph{The goal of this question is to show that the AdaBoost algorithm changes the weights in order to force the weak learner to focus on difficult data points.} \\
+\emph{Show that the error w.r.t. $(w_1',...,w_N')$ is exactly $\frac{1}{2}$. That is, show that}
+\begin{gather*}
+err_t' = \frac{\sum_{i=1}^N w_i' \mathbb{I} \{h_t(\textbf{x}^{(i)}) \neq t^{(i)} \} }{\sum_{i-1}^{N} w_i'} = \frac{1}{2}.
+\end{gather*}
 \\
+Firstly, we deducted the $e^{2\alpha}$, 
+\begin{gather*}
+\begin{aligned}
+e^{2\alpha} = \frac{1 - err_t}{err_t} 
+& = \frac{\sum_{i=1}^N w_i \mathbb{I} \{h_t(\textbf{x}^{(i)}) = t^{(i)} \} }{\sum_{i-1}^{N} w_i} \frac{\sum_{i-1}^{N} w_i}{\sum_{i=1}^N w_i \mathbb{I} \{h_t(\textbf{x}^{(i)}) \neq t^{(i)} \} } \\
+& = \frac{\sum_{i \in N, t^i = h_t(x^{(i)})} w_i }{\sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i }
+\end{aligned}
+\end{gather*}
+Apply the deductions of $w_i'$ and $e^{2\alpha}$, 
+\begin{gather*}
+\begin{aligned}
+err_t' & = \frac{\sum_{i=1}^N w_i' \mathbb{I} \{h_t(\textbf{x}^{(i)}) \neq t^{(i)} \} }{\sum_{i-1}^{N} w_i'} \\
+& = \frac{\sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i e^{\alpha_t}}{\sum_{i \in N, t^i = h_t(x^{(i)})} w_i e^{-\alpha_t} + \sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i e^{\alpha_t}} \\
+& = \frac{\sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i e^{2\alpha_t} }{\sum_{i \in N, t^i = h_t(x^{(i)})} w_i + \sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i e^{2\alpha_t}} \\
+& = \frac{\sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i \frac{1 - err_t}{err_t} }{\sum_{i \in N, t^i = h_t(x^{(i)})} w_i + \sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i \frac{1 - err_t}{err_t} } \\
+& = \frac{\frac{1 - err_t}{err_t} \sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i }{\sum_{i \in N, t^i = h_t(x^{(i)})} w_i + \frac{1 - err_t}{err_t}  \sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i } \\
+& = \frac{\frac{\sum_{i \in N, t^i = h_t(x^{(i)})} w_i }{\sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i } \sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i }{\sum_{i \in N, t^i = h_t(x^{(i)})} w_i + \frac{\sum_{i \in N, t^i = h_t(x^{(i)})} w_i }{\sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i }  \sum_{i \in N, t^i \neq h_t(x^{(i)})} w_i } \\
+& = \frac{\sum_{i \in N, t^i = h_t(x^{(i)})} w_i}{\sum_{i \in N, t^i = h_t(x^{(i)})} w_i + \sum_{i \in N, t^i = h_t(x^{(i)})} w_i} \\
+& = \frac{1}{2}
+\end{aligned}
+\end{gather*}
 
 \end{homeworkProblem}
 \end{document}
 
 %\begin{gather*}
 %\end{gather*}
+
+
+
+
+
+
 
