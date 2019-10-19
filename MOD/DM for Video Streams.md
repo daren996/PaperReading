@@ -10,7 +10,7 @@ Papers about DM for Video Streams.
 
   
 
-  #### Control variates
+  #### Control variates 控制变量法
 
   The **control variates** method is a variance reduction technique used in Monte Carlo methods. It exploits information about the errors in estimates of known quantities to reduce the error of an estimate of an unknown quantity. (from wikipedia)
 

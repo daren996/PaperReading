@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d664cee-9b18-4d93-9602-afd19d866956" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../CSC2515Homework3/h3_code/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../CSC2515Homework3/h3_code/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../CSC2515Homework3/h3_code/q1.1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../CSC2515Homework3/h3_code/q1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../CSC2515Homework3/h3_code/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../CSC2515Homework3/h3_code/未命名文件夹/auto_gradient.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/q1.py" beforeDir="false" afterPath="$PROJECT_DIR$/q1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/q2.py" beforeDir="false" afterPath="$PROJECT_DIR$/q2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hw2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../hw2.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hw2_writeup/hw2_writeup.aux" beforeDir="false" afterPath="$PROJECT_DIR$/../hw2_writeup/hw2_writeup.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hw2_writeup/hw2_writeup.log" beforeDir="false" afterPath="$PROJECT_DIR$/../hw2_writeup/hw2_writeup.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hw2_writeup/hw2_writeup.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../hw2_writeup/hw2_writeup.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hw2_writeup/hw2_writeup.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../hw2_writeup/hw2_writeup.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hw2_writeup/hw2_writeup.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../hw2_writeup/hw2_writeup.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../lec01-slides.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../lec04-slides.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../lec04-slides.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lec05-slides.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../lec05-slides.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOD/DM for Video Streams.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOD/DM for Video Streams.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOD/DM for Video Streams/(mandatory) Video Monitoring Queries.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOD/DM for Video Streams/(mandatory) Video Monitoring Queries.pdf" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/q1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="126" selection-start-line="126" selection-end-line="126" />
+            <state relative-caret-position="129">
+              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
               <folding>
                 <element signature="e#524#535#0" expanded="true" />
               </folding>
@@ -64,11 +63,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="967" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -76,7 +74,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -88,6 +85,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -235,7 +233,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="969" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="967" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15611814" />
@@ -337,8 +335,8 @@
     <entry file="file://$PROJECT_DIR$/q1_yibin.py" />
     <entry file="file://$PROJECT_DIR$/q1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        <state relative-caret-position="129">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
           <folding>
             <element signature="e#524#535#0" expanded="true" />
           </folding>
