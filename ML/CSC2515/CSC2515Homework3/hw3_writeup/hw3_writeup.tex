@@ -130,11 +130,16 @@ Layers 2, 4 \& 5 are not connected to layers between GPUs; thus, we calculate th
 \begin{homeworkSection}	
 \emph{For each of the following scenarios, based on your answers to Part 1, suggest a change to the architecture which will help achieve the desired objective. I.e., modify the sizes of one or more layers.} \\
 \\
-\textbf{i.} You want to reduce the memory usage at test time so that the network can be run on a cell phone; this requires reducing the number of parameters for the network.
+\textbf{i.} \emph{You want to reduce the memory usage at test time so that the network can be run on a cell phone; this requires reducing the number of parameters for the network.} \\
+\\ %2.3 58,6 
+The percentages of the number of parameters of convolutional layers and connected layers are 3.8\% and 96.2\% respectively. Thus, a more efficient way to reduce the number of parameters for the network is to reduce the parameters in connected layers. \\
+I will change the units of Fully Connected Layer 1 and 2 from 4096 to 2048; consequently, the number of parameters of the new network will become 56.5\% of the original one.
 \\
 \\
-\textbf{ii.} Your network will need to make very rapid predictions at test time. You want to reduce the number of connections, since there is approximately one add-multiply operation per connection.
-
+\textbf{ii.} \emph{Your network will need to make very rapid predictions at test time. You want to reduce the number of connections, since there is approximately one add-multiply operation per connection.} \\
+\\ %553.8 58.6 - 105 -86
+The percentages of the number of connections (or computations) of convolutional layers and connected layers are 9.6\% and 90.4\% respectively. As a result, it is more efficient to reduce the number of connections of convolutional layers for making rapid predictions. \\
+I will change the size of Convolution Layer 1 and 2 from $(55\times55\times96)$, $(27\times27\times256)$ to $(27\times27\times96)$, $(13\times13\times256)$. The number of computations will become 68.8\% of the original.
 \end{homeworkSection}
 \end{homeworkProblem}
 
