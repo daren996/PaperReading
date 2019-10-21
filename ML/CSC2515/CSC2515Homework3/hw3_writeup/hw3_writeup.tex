@@ -64,8 +64,7 @@ The computation graph is shown in Figure \ref{fig:q2.1}.
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}
-Determine the backprop rules (in vector form) for computing the gradients with respect to all the parameters. 
-\\
+Determine the backprop rules (in vector form) for computing the gradients with respect to all the parameters. \\
 \begin{gather*}
 \begin{aligned}
 \textbf{Forward pass: \ \ \ \ } \\
@@ -79,16 +78,16 @@ Determine the backprop rules (in vector form) for computing the gradients with r
 %\begin{gather*}
 %\begin{aligned}
 \overline{\textbf{y}} &= \textbf{1} \\
-\overline{\textbf{r}} &= \overline{\textbf{y}} \cdot \frac{\partial\textbf{y}}{\partial\textbf{r}} = \phi'(\textbf{r}) \\
+\overline{\textbf{r}} &= \overline{\textbf{y}} \circ \frac{\partial\textbf{y}}{\partial\textbf{r}} = \phi'(\textbf{r}) \\
 \frac{\partial{\textbf{r}}}{\partial{\textbf{V}}} &= \textbf{1}\textbf{h}^T \\
 \frac{\partial{\textbf{r}}}{\partial{\textbf{c}}} &= \textbf{1} \\
-\overline{\textbf{V}} &= \textbf{1} \overline{\textbf{r}}^T \cdot \frac{\partial{\textbf{r}}}{\partial{\textbf{V}}} = \textbf{1} \phi'(\textbf{r})^T \cdot \textbf{1}\textbf{h}^T = \textbf{1} [\phi'(\textbf{r}) \cdot \textbf{h}]^T\\
-\overline{\textbf{c}} &= \overline{\textbf{r}} \cdot \frac{\partial{\textbf{r}}}{\partial{\textbf{c}}} = \phi'(\textbf{r}) \\
-\overline{\textbf{h}} &= \overline{\textbf{y}} \cdot \frac{\partial\textbf{y}}{\partial\textbf{h}} + \overline{\textbf{r}} \cdot \frac{\partial\textbf{r}}{\partial\textbf{h}} = \textbf{1} + \textbf{V} \phi'(\textbf{r}) \\
-\overline{\textbf{z}} &= \overline{\textbf{h}} \cdot \frac{\partial\textbf{h}}{\partial\textbf{z}} = \overline{\textbf{h}} \cdot \phi'(\textbf{z}) = \phi'(\textbf{z}) + \textbf{V} \phi'(\textbf{r}) \cdot \phi'(\textbf{z}) \\
-\overline{\textbf{W}} &= \textbf{1} \overline{\textbf{z}}^T \cdot \frac{\partial\textbf{z}}{\partial\textbf{W}} = [\textbf{1} \phi'(\textbf{z})^T + \textbf{1} (\textbf{V} \phi'(\textbf{r}) \cdot \phi'(\textbf{z}))^T] \cdot \textbf{1} \textbf{x}^T \\
-& = \textbf{1} [\phi'(\textbf{z})^T \cdot \textbf{x}^T + \phi'(\textbf{r})^T \textbf{V}^T \cdot \phi'(\textbf{z})^T \cdot \textbf{x}^T]\\
-\overline{\textbf{b}} &= \overline{\textbf{z}} \cdot \frac{\partial\textbf{z}}{\partial\textbf{b}} = [\phi'(\textbf{z}) + \textbf{V} \phi'(\textbf{r}) \cdot \phi'(\textbf{z})] \cdot \textbf{1} \\
+\overline{\textbf{V}} &= \overline{\textbf{r}} (\frac{\partial{\textbf{r}}}{\partial{\textbf{V}}})^T = \phi'(\textbf{r}) \textbf{h}^T \\
+\overline{\textbf{c}} &= \overline{\textbf{r}} \circ \frac{\partial{\textbf{r}}}{\partial{\textbf{c}}} = \phi'(\textbf{r}) \\
+\overline{\textbf{h}} &= \overline{\textbf{y}} \circ \frac{\partial\textbf{y}}{\partial\textbf{h}} + \overline{\textbf{r}} \circ \frac{\partial\textbf{r}}{\partial\textbf{h}} = \textbf{1} + \textbf{V}^T \phi'(\textbf{r}) \\
+\overline{\textbf{z}} &= \overline{\textbf{h}} \circ \frac{\partial\textbf{h}}{\partial\textbf{z}} = \overline{\textbf{h}} \circ \phi'(\textbf{z}) = \phi'(\textbf{z}) + \textbf{V}^T \phi'(\textbf{r}) \circ \phi'(\textbf{z}) \\
+\overline{\textbf{W}} &= \overline{\textbf{z}} (\frac{\partial\textbf{z}}{\partial\textbf{W}})^T = [\phi'(\textbf{z}) + \textbf{V}^T \phi'(\textbf{r}) \circ \phi'(\textbf{z})] \textbf{x}^T \\
+\overline{\textbf{b}} &= \overline{\textbf{z}} \circ \frac{\partial\textbf{z}}{\partial\textbf{b}} = [\phi'(\textbf{z}) + \textbf{V}^T \phi'(\textbf{r}) \circ \phi'(\textbf{z})] \circ \textbf{1} \\
+&= \phi'(\textbf{z}) + \textbf{V}^T \phi'(\textbf{r}) \circ \phi'(\textbf{z})
 \end{aligned}
 \end{gather*}
 $\textbf{x}$, $\textbf{y}$ and $\textbf{h}$ all have the same size. $\textbf{1}$ is a vector with the same size as $\textbf{y}$, whose each unit is 1. 
@@ -111,7 +110,7 @@ $\textbf{x}$, $\textbf{y}$ and $\textbf{h}$ all have the same size. $\textbf{1}$
   Input & 3*224*224=150,528 &  &  \\
   Convolution Layer 1 & 96*55*55=290,400& 11*11*3*96=34,848  & 11*11*3*96*55*55=105,415,200 \\
   Pooling Layer & 96*27*27=69,984 &  &  \\
-  Convolution Layer 2 & 256*27*27=186,624 & 5*5*48*128*2=307,200 & 5*5*48*128*27*27=111,974,400 \\
+  Convolution Layer 2 & 256*27*27=186,624 & 5*5*48*128*2=307,200 & 5*5*48*256*27*27=223,948,800 \\
   Pooling Layer & 256*13*13=43,264 &  &  \\
   Convolution Layer 3 & 384*13*13=64,896 & 3*3*256*384=884,736 & 3*3*256*384*13*13=149,520,384 \\
   Convolution Layer 4 & 384*13*13=64,896 & 3*3*192*192*2=663,552 & 3*3*129*384*13*13=112,140,288 \\
@@ -124,7 +123,7 @@ $\textbf{x}$, $\textbf{y}$ and $\textbf{h}$ all have the same size. $\textbf{1}$
 \end{tabular}
 \\
 \\
-Layers 2, 4 \& 5 are not connected to layers between GPUs; thus, we calculate the parameters and connections of each component and multiplied by 2. 
+Layers 2, 4 \& 5 are not connected to layers between GPUs; thus, we calculate the parameters and connections of each component and multiplied by 2. \\
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}	
@@ -137,9 +136,9 @@ I will change the units of Fully Connected Layer 1 and 2 from 4096 to 2048; cons
 \\
 \\
 \textbf{ii.} \emph{Your network will need to make very rapid predictions at test time. You want to reduce the number of connections, since there is approximately one add-multiply operation per connection.} \\
-\\ %553.8 58.6 - 105 -86
-The percentages of the number of connections (or computations) of convolutional layers and connected layers are 9.6\% and 90.4\% respectively. As a result, it is more efficient to reduce the number of connections of convolutional layers for making rapid predictions. \\
-I will change the size of Convolution Layer 1 and 2 from $(55\times55\times96)$, $(27\times27\times256)$ to $(27\times27\times96)$, $(13\times13\times256)$. The number of computations will become 68.8\% of the original.
+\\ %664.8 58.6 723.4 - 172 -86
+The percentages of the number of connections (or computations) of convolutional layers and connected layers are 8.2\% and 91.8\% respectively. As a result, it is more efficient to reduce the number of connections of convolutional layers for making rapid predictions. \\
+I will change the size of Convolution Layer 1 and 2 from $(55\times55\times96)$, $(27\times27\times256)$ to $(27\times27\times96)$, $(13\times13\times256)$. The number of computations will become 64.3\% of the original.
 \end{homeworkSection}
 \end{homeworkProblem}
 
