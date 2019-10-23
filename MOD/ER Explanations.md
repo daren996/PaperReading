@@ -111,6 +111,8 @@ Then the sample is recovered in the original representation to get <img src="htt
 
 (need a process graph) x' -> non-zero elements -> z' -> z -> f(z) -> Z -> ξ(x)
 
+#### 2.3.4 Example: Two-Dimensional Binary Classification
+
 
 
 ## Reference
