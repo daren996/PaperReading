@@ -24,9 +24,15 @@ Inspecting individual predictions (**examples**) and their explanations is a wor
 
 **Drawbacks of Metrics**
 
+For instance, machine learning practitioners often have to select a model from a number of alternatives, requiring them to assess the relative trust between two or more models.  Here is the comparison of a variety of models with the help of explanations. 
+
 ![compare-accuracy-explanations](https://github.com/daren996/PaperReading/blob/master/MOD/Images/compare-accuracy-explanations.png)
 
-###Characteristics of wrong models and evaluations
+In this case, the algorithm with higher accuracy on the validation set is actually much **worse**, a fact that is easy to see when explanations are provided (again, due to human prior knowledge), but hard otherwise. Further, there is frequently a **mismatch** between the metrics that we can compute and optimize (e.g. accuracy) and the actual metrics of interest such as user engagement and retention. While we may not be able to measure such metrics, we have knowledge about how certain model behaviors can influence them. 
+
+Therefore, a practitioner may wish to choose a less accurate model for content recommendation that does not place high importance in features related to “clickbait” articles (which may hurt user retention), even if exploiting such features increases the accuracy of the model in cross validation. We note that explanations are particularly useful in these (and other) scenarios if a method can produce them for any model, so that a variety of models can be compared. 
+
+### Characteristics of wrong models and evaluations
 
 **Data Leakage** The unintentional leakage of signal into the training (and validation) data that would not appear when deployed. Still, consider the example of automated diagnosis, a model finds that the patient ID is heavily correlated with the target class in the training and validation data. This issue would be incredibly challenging to identify just by observing the predictions and the raw data, so we want to solve this problem by explaining the model and predictions.
 
