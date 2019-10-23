@@ -113,6 +113,12 @@ Then the sample is recovered in the original representation to get <img src="htt
 
 #### 2.3.4 Example: Two-Dimensional Binary Classification
 
+The black-box model’s complex decision function f (unknown to LIME) is represented by the blue/pink background, which cannot be approximated well by a linear model. The bold red cross is the instance being explained. LIME samples instances, gets pre- dictions using f, and weighs them by the proximity to the instance being explained (represented here by size). The dashed line is the learned explanation that is locally (but not globally) faithful. 
+
+![toy-example](https://github.com/daren996/PaperReading/blob/master/MOD/Images/toy-example.png)
+
+LIME firstly samples instances both in the vicinity of x (which have a high weight due to <img src="http://latex.codecogs.com/gif.latex?\ \pi_x" />) and far away from x (low weight from <img src="http://latex.codecogs.com/gif.latex?\ \pi_x" />). Even though the original model may be too complex to explain globally, LIME presents an explanation that is locally faithful (linear in this case), where the locality is captured by <img src="http://latex.codecogs.com/gif.latex?\ \pi_x" />.
+
 
 
 ## Reference
