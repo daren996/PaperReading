@@ -35,7 +35,7 @@ In this case, an explanation is a small list of symptoms with relative weights -
 
 It has been observed, for example, that providing explanations can increase the acceptance of movie recommendations and other automated systems. 
 
-![image-20191022214116310](/Users/darren/Library/Application Support/typora-user-images/image-20191022214116310.png)
+![image-20191022214116310](https://github.com/daren996/PaperReading/blob/master/MOD/Images/process-explanation-diagnosis.png)
 
 
 
