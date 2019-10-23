@@ -2,9 +2,9 @@
 
 
 
-## Model Explainer
+## 1. Model Explainer
 
-### Why do we need Model Explanations?
+### 1.1 Why do we need Model Explanations?
 
 Machine learning models remain mostly black boxes. Understanding the reasons behind predictions is quite important in assessing **trust**, which is fundamental if one plans to take action based on a prediction, or when choosing whether to deploy a new model. If the users do not trust a model or a prediction, they will not use it. Understanding will transform an untrustworthy model or prediction into a trustworthy one by looking insights into the model. 
 
@@ -14,7 +14,7 @@ Determining trust in individual **predictions** is an important problem when the
 
 Apart from trusting individual predictions, there is also a need to evaluate the **model** as a whole before deploying it “in the wild”. To make this decision, users need to be confident that the model will perform well on real-world data. 
 
-### Direction
+### 1.2 Direction
 
 **Model Trust: Metrics -> Explained Examples**
 
@@ -36,7 +36,7 @@ In this case, the algorithm with higher accuracy on the validation set is actual
 
 Therefore, a practitioner may wish to choose a less accurate model for content recommendation that does not place high importance in features related to “clickbait” articles (which may hurt user retention), even if exploiting such features increases the accuracy of the model in cross validation. We note that explanations are particularly useful in these (and other) scenarios if a method can produce them for any model, so that a variety of models can be compared. [Clickbait-Article](https://github.com/daren996/PaperReading/blob/master/MOD/Images/clickbait-news.png)
 
-### Characteristics of wrong models and evaluations
+### 1.3 Characteristics of wrong models and evaluations
 
 **Data Leakage** The unintentional leakage of signal into the training (and validation) data that would not appear when deployed. Still, consider the example of automated diagnosis, a model finds that the patient ID is heavily correlated with the target class in the training and validation data. This issue would be incredibly challenging to identify just by observing the predictions and the raw data, so we want to solve this problem by explaining the model and predictions.
 
@@ -44,14 +44,14 @@ Therefore, a practitioner may wish to choose a less accurate model for content r
 
 The insights given by expla- nations are particularly helpful in identifying what must be done to convert an untrustworthy model into a trustworthy one - for example, removing leaked data or changing the training data to avoid dataset shift. 
 
-## "Why Should I Trust You?" Explaining the Predictions of Any Classifier (2016)
+## 2. "Why Should I Trust You?" Explaining the Predictions of Any Classifier (2016)
 
-### Structure
+### 2.1 Structure
 
 **LIME:** Explanation of predicts of any classifier or regressor. 
 **SP-LIME:** Explanation of models by selecting representation instances. 
 
-### Example: Diagnosis
+### 2.2 Example: Diagnosis
 
 In this case, an explanation is a small list of symptoms with relative weights - symptoms that either contribute to the prediction (in green) or are evidence against it (in red). Humans usually have prior knowledge about the application domain, which they can use to accept (trust) or reject a prediction if they understand the reasoning behind it. It is clear that a doctor is much better positioned to make a decision with the help ol a model if intelligible explanations are provided. 
 
@@ -63,7 +63,7 @@ In this picture, a model predicts that a patient has the flu, and **LIME** highl
 
 As we have talked about previously, **data leakage**, where a model finds that the patient ID is heavily correlated with the target class, can be solved easier if explanations such as the one in the above figure are provided, as patient ID would be listed as an explanation for predictions. 
 
-### LIME
+### 2.3 LIME
 
 The overall goal of LIME is to identify an **interpretable model** over the **interpretable representation** that is **locally faithful** to the classifier. 
 
@@ -81,7 +81,17 @@ For image classification, an interpretable representation may be a binary vector
 
 **Formulation** 
 
-we define an explanation as a model g ∈ G, where G is a class of potentially interpretable models, such as linear models, decision trees, or falling rule lists 
+Let the model being explained be denoted <img src="http://latex.codecogs.com/gif.latex?\ f: R^d \rightarrow R" />.  (In classification, f(x) is the probability that x belongs to a certain class.) We further use <img src="http://latex.codecogs.com/gif.latex?\ \pi_x(z)" /> as a proximity measure between an instance z to x, so as to define locality around x. 
+
+We define an explanation as a model g ∈ G, where **explanation families** G is a class of potentially interpretable models, such as linear models, decision trees, or falling rule lists. (They can be presented to the user with visual or textual artifacts.) The domain of g is <img src="http://latex.codecogs.com/gif.latex?\{0, 1\}^{d'}" />, that is the absence/presence of the interpretable components.
+
+**Complexity measures** <img src="http://latex.codecogs.com/gif.latex?\Omega(g)" /> represents the measure of complexity of explanation g ∈ G. (The higher it is, the lower interpretability it has. For a decision tree, the Ω(g) could be the depth of the tree; for linear models, Ω(g) may be the number of non-zero weights.)
+
+Let **fidelity function** <img src="http://latex.codecogs.com/gif.latex?\ L(f, g, \pi_x)" /> be a measure of how unfaithful g is in approximating f in the locality defined by <img src="http://latex.codecogs.com/gif.latex?\ \pi_x" />. At the same time, Ω(g) should also be low enough to be interpretable by humans. The finally explanation produced by LIME is obtained by: 
+
+<img src="http://latex.codecogs.com/gif.latex?\ \xi(x) = \mathop{\arg\min}_{g \in G} L(f, g, \pi_x) + \Omega(g)" />
+
+
 
 ## Reference
 
