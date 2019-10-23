@@ -42,9 +42,7 @@ Therefore, a practitioner may wish to choose a less accurate model for content r
 
 The insights given by expla- nations are particularly helpful in identifying what must be done to convert an untrustworthy model into a trustworthy one - for example, removing leaked data or changing the training data to avoid dataset shift. 
 
-## LIME
-
-**Why should i trust you?: Explaining the predictions of any classifier. (2016)** 
+## "Why Should I Trust You?" Explaining the Predictions of Any Classifier (2016)
 
 ### Structure
 
@@ -62,6 +60,16 @@ It has been observed, for example, that providing explanations can increase the 
 In this picture, a model predicts that a patient has the flu, and **LIME** highlights the symptoms in the patient’s history that led to the prediction. Sneeze and headache are portrayed as contributing to the “flu” prediction, while “no fatigue” is evidence against it. With these, a doctor can make an informed decision about whether to trust the model’s prediction. 
 
 As we have talked about previously, **data leakage**, where a model finds that the patient ID is heavily correlated with the target class, can be solved easier if explanations such as the one in the above figure are provided, as patient ID would be listed as an explanation for predictions. 
+
+### LIME
+
+The overall goal of LIME is to identify an **interpretable model** over the **interpretable representation** that is **locally faithful** to the classifier. 
+
+**Interpretable Data Representations** 
+Features: Actually used by the model. 
+Interpretable representations: Understandable to humans.
+
+
 
 ## Reference
 
