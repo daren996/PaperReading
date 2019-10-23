@@ -22,11 +22,17 @@ For the trust a whole **model**, currently, models are evaluated using accuracy 
 
 Inspecting individual predictions (**examples**) and their explanations is a worthwhile solution. In this case, it is important to aid users by suggesting which instances to inspect, especially for large datasets. 
 
+**Drawbacks of Metrics**
+
+![compare-accuracy-explanations](https://github.com/daren996/PaperReading/blob/master/MOD/Images/compare-accuracy-explanations.png)
+
 ###Characteristics of wrong models and evaluations
 
 **Data Leakage** The unintentional leakage of signal into the training (and validation) data that would not appear when deployed. Still, consider the example of automated diagnosis, a model finds that the patient ID is heavily correlated with the target class in the training and validation data. This issue would be incredibly challenging to identify just by observing the predictions and the raw data, so we want to solve this problem by explaining the model and predictions.
 
-**Dataset Shift** 
+**Dataset Shift** The training data is different than the test data. For example in the famous 20 newsgroups dataset, 
+
+The insights given by expla- nations are particularly helpful in identifying what must be done to convert an untrustworthy model into a trustworthy one - for example, removing leaked data or changing the training data to avoid dataset shift. 
 
 ## LIME
 
@@ -43,7 +49,7 @@ In this case, an explanation is a small list of symptoms with relative weights -
 
 It has been observed, for example, that providing explanations can increase the acceptance of movie recommendations and other automated systems. 
 
-![image-20191022214116310](https://github.com/daren996/PaperReading/blob/master/MOD/Images/process-explanation-diagnosis.png)
+![process-explanation-diagnosis](https://github.com/daren996/PaperReading/blob/master/MOD/Images/process-explanation-diagnosis.png)
 
 In this picture, a model predicts that a patient has the flu, and **LIME** highlights the symptoms in the patient’s history that led to the prediction. Sneeze and headache are portrayed as contributing to the “flu” prediction, while “no fatigue” is evidence against it. With these, a doctor can make an informed decision about whether to trust the model’s prediction. 
 
