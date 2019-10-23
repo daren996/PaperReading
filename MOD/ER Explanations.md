@@ -2,7 +2,7 @@
 
 
 
-## Model Explanations
+## Model Explainer
 
 ### Why do we need Model Explanations?
 
