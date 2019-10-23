@@ -30,6 +30,8 @@ Here is the comparison of a variety of models with the help of explanations.
 
 ![compare-accuracy-explanations](https://github.com/daren996/PaperReading/blob/master/MOD/Images/compare-accuracy-explanations.png)
 
+The right side is a support vector machine with RBF kernel trained on unigrams to differentiate “Christianity” from “Atheism” (on a subset of the 20 newsgroup dataset). Although this classifier achieves 94% held-out accuracy, and one would be tempted to trust it based on this, the explanation for an instance shows that predictions are made for quite arbitrary reasons (words “Posting”, “Host”, and “Re” have no connection to either Christianity or Atheism). The word “Posting” appears in 22% of examples in the training set, 99% of them in the class “Atheism”. 
+
 In this case, the algorithm with higher accuracy on the validation set is actually much **worse**, a fact that is easy to see when explanations are provided (again, due to human prior knowledge), but hard otherwise. Further, there is frequently a **mismatch** between the metrics that we can compute and optimize (e.g. accuracy) and the actual metrics of interest such as user engagement and retention. While we may not be able to measure such metrics, we have knowledge about how certain model behaviors can influence them. 
 
 Therefore, a practitioner may wish to choose a less accurate model for content recommendation that does not place high importance in features related to “clickbait” articles (which may hurt user retention), even if exploiting such features increases the accuracy of the model in cross validation. We note that explanations are particularly useful in these (and other) scenarios if a method can produce them for any model, so that a variety of models can be compared. [Clickbait-Article](https://github.com/daren996/PaperReading/blob/master/MOD/Images/clickbait-news.png)
@@ -66,10 +68,16 @@ As we have talked about previously, **data leakage**, where a model finds that t
 The overall goal of LIME is to identify an **interpretable model** over the **interpretable representation** that is **locally faithful** to the classifier. 
 
 **Interpretable Data Representations** 
-Features: Actually used by the model. 
-Interpretable representations: Understandable to humans.
 
+Features: Actually used by the model. Interpretable representations: Understandable to humans. 
 
+Original representation: <img src="http://latex.codecogs.com/gif.latex?x \in R^d" />. Interetable representation: <img src="http://latex.codecogs.com/gif.latex?x' \in \{0, 1\}^{d'}" />. 
+
+For text classification, a possible interpretable representation is a binary vector indicating the presence or absence of a word, even though the classifier may use more complex (and incomprehensible) features such as word embeddings.
+
+For image classification, an interpretable representation may be a binary vector indicating the “presence” or “absence” of a contiguous patch of similar pixels (a superpixel), while the classifier may represent the image as a tensor with three color channels per pixel.  
+
+(need two pictures here)
 
 ## Reference
 
