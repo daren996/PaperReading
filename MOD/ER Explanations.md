@@ -44,6 +44,16 @@ Therefore, a practitioner may wish to choose a less accurate model for content r
 
 The insights given by expla- nations are particularly helpful in identifying what must be done to convert an untrustworthy model into a trustworthy one - for example, removing leaked data or changing the training data to avoid dataset shift. 
 
+### 1.4 Requirements for explainers.
+
+Interpretable
+
+Local Fidelity
+
+Model-Agnostic
+
+Global Perspective
+
 ## 2. "Why Should I Trust You?" Explaining the Predictions of Any Classifier (2016)
 
 ### 2.1 Structure
@@ -90,6 +100,16 @@ We define an explanation as a model g ∈ G, where **explanation families** G is
 Let **fidelity function** <img src="http://latex.codecogs.com/gif.latex?\ L(f, g, \pi_x)" /> be a measure of how unfaithful g is in approximating f in the locality defined by <img src="http://latex.codecogs.com/gif.latex?\ \pi_x" />. At the same time, Ω(g) should also be low enough to be interpretable by humans. The finally explanation produced by LIME is obtained by: 
 
 <img src="http://latex.codecogs.com/gif.latex?\ \xi(x) = \mathop{\arg\min}_{g \in G} L(f, g, \pi_x) + \Omega(g)" />
+
+#### 2.3.3 Process
+
+In order to learn the local behavior of f as the interpretable inputs vary, we approximate <img src="http://latex.codecogs.com/gif.latex?\ L(f, g, \pi_x)" /> by drawing samples, weighted by <img src="http://latex.codecogs.com/gif.latex?\ \pi_x" />. 
+
+**Perturbed Sample** <img src="http://latex.codecogs.com/gif.latex?z' \in \{0, 1\}^{d'}" /> contains a fraction of the nonzero elements which we sample around x′ by drawing nonzero elements of x′ uniformly at random. 
+
+Then the sample is recovered in the original representation to get <img src="http://latex.codecogs.com/gif.latex?z \in R^d" /> and f(z), which is used as a label for the explanation model. Given this dataset Z of perturbed samples with the associated labels, we optimize the above equation to get an explanation ξ(x). 
+
+(need a process graph) x' -> non-zero elements -> z' -> z -> f(z) -> Z -> ξ(x)
 
 
 
