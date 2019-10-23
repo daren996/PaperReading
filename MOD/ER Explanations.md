@@ -16,13 +16,13 @@ Apart from trusting individual predictions, there is also a need to evaluate the
 
 ### 1.2 Direction
 
-**Model Trust: Metrics -> Explained Examples**
+#### 1.2.1 Model Trust: Metrics -> Explained Examples
 
 For the trust a whole **model**, currently, models are evaluated using accuracy **metrics** on an available validation dataset. A traditional pipelnine often developes a classification model using annotated data, of which a held-out subset is used for automated evaluation. However, real-world data is often significantly different, as practitioners often overestimate the accuracy of their models, and further, the evaluation metric may not be indicative of the product’s goal. Thus, trust cannot rely solely on it. 
 
 Inspecting individual predictions (**examples**) and their explanations is a worthwhile solution. In this case, it is important to aid users by suggesting which instances to inspect, especially for large datasets. 
 
-**Drawbacks of Metrics**
+#### 1.2.2 Drawbacks of Metrics
 
 Machine learning practitioners often have to select a model from a number of alternatives, requiring them to assess the relative trust between two or more models.  In addition to the drawbacks of metrics mentioned above, it may also cause the machine learning practitioners to have a wrong assessment of the model, and the explanations can correct this assessment.  
 
@@ -67,7 +67,7 @@ As we have talked about previously, **data leakage**, where a model finds that t
 
 The overall goal of LIME is to identify an **interpretable model** over the **interpretable representation** that is **locally faithful** to the classifier. 
 
-**Interpretable Data Representations** 
+#### 2.3.1 Interpretable Data Representations
 
 Features: Actually used by the model. Interpretable representations: Understandable to humans. 
 
@@ -79,7 +79,7 @@ For image classification, an interpretable representation may be a binary vector
 
 (need two pictures here)
 
-**Formulation** 
+#### 2.3.2 Formulation
 
 Let the model being explained be denoted <img src="http://latex.codecogs.com/gif.latex?\ f: R^d \rightarrow R" />.  (In classification, f(x) is the probability that x belongs to a certain class.) We further use <img src="http://latex.codecogs.com/gif.latex?\ \pi_x(z)" /> as a proximity measure between an instance z to x, so as to define locality around x. 
 
