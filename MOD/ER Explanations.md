@@ -24,7 +24,9 @@ Inspecting individual predictions (**examples**) and their explanations is a wor
 
 **Drawbacks of Metrics**
 
-For instance, machine learning practitioners often have to select a model from a number of alternatives, requiring them to assess the relative trust between two or more models.  Here is the comparison of a variety of models with the help of explanations. 
+Machine learning practitioners often have to select a model from a number of alternatives, requiring them to assess the relative trust between two or more models.  In addition to the drawbacks of metrics mentioned above, it may also cause the machine learning practitioners to have a wrong assessment of the model, and the explanations can correct this assessment.  
+
+Here is the comparison of a variety of models with the help of explanations. 
 
 ![compare-accuracy-explanations](https://github.com/daren996/PaperReading/blob/master/MOD/Images/compare-accuracy-explanations.png)
 
