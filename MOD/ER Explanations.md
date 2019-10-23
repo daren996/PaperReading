@@ -97,13 +97,13 @@ We define an explanation as a model g ∈ G, where **explanation families** G is
 
 **Complexity measures** <img src="http://latex.codecogs.com/gif.latex?\Omega(g)" /> represents the measure of complexity of explanation g ∈ G. (The higher it is, the lower interpretability it has. For a decision tree, the Ω(g) could be the depth of the tree; for linear models, Ω(g) may be the number of non-zero weights.)
 
-Let **fidelity function** <img src="http://latex.codecogs.com/gif.latex?\ L(f, g, \pi_x)" /> be a measure of how unfaithful g is in approximating f in the locality defined by <img src="http://latex.codecogs.com/gif.latex?\ \pi_x" />. At the same time, Ω(g) should also be low enough to be interpretable by humans. The finally explanation produced by LIME is obtained by: 
+Let **fidelity function** <img src="http://latex.codecogs.com/gif.latex?\ L(f, g, \pi_x)" /> be a measure of how unfaithful g is in approximating f in the locality defined by <img src="http://latex.codecogs.com/gif.latex?\\ \pi_x" />. At the same time, Ω(g) should also be low enough to be interpretable by humans. The finally explanation produced by LIME is obtained by: 
 
 <img src="http://latex.codecogs.com/gif.latex?\ \xi(x) = \mathop{\arg\min}_{g \in G} L(f, g, \pi_x) + \Omega(g)" />
 
 #### 2.3.3 Process
 
-In order to learn the local behavior of f as the interpretable inputs vary, we approximate <img src="http://latex.codecogs.com/gif.latex?\ L(f, g, \pi_x)" /> by drawing samples, weighted by <img src="http://latex.codecogs.com/gif.latex?\ \pi_x" />. 
+In order to learn the local behavior of f as the interpretable inputs vary, we approximate <img src="http://latex.codecogs.com/gif.latex?\ L(f, g, \pi_x)" /> by drawing samples, weighted by <img src="http://latex.codecogs.com/gif.latex?\\ \pi_x" />. 
 
 **Perturbed Sample** <img src="http://latex.codecogs.com/gif.latex?z' \in \{0, 1\}^{d'}" /> contains a fraction of the nonzero elements which we sample around x′ by drawing nonzero elements of x′ uniformly at random. 
 
