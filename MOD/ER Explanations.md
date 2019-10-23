@@ -2,9 +2,9 @@
 
 
 
-## Background
+## Model Explanations
 
-### Why do we need ER Explanations?
+### Why do we need Model Explanations?
 
 Machine learning models remain mostly black boxes. Understanding the reasons behind predictions is quite important in assessing **trust**, which is fundamental if one plans to take action based on a prediction, or when choosing whether to deploy a new model. If the users do not trust a model or a prediction, they will not use it. Understanding will transform an untrustworthy model or prediction into a trustworthy one by looking insights into the model. 
 
