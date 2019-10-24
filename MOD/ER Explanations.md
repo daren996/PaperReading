@@ -82,7 +82,7 @@ Global Perspective
 
 Features: Actually used by the model. Interpretable representations: Understandable to humans. 
 
-Original representation: <img src="http://latex.codecogs.com/gif.latex?\ x \in R^d" />. Interetable representation: <img src="http://latex.codecogs.com/gif.latex?x' \in \{0, 1\}^{d'}" />. 
+Original representation: <img src="http://latex.codecogs.com/gif.latex?\ x\in{R^d}" />. Interetable representation: <img src="http://latex.codecogs.com/gif.latex?x' \in \{0, 1\}^{d'}" />. 
 
 For text classification, a possible interpretable representation is a binary vector indicating the presence or absence of a word, even though the classifier may use more complex (and incomprehensible) features such as word embeddings.
 
@@ -92,7 +92,7 @@ For image classification, an interpretable representation may be a binary vector
 
 #### 2.3.2 Formulation
 
-Let the model being explained be denoted <img src="http://latex.codecogs.com/gif.latex?\ f: R^d \rightarrow R" />.  (In classification, f(x) is the probability that x belongs to a certain class.) We further use <img src="http://latex.codecogs.com/gif.latex?\ \pi_x(z)" /> as a proximity measure between an instance z to x, so as to define locality around x. 
+Let the model being explained be denoted <img src="http://latex.codecogs.com/gif.latex?f:R^d\rightarrow{R}" />.  (In classification, f(x) is the probability that x belongs to a certain class.) We further use <img src="http://latex.codecogs.com/gif.latex?\ \pi_x(z)" /> as a proximity measure between an instance z to x, so as to define locality around x. 
 
 We define an explanation as a model g ∈ G, where **explanation families** G is a class of potentially interpretable models, such as linear models, decision trees, or falling rule lists. (They can be presented to the user with visual or textual artifacts.) The domain of g is <img src="http://latex.codecogs.com/gif.latex?\{0, 1\}^{d'}" />, that is the absence/presence of the interpretable components.
 
