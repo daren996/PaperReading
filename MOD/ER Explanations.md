@@ -82,7 +82,7 @@ Global Perspective
 
 Features: Actually used by the model. Interpretable representations: Understandable to humans. 
 
-Original representation: <img src="http://latex.codecogs.com/gif.latex?\ x\in{R^d}" />. Interetable representation: <img src="http://latex.codecogs.com/gif.latex?x' \in \{0, 1\}^{d'}" />. 
+Original representation: <img src="http://latex.codecogs.com/gif.latex?x\in{R^d}" />. Interetable representation: <img src="http://latex.codecogs.com/gif.latex?x' \in \{0, 1\}^{d'}" />. 
 
 For text classification, a possible interpretable representation is a binary vector indicating the presence or absence of a word, even though the classifier may use more complex (and incomprehensible) features such as word embeddings.
 
