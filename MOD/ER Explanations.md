@@ -1,6 +1,6 @@
 # Entity Resolution Explanations
 
-
+Welcome to refer to my [Slides](https://utoronto-my.sharepoint.com/:p:/g/personal/daren_chao_mail_utoronto_ca/ESOTjjU_UXJCmB7CPCCV_u4B7W_NnLUKxqFSaFfPPEeuPQ?e=Wtu3D7).
 
 ## 1. Model Explainer
 
@@ -8,7 +8,7 @@
 
 Machine learning models remain mostly black boxes. Understanding the reasons behind predictions is quite important in assessing **trust**, which is fundamental if one plans to take action based on a prediction, or when choosing whether to deploy a new model. If the users do not trust a model or a prediction, they will not use it. Understanding will transform an untrustworthy model or prediction into a trustworthy one by looking insights into the model. 
 
-It is important to differentiate between two different (but related) definitions of **trust**: (1) trusting a prediction, i.e. whether a user trusts an individual prediction sufficiently to take some action based on it; (2) trusting a model, i.e. whether the user trusts a model to behave in reasonable ways if deployed. Both are directly impacted by how much the human understands a model’s behaviour. 
+It is important to differentiate between two different (but related) definitions of **trust**: (1) trusting a prediction, i.e. whether a user trusts an individual prediction sufficiently to take some actions based on it; (2) trusting a model, i.e. whether the user trusts a model to behave in reasonable ways if deployed. Both are directly impacted by how much the human understands a model’s behaviour. 
 
 Determining trust in individual **predictions** is an important problem when the model is used for decision making. In some cases, predictions cannot be acted upon on blind faith, as the consequences may be catastrophic, such as using machine learning for medical diagnosis or terrorism detection.
 
@@ -18,7 +18,7 @@ Apart from trusting individual predictions, there is also a need to evaluate the
 
 #### 1.2.1 Model Trust: Metrics -> Explained Examples
 
-For the trust a whole **model**, currently, models are evaluated using accuracy **metrics** on an available validation dataset. A traditional pipelnine often developes a classification model using annotated data, of which a held-out subset is used for automated evaluation. However, real-world data is often significantly different, as practitioners often overestimate the accuracy of their models, and further, the evaluation metric may not be indicative of the product’s goal. Thus, trust cannot rely solely on it. 
+For the trust of a whole **model**, currently, models are evaluated using accuracy **metrics** on an available validation dataset. A traditional pipelnine often developes a classification model using annotated data, of which a held-out subset is used for automated evaluation. However, real-world data is often significantly different, as practitioners often overestimate the accuracy of their models, and further, the evaluation metric may not be indicative of the product’s goal. Thus, trust cannot rely solely on it. 
 
 Inspecting individual predictions (**examples**) and their explanations is a worthwhile solution. In this case, it is important to aid users by suggesting which instances to inspect, especially for large datasets. 
 
@@ -44,22 +44,15 @@ Therefore, a practitioner may wish to choose a less accurate model for content r
 
 The insights given by expla- nations are particularly helpful in identifying what must be done to convert an untrustworthy model into a trustworthy one - for example, removing leaked data or changing the training data to avoid dataset shift. 
 
-### 1.4 Requirements for explainers.
-
-Interpretable
-
-Local Fidelity
-
-Model-Agnostic
-
-Global Perspective
-
 ## 2. "Why Should I Trust You?" Explaining the Predictions of Any Classifier (2016)
 
 ### 2.1 Structure
 
 **LIME:** Explanation of predicts of any classifier or regressor. 
+
 **SP-LIME:** Explanation of models by selecting representation instances. 
+
+[github:lime](https://github.com/marcotcr/lime-experiments)
 
 ### 2.2 Example: Diagnosis
 
@@ -76,6 +69,14 @@ As we have talked about previously, **data leakage**, where a model finds that t
 ### 2.3 LIME
 
 The overall goal of LIME is to identify an **interpretable model** over the **interpretable representation** that is **locally faithful** to the classifier. 
+
+Interpretable
+
+Local Fidelity
+
+Model-Agnostic
+
+Global Perspective
 
 #### 2.3.1 Interpretable Data Representations
 
@@ -117,7 +118,15 @@ The black-box model’s complex decision function f (unknown to LIME) is represe
 
 ![toy-example](https://github.com/daren996/PaperReading/blob/master/MOD/Images/toy-example.png)
 
-LIME firstly samples instances both in the vicinity of x (which have a high weight due to <img src="http://latex.codecogs.com/gif.latex?\\ \pi_x" />) and far away from x (low weight from <img src="http://latex.codecogs.com/gif.latex?\ \pi_x" />). Even though the original model may be too complex to explain globally, LIME presents an explanation that is locally faithful (linear in this case), where the locality is captured by <img src="http://latex.codecogs.com/gif.latex?\\ \pi_x" />.
+LIME firstly samples instances both in the vicinity of x (which have a high weight due to <img src="http://latex.codecogs.com/gif.latex?\\ \pi_x" />) and far away from x (low weight from <img src="http://latex.codecogs.com/gif.latex?\\ \pi_x" />). Even though the original model may be too complex to explain globally, LIME presents an explanation that is locally faithful (linear in this case), where the locality is captured by <img src="http://latex.codecogs.com/gif.latex?\\ \pi_x" />.
+
+#### 2.3.5 Sparse Linear Explanations
+
+Let G be the class of linear models, such that <img src="http://latex.codecogs.com/gif.latex?\ g(z')=w_g \cdot z'" />. 
+
+Locally weighted squre loss: <img src="http://latex.codecogs.com/gif.latex?\ L(f, g, \pi_x) = \sum_{z,z'\in Z}{\pi_x(z) (f(z)-g(z'))^2} " />
+
+where <img src="http://latex.codecogs.com/gif.latex?\\ \pi_x(z)=exp(-D(x,z)^2/\sigma^2)" />, which is an exponential kernel defined on some distance function D (e.g. cosine distance for text, L2 distance for images) with width σ. 
 
 
 
