@@ -114,7 +114,7 @@ Then the sample is recovered in the original representation to get <img src="htt
 
 #### 2.3.4 Example: Two-Dimensional Binary Classification
 
-The black-box model’s complex decision function f (unknown to LIME) is represented by the blue/pink background, which cannot be approximated well by a linear model. The bold red cross is the instance being explained. LIME samples instances, gets pre- dictions using f, and weighs them by the proximity to the instance being explained (represented here by size). The dashed line is the learned explanation that is locally (but not globally) faithful. 
+The black-box model’s complex decision function f (unknown to LIME) is represented by the blue/pink background, which cannot be approximated well by a linear model. The bold red cross is the instance being explained. LIME samples instances, gets predictions using f, and weighs them by the proximity to the instance being explained (represented here by size). The dashed line is the learned explanation that is locally (but not globally) faithful. 
 
 ![toy-example](https://github.com/daren996/PaperReading/blob/master/MOD/Images/toy-example.png)
 
@@ -124,7 +124,7 @@ LIME firstly samples instances both in the vicinity of x (which have a high weig
 
 Let G be the class of linear models, such that <img src="http://latex.codecogs.com/gif.latex?\ g(z')=w_g \cdot z'" />. 
 
-Locally weighted squre loss: <img src="http://latex.codecogs.com/gif.latex?\ L(f, g, \pi_x) = \sum_{z,z'\in Z}{\pi_x(z) (f(z)-g(z'))^2} " />
+Locally weighted square loss: <img src="http://latex.codecogs.com/gif.latex?\ L(f, g, \pi_x) = \sum_{z,z'\in Z}{\pi_x(z) (f(z)-g(z'))^2} " />
 
 where <img src="http://latex.codecogs.com/gif.latex?\\ \pi_x(z)=exp(-D(x,z)^2/\sigma^2)" />, which is an exponential kernel defined on some distance function D (e.g. cosine distance for text, L2 distance for images) with width σ. 
 
@@ -143,4 +143,8 @@ Ribeiro, M. T., Singh, S., & Guestrin, C. (2016, August). **Why should i trust y
 	  year={2016},
 	  organization={ACM}
 	}
+
+### Useful Links:
+
+https://zhuanlan.zhihu.com/p/58099941
 
