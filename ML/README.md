@@ -54,14 +54,13 @@ Model Selection.
 
 Small k 
 
-- 􏰇  Good at capturing **fine-grained** patterns 
-
-- 􏰇  May **overfit**, i.e. be sensitive to random idiosyncrasies in the training data 
+- Good at capturing **fine-grained** patterns 
+- May **overfit**, i.e. be sensitive to random idiosyncrasies in the training data 
 
 Large k 
 
-  - 􏰇  Makes **stable** predictions by averaging over lots of examples 
-  - 􏰇  May **underfit**, i.e. fail to capture important regularities 
+- Makes **stable** predictions by averaging over lots of examples 
+- May **underfit**, i.e. fail to capture important regularities 
 
 Rule of thumb: k < sqrt(n), where n is the number of training examples 
 
