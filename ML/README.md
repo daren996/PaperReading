@@ -50,7 +50,7 @@ Model Selection.
 
 ## KNN
 
-#### Tradeoffs in choosing k? 
+#### 1. Tradeoffs in choosing k? 
 
 Small k 
 
@@ -66,7 +66,7 @@ Rule of thumb: k < sqrt(n), where n is the number of training examples
 
 k influnces the underfitting and overfitting, as we can’t fit as part of the learning algorithm itself. We can tune **hyperparameters** using a validation set. 
 
-#### Is KNN bayes consistent?
+#### 2. Is KNN bayes consistent?
 
 In other words, given enough data, will it give the “right” answer? 
 
@@ -76,7 +76,7 @@ The asymptotic error of 1-NN is at most twice the Bayes error.
 
 The KNN approaches the Bayes error, i.e. KNN is Bayes consistent. (Central Limit Theorem)
 
-#### Curse of Dimensionality
+#### 3. Curse of Dimensionality
 
 KNN suffers from the Curse of Dimensionality. 
 
@@ -86,7 +86,7 @@ Another perspective: In high dimensions, “most” points are approximately the
 
 Probable Solution: project to get **intrinsic dimension**.
 
-#### Normalization 
+#### 4. Normalization 
 
 Nearest neighbors can be sensitive to the ranges (**units**) of different features. 
 
