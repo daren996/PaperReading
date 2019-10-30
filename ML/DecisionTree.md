@@ -4,6 +4,14 @@
 
 ## Approaches
 
+Learning the simplest (smallest) decision tree is an NP complete problem.
+
+Greedy heuristic:
+
+- Start from an empty decision tree 
+- Split on the “**best**” attribute (choose attribute that gives the highest gain)
+- Recurse 
+
 ### Division Methods
 
 Three common division methods of classification decision tree (algorithms used to develop decision trees) are:
