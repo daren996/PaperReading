@@ -359,7 +359,7 @@ Most of the units and connections are in the convolution layers.
 
 Most of the weights are in the fully connected layers. 
 
-#### Visualization
+#### 6. Visualization
 
 we can understand what first-layer features are doing by visualizing the weight matrices. 
 
