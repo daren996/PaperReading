@@ -29,10 +29,6 @@ Model Selection.
 
 
 
-
-
-
-
 ## Terms
 
 **Generalization Error**: Error rate on new examples. We would like our algorithm to **generalize** to data it hasn’t before. (referring lec01-slides)
