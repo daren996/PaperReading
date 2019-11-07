@@ -20,9 +20,11 @@ def beta_log_pdf(theta, a, b):
     norm_const = gammaln(a + b) - gammaln(a) - gammaln(b)
     return norm_const + (a - 1.) * np.log(theta) + (b - 1.) * np.log(1. - theta)
 
+
 def beta_log_pdf_unnorm(theta, a, b):
     """Unnormalized log PDF of the beta distribution."""
     return (a - 1.) * np.log(theta) + (b - 1.) * np.log(1. - theta)
+
 
 def dirichlet_log_pdf(pi, a):
     """Log PDF of the Dirichlet distribution. We don't need this function, but we
@@ -30,12 +32,10 @@ def dirichlet_log_pdf(pi, a):
     norm_const = gammaln(a.sum()) - gammaln(a).sum()
     return norm_const + np.sum((a - 1.) * np.log(pi))
 
+
 def dirichlet_log_pdf_unnorm(pi, a):
     """Unnormalized log PDF of the Dirichlet distribution."""
     return np.sum((a - 1.) * np.log(pi))
-
-
-
 
 
 class Params(object):
@@ -45,7 +45,7 @@ class Params(object):
         - theta: The Bernoulli parameters for each pixel in each mixture component. This is
             a K x D matrix, where rows correspond to mixture components and columns correspond
             to pixels. """
-    
+
     def __init__(self, pi, theta):
         self.pi = pi
         self.theta = theta
@@ -56,13 +56,14 @@ class Params(object):
         init_theta = np.random.uniform(0.49, 0.51, size=(num_components, num_pixels))
         return Params(init_pi, init_theta)
 
+
 class Prior(object):
     """A class representing the priors over parameters in the mixture model.
         - a_mix: A scalar valued parameter for the Dirichlet prior over mixing proportions.
         - a_pixels and b_pixels: The scalar-valued parameters for the beta prior over the entries of
             theta. I.e., the entries of theta are assumed to be drawn i.i.d. from the distribution
             Beta(a_pixels, b_pixels). """
-    
+
     def __init__(self, a_mix, a_pixels, b_pixels):
         self.a_mix = a_mix
         self.a_pixels = a_pixels
@@ -79,11 +80,12 @@ class Prior(object):
         MAP estimation is equivalent to maximum likelihood."""
         return cls(1., 1., 1.)
 
+
 class Model(object):
     """A class implementing the mixture of Bernoullis model. The fields are:
         - prior: an Prior instance
         - params: a Params instance"""
-    
+
     def __init__(self, prior, params):
         self.prior = prior
         self.params = params
@@ -97,7 +99,7 @@ class Model(object):
         """Compute the expected joint log probability, where the expectation is with respect to
         the responsibilities R. This is the objective function being maximized in the M-step.
         It's useful for verifying the optimality conditions in the M-step."""
-        
+
         total = 0.
 
         # Prior over mixing proportions
@@ -108,7 +110,7 @@ class Model(object):
 
         # Probability of assignments
         total += np.sum(R * np.log(self.params.pi))
-        
+
         # Matrix of log probabilities of observations conditioned on z
         # The (i, k) entry is p(x^(i) | z^(i) = k)
         log_p_x_given_z = np.dot(X, np.log(self.params.theta).T) + \
@@ -122,7 +124,7 @@ class Model(object):
     def log_likelihood(self, X):
         """Compute the log-likelihood of the observed data, i.e. the log probability with the
         latent variables marginalized out."""
-        
+
         # Matrix of log probabilities of observations conditioned on z
         # The (i, k) entry is p(x^(i) | z^(i) = k)
         log_p_x_given_z = np.dot(X, np.log(self.params.theta).T) + \
@@ -143,9 +145,8 @@ class Model(object):
         ######################## Your code here #########################
         pass
 
-
         #################################################################
-        
+
     def update_theta(self, X, R):
         """Compute the update for the Bernoulli parameters in the M-step of the E-M algorithm.
         You should derive the optimal value of theta (the one which maximizes the expected log
@@ -154,7 +155,6 @@ class Model(object):
 
         ######################## Your code here #########################
         pass
-
 
         #################################################################
 
@@ -172,16 +172,14 @@ class Model(object):
         Hint: the solution is a small modification of the computation of log_p_z_x in
         Model.log_likelihood.
         """
-        
+
         if M is None:
             M = np.ones(X.shape, dtype=int)
 
         ######################## Your code here #########################
-        
-
 
         #################################################################
-            
+
         # subtract the max of each row to avoid numerical instability
         log_p_z_x_shifted = log_p_z_x - log_p_z_x.max(1).reshape((-1, 1))
 
@@ -203,9 +201,8 @@ class Model(object):
         ######################## Your code here #########################
         pass
 
-
         #################################################################
-        
+
     def visualize_components(self, title=None):
         """Visualize the learned components. Each of the images shows the Bernoulli parameters
         (probability of the pixel being 1) for one of the mixture components."""
@@ -237,12 +234,12 @@ class Model(object):
             title = 'Model predictions'
         pylab.title(title)
         pylab.draw()
-        
+
 
 def train_from_labels(prior=None, show=True):
     """Fit the mixture model using the labeled MNIST data. There are 10 mixture components,
     one corresponding to each of the digit classes."""
-    
+
     X = util.read_mnist_images(TRAIN_IMAGES_FILE)
     y = util.read_mnist_labels(TRAIN_LABELS_FILE)
     X_test = util.read_mnist_images(TEST_IMAGES_FILE)
@@ -250,7 +247,7 @@ def train_from_labels(prior=None, show=True):
 
     if prior is None:
         prior = Prior.default_prior()
-    model = Model.random_initialization(prior, 10, IMAGE_DIM**2)
+    model = Model.random_initialization(prior, 10, IMAGE_DIM ** 2)
 
     R = np.zeros((num_data, 10))
     R[np.arange(num_data), y] = 1.
@@ -259,7 +256,7 @@ def train_from_labels(prior=None, show=True):
 
     # mask which includes top half of pixels
     M = np.zeros(X.shape, dtype=int)
-    M[:, :M.shape[1]//2] = 1
+    M[:, :M.shape[1] // 2] = 1
 
     if show:
         model.visualize_components()
@@ -272,11 +269,11 @@ def train_from_labels(prior=None, show=True):
         print('Test log-likelihood:', model.log_likelihood(X_test) / X_test.shape[0])
 
     return model
-    
-        
+
+
 def train_with_em(num_components=100, num_steps=50, prior=None, draw_every=1):
     """Fit the mixture model in an unsupervised fashion using E-M."""
-    
+
     X = util.read_mnist_images(TRAIN_IMAGES_FILE)
     X_test = util.read_mnist_images(TEST_IMAGES_FILE)
     num_data, num_pixels = X.shape
@@ -287,7 +284,7 @@ def train_with_em(num_components=100, num_steps=50, prior=None, draw_every=1):
 
     # mask which includes top half of pixels
     M = np.zeros(X.shape, dtype=int)
-    M[:, :M.shape[1]//2] = 1
+    M[:, :M.shape[1] // 2] = 1
 
     loglik_vals = []
 
@@ -302,17 +299,16 @@ def train_with_em(num_components=100, num_steps=50, prior=None, draw_every=1):
         loglik = model.log_likelihood(X) / num_data
         loglik_vals.append(loglik)
 
-        if (i+1) % draw_every == 0:
+        if (i + 1) % draw_every == 0:
             model.visualize_components()
             model.visualize_predictions(X[:64, :], M[:64, :])
 
             pylab.figure('Log-likelihood')
             pylab.clf()
-            pylab.semilogx(np.arange(1, i+2), loglik_vals)
+            pylab.semilogx(np.arange(1, i + 2), loglik_vals)
             pylab.title('Log-likelihood')
             pylab.xlabel('Number of E-M steps')
             pylab.draw()
-
 
     print('Final training log-likelihood:', model.log_likelihood(X) / num_data)
     print('Final test log-likelihood:', model.log_likelihood(X_test) / X_test.shape[0])
@@ -322,7 +318,7 @@ def train_with_em(num_components=100, num_steps=50, prior=None, draw_every=1):
 
 def print_log_probs_by_digit_class(model):
     """Print the average log-probability of images in each digit class."""
-    
+
     X = util.read_mnist_images(TRAIN_IMAGES_FILE)
     y = util.read_mnist_labels(TRAIN_LABELS_FILE)
     X_test = util.read_mnist_images(TEST_IMAGES_FILE)
@@ -330,19 +326,17 @@ def print_log_probs_by_digit_class(model):
 
     print('Training set')
     for digit in range(10):
-        X_curr = X[y==digit, :]
+        X_curr = X[y == digit, :]
         loglik = model.log_likelihood(X_curr) / X_curr.shape[0]
         print('Average log-probability of a {} image: {:1.3f}'.format(digit, loglik))
     print()
 
     print('Test set')
     for digit in range(10):
-        X_curr = X_test[y_test==digit, :]
+        X_curr = X_test[y_test == digit, :]
         loglik = model.log_likelihood(X_curr) / X_curr.shape[0]
         print('Average log-probability of a {} image: {:1.3f}'.format(digit, loglik))
     print()
-
-
 
 
 def print_part_1_values():
@@ -356,7 +350,7 @@ def print_part_1_values():
     num_data, num_pixels = X.shape
 
     prior = Prior(2., 3., 4.)
-    model = Model.random_initialization(prior, 10, IMAGE_DIM**2)
+    model = Model.random_initialization(prior, 10, IMAGE_DIM ** 2)
 
     R = np.zeros((num_data, 10))
     R[np.arange(num_data), y] = 0.9
@@ -370,13 +364,12 @@ def print_part_1_values():
     print('theta[3, 298]', model.params.theta[3, 298])
 
 
-
 def print_part_2_values():
     """Print a set of values that we use to check the correctness of the implementation in Part 2."""
     model = train_from_labels(show=False)
 
     X = util.read_mnist_images(TRAIN_IMAGES_FILE)
-    
+
     M = np.zeros(X.shape, dtype=int)
     M[:, ::50] = 1
 
@@ -387,12 +380,3 @@ def print_part_2_values():
     print('R[1, 0]', R[1, 0])
     print('P[0, 183]', P[0, 183])
     print('P[2, 628]', P[2, 628])
-
-    
-    
-    
-
-    
-
-
-
