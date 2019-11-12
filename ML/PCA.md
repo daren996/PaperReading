@@ -8,7 +8,7 @@ Principal Component Analysis
 
 Suppose there are points in the three-dimensional space. These points are distributed on an inclined plane that passes through the origin. 
 
-<img src='https://github.com/daren996/PaperReading/blob/master/ML/Img/PCS-PLANE.png'>
+<img src='https://github.com/daren996/PaperReading/blob/master/ML/Img/PCS-PLANE.png' style="width:80%">
 
 #### Natural Coordinate System
 
@@ -25,4 +25,3 @@ If the data is arranged in a matrix by row, then the rank of this matrix is 2. T
 #### Data Centering
 
 What if the plane does not pass the origin? Data centering! Translate the origin of the coordinates to the data center so that the originally unrelated data is relevant in this new coordinate system. Interestingly, as three points must be coplanar, any three points after cemtering in the three-dimensional space are linearly related. 
-
