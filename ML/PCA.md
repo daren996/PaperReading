@@ -8,7 +8,7 @@ Principal Component Analysis
 
 Suppose there are points in the three-dimensional space. These points are distributed on an inclined plane that passes through the origin. 
 
-<img src='https://github.com/daren996/PaperReading/blob/master/ML/Img/PCS-PLANE.png' style="width:80%">
+<img src='https://github.com/daren996/PaperReading/blob/master/ML/Img/PCS-PLANE.png' width=80% align=center>
 
 #### Natural Coordinate System
 
