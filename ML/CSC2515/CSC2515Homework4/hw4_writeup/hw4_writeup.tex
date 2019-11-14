@@ -25,10 +25,56 @@ Equation 6:
 \begin{gather*}
 F = \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)}[\log{Pr(z^{(i)}=k)}+\log{p(x^{(i)}|z^{(i)}=k)}]+\log{p(\pi)}+\log{p(\Theta)}
 \end{gather*}
+Denote Lagrangian as, 
+\begin{gather*}
+\begin{aligned}
+L = \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)} \log{Pr(z^{(i)}=k)} + \log{p(\pi)} + \lambda (1 - \sum_{k=1}^K{\pi_k})
+\end{aligned}
+\end{gather*}
+To get the derivative of L on $\pi_k$,
+\begin{gather*}
+\begin{aligned}
+\frac{\partial L}{\partial \pi_k} & = \frac{\partial \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)} \log{\pi_k} + \log{p(\pi)} + \lambda (1 - \sum_{k=1}^K{\pi_k}) }{\partial \pi_k} \\
+& = \frac{\partial \sum_{i=1}^{N} r_k^{(i)} \log{\pi_k} + \log{ \pi_1^{a_1-1} \pi_2^{a_2-1} ... \pi_K^{a_K-1} } + \lambda (1 - \sum_{k=1}^K{\pi_k}) }{\partial \pi_k} \\
+& = \frac{\partial \sum_{i=1}^{N} r_k^{(i)} \log{\pi_k} + (a_k-1)\log{\pi_k} + \lambda (1 - \sum_{k=1}^K{\pi_k}) }{\partial \pi_k} \\
+& = \frac{\sum_{i=1}^{N} r_k^{(i)} + a_k - 1}{\pi_k} - \lambda \\
+\end{aligned}
+\end{gather*}
+Let $ \frac{\partial F}{\partial \pi_k} = 0$,
+\begin{gather*}
+\begin{aligned}
+\lambda = \frac{\sum_{i=1}^{N} r_k^{(i)} + a_k - 1}{\pi_k}
+\end{aligned}
+\end{gather*}
+Therefore, $\pi_k$ must be proportional to $\sum_{i=1}^{N} r_k^{(i)} + a_k - 1$,
+\begin{gather*}
+\begin{aligned}
+\pi_k & \leftarrow \frac{\sum_{i=1}^{N} r_k^{(i)} + a_k - 1}{\sum_{k'=1}^K \sum_{i=1}^{N} r_{k'}^{(i)} + a_{k'} - 1} \\
+& =  \frac{ a_k - 1 + \sum_{i=1}^{N} r_k^{(i)} }{ N - K + \sum_{k'=1}^K a_{k'} } =\frac{a-1+\sum_{i=1}^{N} r_k^{(i)}}{K(a-1)+N}
+\end{aligned}
+\end{gather*}
+To get the derivative of F on $\theta_{k,j}$,
+\begin{gather*}
+\begin{aligned}
+\frac{\partial F}{\partial \theta_{k,j}} & = \frac{\partial \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)} \log{p(x^{(i)}|z^{(i)}=k)} + \log{p(\theta_{k,j})} }{\partial \theta_{k,j}} \\
+& = \frac{\partial \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)} \sum_{j=1}^D [x_j^{(i)} \log{\theta_{k,j}} + (1-x_j^{(i)}) \log{(1-\theta_{k,j})}] + (a-1) \log{\theta_{k,j}} + (b-1) \log{1-\theta_{k,j}} }{\partial \theta_{k,j}} \\
+& = \frac{ \sum_{i=1}^{N} r_k^{(i)} x_j^{(i)} + a - 1 }{\theta_{k,j}} - \frac{ \sum_{i=1}^{N} r_k^{(i)} (1 - x_j^{(i)}) + b - 1 }{1 - \theta_{k,j}} \\
+\end{aligned}
+\end{gather*}
+Let $ \frac{\partial F}{\partial \theta_{k,j}} = 0$,
+\begin{gather*}
+\begin{aligned}
+\frac{ \sum_{i=1}^{N} r_k^{(i)} x_j^{(i)} + a - 1 }{\theta_{k,j}} & - \frac{ \sum_{i=1}^{N} r_k^{(i)} (1 - x_j^{(i)}) + b - 1 }{1 - \theta_{k,j}} = 0 \\
+(1 - \theta_{k,j}) (\sum_{i=1}^{N} r_k^{(i)} x_j^{(i)} + a - 1) & = \theta_{k,j} (\sum_{i=1}^{N} r_k^{(i)} (1 - x_j^{(i)}) + b - 1)
+ \\
+ (\sum_{i=1}^{N} r_k^{(i)} + a + b - 2) \theta_{k,j} & = \sum_{i=1}^{N} r_k^{(i)} x_j^{(i)} + a - 1 \\
+ \theta_{k,j} & \leftarrow \frac{\sum_{i=1}^{N} r_k^{(i)} x_j^{(i)} + a - 1}{\sum_{i=1}^{N} r_k^{(i)} + a + b - 2}
+\end{aligned}
+\end{gather*}
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}	
-\emph{} \\
+\emph{Take these formulas and use them to implement the functions Model.update\_pi and Model.update\_theta in mixture.py. Show the output of running mixture.print\_part\_1\_values(). } \\
 \\
 \end{homeworkSection}
 %%% Subquestion 3
@@ -44,17 +90,30 @@ F = \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)}[\log{Pr(z^{(i)}=k)}+\log{p(x^{(i)}|z^{
 \textbf{Posterior Inference}
 %%% Subquestion 1
 \begin{homeworkSection}
-\emph{} \\
+\emph{Derive the rule for computing the posterior probability distribution $p(z|x)$. } \\
 \\
+For the whole image, 
+\begin{gather*}
+\begin{aligned}
+Pr(z=k|x^{(i)}) & = \frac{Pr(x^{(i)}|z=k) Pr(z=k)}{\sum_{k'=1}^K Pr(x^{(i)}|z=k') Pr(z=k') } \\
+& = \frac{ \prod_{j=1}^D [ \theta_{k,j}^{x_j^{(i)}} + (1-\theta_{k,j})^{1-x_j^{(i)}} ] \pi_k }{ \sum_{k'=1}^K \prod_{j=1}^D [ \theta_{k',j}^{x_j^{(i)}} + (1-\theta_{k',j})^{1-x_j^{(i)}} ] \pi_{k'}}
+\end{aligned}
+\end{gather*}
+For the partially observed image, the term, of which pixel is observed, should be to $m_j$ power; thus, 
+\begin{gather*}
+\begin{aligned}
+Pr(z=k|x^{(i)}) & = \frac{ \prod_{j=1}^D [ \theta_{k,j}^{x_j^{(i)}} + (1-\theta_{k,j})^{1-x_j^{(i)}} ]^{m_j} \pi_k }{ \sum_{k'=1}^K \prod_{j=1}^D [ \theta_{k',j}^{x_j^{(i)}} + (1-\theta_{k',j})^{1-x_j^{(i)}} ]^{m_j} \pi_{k'}}
+\end{aligned}
+\end{gather*}
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}
-\emph{} \\
+\emph{Implement the method Model.compute\_posterior using your solution to the previous question. } \\
 \\
 \end{homeworkSection}
 %%% Subquestion 3
 \begin{homeworkSection}	
-\emph{} \\
+\emph{Implement the method Model.posterior\_predictive\_means, which computes the posterior predictive means of the missing pixels given the observed ones.} \\
 \\
 \end{homeworkSection}
 %%% Subquestion 4
@@ -70,17 +129,17 @@ F = \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)}[\log{Pr(z^{(i)}=k)}+\log{p(x^{(i)}|z^{
 \textbf{Conceptual Questions}
 %%% Subquestion 1
 \begin{homeworkSection}	
-\emph{} \\
+\emph{In the code, the default parameters for the beta prior over $\Theta$ were $a = b = 2$. If we instead used $a = b = 1$ (which corresponds to a uniform distribution), the MAP learning algorithm would have the problem that it might assign zero probability to images in the test set. Why might this happen?} \\
 \\
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}	
-\emph{} \\
+\emph{The model from Part 2 can still get higher average log probabilities on both the training and test sets, compared with the model from Part 1, even if the number of latent components is set to 10. This is counterintuitive, since the Part 1 model has access to additional information: labels which are part of a true causal explanation of the data (i.e. what digit someone was trying to write). Why do you think the Part 2 model still does better?} \\
 \\
 \end{homeworkSection}
 %%% Subquestion 3
 \begin{homeworkSection}	
-\emph{} \\
+\emph{The function print\_log\_probs\_by\_digit\_class computes the average log-probabilities for different digit classes in both the training and test sets. In both cases, images of 1’s are assigned far higher log-probability than images of 8’s. Does this mean the model thinks 1’s are far more common than 8’s? I.e., if you sample from its distribution, will it generate far more 1’s than 8’s? Why or why not?} \\
 \\
 \end{homeworkSection}
 \end{homeworkProblem}
@@ -91,7 +150,10 @@ F = \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)}[\log{Pr(z^{(i)}=k)}+\log{p(x^{(i)}|z^{
 %\begin{gather*}
 %\end{gather*}
 
-
+%\begin{gather*}
+%\begin{aligned}
+%\end{aligned}
+%\end{gather*}
 
 
 
