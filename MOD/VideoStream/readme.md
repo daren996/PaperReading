@@ -2,7 +2,24 @@
 
 
 
-# Pares
+# Papers
+
+### Surveys
+
+#### A Comprehensive Survey of Vision-Based Human Action Recognition Methods
+
+Data: GRB and Depth & Sketleton
+
+Human Action Recognition:
+- Classification
+  - Action Representation
+    - Handcraft
+    - Deep Learning: Two Stream CNN; LSTM; 3D CNN
+  - Interaction Recognition
+- Detection
+  - Action Detection
+
+
 
 ### Detecting and Recognizing Human-Object Interaction
 
