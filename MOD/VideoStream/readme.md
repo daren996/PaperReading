@@ -149,12 +149,12 @@ I will refer to the definition of SQL-like language of video stream queries in p
 
 Video Stream Interaction Queries is under development. It currently incorporates the layout of [3] with few new features. Our layout, will allow users to express human object interaction queries and compare the time and accuracy performance of our approach with the full model's performance [1]. Figure 1 presents the current state of the front end. 
 
-<img src='https://github.com/daren996/PaperReading/blob/master/MOD/VideoStream/img/demo.png' width=50%>
+<img src='https://github.com/daren996/PaperReading/blob/master/MOD/VideoStream/img/demo.png' width=80%>
 
 In comparison with [3], we moved the query and video source selection on the side bar. Subsequently, we use the extra space to present the filters' ordering per batch size on the upper right corner. The filters' ordering will be updated every batch size. We plan to add an extra selection in order the user to define the batch size. Each color represents a different operator, and a node represents a filter of an operator.
 Figure 2 presents the filters ordering module.
 
-<img src='https://github.com/daren996/PaperReading/blob/master/MOD/VideoStream/img/filters.png' width=50%>
+<img src='https://github.com/daren996/PaperReading/blob/master/MOD/VideoStream/img/filters.png' width=40%>
 
 The SQL Query area on upper left corner, it will output an SQL action query based on the query definition. By clicking on Optimisation button, our approach will be invoked, described on **Querying For Interactions**, while clicking Brute Force, state of the art object detectors [2] and action recognition [1] models will evaluate the respective input video. 
 
