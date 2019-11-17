@@ -34,7 +34,7 @@ I address the task of queries for video stream database system, about not only t
 
 ### Prior work
 
-####Data Management on Video Streams
+#### Data Management on Video Streams
 
 Recently there has been increased interest in the application of Deep Learning techniques in data management. Many works tried to apply image classification and object detection algorithms to fast query processing on video streams.
 
@@ -84,10 +84,15 @@ I will refer to the definition of SQL-like language of video stream queries in p
 ### Reference
 
 **[1]** Koudas, N., Li, R., Xarchakos, I.. (2020). Video Monitoring Queries. Under Review.
+
 **[2]** Kang, D., Emmons, J., Abuzaid, F., Bailis, P., & Zaharia, M. (2017). Noscope: optimizing neural network queries over video at scale. *Proceedings of the VLDB Endowment*, *10*(11), 1586-1597.
+
 **[3]** Kang, D., Bailis, P., & Zaharia, M. (2018). Blazeit: Fast exploratory video queries using neural networks. *arXiv preprint arXiv:1805.01046*.
+
 **[4]** Hinton, G., Vinyals, O., & Dean, J. (2015). Distilling the knowledge in a neural network. *arXiv preprint arXiv:1503.02531*.
+
 **[5]** Gkioxari, G., Girshick, R., Dollár, P., & He, K. (2018). Detecting and recognizing human-object interactions. In *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition* (pp. 8359-8367).
+
 **[6]** Redmon, J., & Farhadi, A. (2017). YOLO9000: better, faster, stronger. In *Proceedings of the IEEE conference on computer vision and pattern recognition* (pp. 7263-7271).
 
 
@@ -142,18 +147,33 @@ I will refer to the definition of SQL-like language of video stream queries in p
 
 ### Progress Description
 
-Video Stream Interaction Queries is under development. It currently incorporates the layout of \cite{Xarchakos2019} with few new features. Our layout, will allow users to express human object interaction queries and compare the time and accuracy performance of our approach with the full model's performance \cite{gkioxari2018detecting}. \\ Figure \ref{fig:1} presents the current state of the front end. 
+Video Stream Interaction Queries is under development. It currently incorporates the layout of [3] with few new features. Our layout, will allow users to express human object interaction queries and compare the time and accuracy performance of our approach with the full model's performance [1]. Figure 1 presents the current state of the front end. 
 
-In comparison with \cite{Xarchakos2019}, we moved the query and video source selection on the side bar. Subsequently, we use the extra space to present the filters' ordering per batch size on the upper right corner. The filters' ordering will be updated every batch size. We plan to add an extra selection in order the user to define the batch size. Each color represents a different operator, and a node represents a filter of an operator.
-Figure \ref{fig:2} presents the filters ordering module.
+<img src='' width=50%>
 
-The SQL Query area on upper left corner, it will output an SQL action query based on the query definition. By clicking on Optimisation button, our approach will be invoked, described on \textbf{Querying For Interactions}, while clicking Brute Force, state of the art object detectors \cite{8237584} and action recognition \cite{gkioxari2018detecting} models will evaluate the respective input video. \\
+In comparison with [3], we moved the query and video source selection on the side bar. Subsequently, we use the extra space to present the filters' ordering per batch size on the upper right corner. The filters' ordering will be updated every batch size. We plan to add an extra selection in order the user to define the batch size. Each color represents a different operator, and a node represents a filter of an operator.
+Figure 2 presents the filters ordering module.
+
+
+
+The SQL Query area on upper left corner, it will output an SQL action query based on the query definition. By clicking on Optimisation button, our approach will be invoked, described on **Querying For Interactions**, while clicking Brute Force, state of the art object detectors [2] and action recognition [1] models will evaluate the respective input video. 
+
 Finally, the video display for both our approach and full model's approach will produce bounding boxes for humans and objects which participate on an action. Additionally, we will produce a bounding box or a heat-map for frames that a specific action exist between the human and the object.
 
+### Plan for Future Work
 
+- Nov 11 Discussing the new model and additional features that can be added.
 
-[1]  Georgia Gkioxari, Ross Girshick, Piotr Doll ́ar, and Kaiming He.  Detecting and recognizing human-object interactions.  In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 8359–8367, 2018.
+- Nov 11 - Nov 15 Implement modules to present the model’s accuracy and time performance.
 
-[2]  K. He, G. Gkioxari, P. Doll ́ar, and R. Girshick. Mask r-cnn. In 2017 IEEE International Conference on Computer Vision (ICCV), pages 2980–2988, Oct 2017.
+- Nov 11 - Nov 25 Writing the code of the improved model using human action data sets.
 
-[3]  Ioannis  Xarchakos  and  Nick  Koudas.   Svq:  Streaming  video  queries. In Proceedings of the 2019 International Conference on Management of Data, SIGMOD ’19, pages 2013–2016, New York, NY, USA, 2019. ACM.
+- Nov 25 - Dec 1 Preparing the report and presentation.
+
+### Reference
+
+**[1]**  Georgia Gkioxari, Ross Girshick, Piotr Doll ́ar, and Kaiming He. Detecting and recognizing human-object interactions.  In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 8359–8367, 2018.
+
+**[2]**  K. He, G. Gkioxari, P. Doll ́ar, and R. Girshick. Mask r-cnn. In 2017 IEEE International Conference on Computer Vision (ICCV), pages 2980–2988, Oct 2017.
+
+**[3]**  Ioannis  Xarchakos  and  Nick  Koudas. Svq: Streaming  video  queries. In Proceedings of the 2019 International Conference on Management of Data, SIGMOD ’19, pages 2013–2016, New York, NY, USA, 2019. ACM.
