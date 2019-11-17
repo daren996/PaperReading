@@ -141,22 +141,15 @@ class Model(object):
         You should derive the optimal value of pi (the one which maximizes the expected log
         probability) by setting the partial derivatives of the Lagrangian to zero. You should
         implement this in terms of NumPy matrix and vector operations, rather than a for loop."""
-
-        ######################## Your code here #########################
-        pass
-
-        #################################################################
+        tmp = np.sum(R, axis=0) + self.prior.a_mix - 1
+        return tmp / np.sum(tmp, axis=0)
 
     def update_theta(self, X, R):
         """Compute the update for the Bernoulli parameters in the M-step of the E-M algorithm.
         You should derive the optimal value of theta (the one which maximizes the expected log
         probability) by setting the partial derivatives to zero. You should implement this in
         terms of NumPy matrix and vector operations, rather than a for loop."""
-
-        ######################## Your code here #########################
-        pass
-
-        #################################################################
+        return (R.T.dot(X) + self.prior.a_pixels - 1) / (np.sum(R, axis=0).reshape((-1, 1)) + self.prior.a_pixels + self.prior.b_pixels - 2)
 
     def compute_posterior(self, X, M=None):
         """Compute the posterior probabilities of the cluster assignments given the observations.
@@ -177,7 +170,9 @@ class Model(object):
             M = np.ones(X.shape, dtype=int)
 
         ######################## Your code here #########################
-
+        log_p_z_x = np.multiply(M, X).dot(np.log(self.params.theta).T) + \
+                    np.multiply(M, (1 - X)).dot(np.log(1 - self.params.theta).T) + \
+                    np.log(self.params.pi)
         #################################################################
 
         # subtract the max of each row to avoid numerical instability
@@ -199,8 +194,7 @@ class Model(object):
         a call to self.compute_posterior."""
 
         ######################## Your code here #########################
-        pass
-
+        return self.compute_posterior(X, M).dot(self.params.theta)
         #################################################################
 
     def visualize_components(self, title=None):
@@ -380,3 +374,7 @@ def print_part_2_values():
     print('R[1, 0]', R[1, 0])
     print('P[0, 183]', P[0, 183])
     print('P[2, 628]', P[2, 628])
+
+
+print_part_1_values()
+print_part_2_values()

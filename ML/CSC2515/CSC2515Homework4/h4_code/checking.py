@@ -127,7 +127,7 @@ def check_e_step():
             print('Something seems to be wrong with the E-step.')
 
 if __name__ == '__main__':
-    check_e_step()
+    # check_e_step()
     check_m_step()
 
 
