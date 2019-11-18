@@ -14,7 +14,7 @@ Human Action Recognition:
 - Classification
   - Action Representation
     - Handcraft
-    - Deep Learning: Two Stream CNN; LSTM; 3D CNN
+    - Deep Learning: Two-Stream CNN; LSTM; 3D CNN
   - Interaction Recognition
 - Detection
   - Action Detection
