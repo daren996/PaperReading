@@ -11,108 +11,112 @@
 \newcommand{\tr}{\text{Tr}}
 \newcommand{\rib}{\text{Rib}}
 
-\title{CSC 2515 Homework 3}
+\title{CSC 2515 Homework 5}
 \begin{document}
 
 %% Question 1
 \begin{homeworkProblem}
-\textbf{Learning the Parameters} 
+\textbf{EM for Probabilistic PCA} 
 %%% Subquestion 1
 \begin{homeworkSection}	
-\emph{Derive the M-step update rules for $\Theta$ and $\pi$ by setting the partial derivatives of Equation 6 to zero. Be sure to show your steps.} \\
+\emph{E-step. Calculate the statistics of the posterior
+distribution $q(z)=p(z|\textbf{x})$ which you’ll need for the M-step.} \\
 \\
-Equation 6:
-\begin{gather*}
-F = \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)}[\log{Pr(z^{(i)}=k)}+\log{p(x^{(i)}|z^{(i)}=k)}]+\log{p(\pi)}+\log{p(\Theta)}
-\end{gather*}
-Denote Lagrangian as, 
+From the Appendix, we know how to get the distribution of $z$ given $\textbf{x}$, where $z$ is drawn from Gaussian distribution and $\textbf{x}$ is drawn from a spherical Gaussian distribution. \\
+In our setting, 
 \begin{gather*}
 \begin{aligned}
-L = \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)} \log{Pr(z^{(i)}=k)} + \log{p(\pi)} + \lambda (1 - \sum_{k=1}^K{\pi_k})
+p(z) &= \mathcal{N}(z|0,1) \\
+p(\textbf{x}|z) &= \mathcal{N}(\textbf{x}|z\textbf{u},\sigma^2\textbf{I})
 \end{aligned}
 \end{gather*}
-To get the derivative of L on $\pi_k$,
+To apply the parameters in the formulae of the Appendix, we have
 \begin{gather*}
 \begin{aligned}
-\frac{\partial L}{\partial \pi_k} & = \frac{\partial \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)} \log{\pi_k} + \log{p(\pi)} + \lambda (1 - \sum_{k=1}^K{\pi_k}) }{\partial \pi_k} \\
-& = \frac{\partial \sum_{i=1}^{N} r_k^{(i)} \log{\pi_k} + \log{ \pi_1^{a_1-1} \pi_2^{a_2-1} ... \pi_K^{a_K-1} } + \lambda (1 - \sum_{k=1}^K{\pi_k}) }{\partial \pi_k} \\
-& = \frac{\partial \sum_{i=1}^{N} r_k^{(i)} \log{\pi_k} + (a_k-1)\log{\pi_k} + \lambda (1 - \sum_{k=1}^K{\pi_k}) }{\partial \pi_k} \\
-& = \frac{\sum_{i=1}^{N} r_k^{(i)} + a_k - 1}{\pi_k} - \lambda \\
+& \bm{\mu} = 0, \bm{\Sigma} = 1, \\
+& \bm{A} = \bm{u}, \bm{B} = 0, \bm{S} = \sigma^2\bm{I} \\
+& \bm{C} = (1+\bm{u}^T(\sigma^2)^{-1}\bm{u})^{-1} 
+= \frac{\sigma^2}{\sigma^2 + \bm{u}^T\bm{u}} 
 \end{aligned}
 \end{gather*}
-Let $ \frac{\partial F}{\partial \pi_k} = 0$,
+Thus, we can obtain the folowing formulae:
 \begin{gather*}
 \begin{aligned}
-\lambda = \frac{\sum_{i=1}^{N} r_k^{(i)} + a_k - 1}{\pi_k}
+p(\bm{x}) &= \mathcal{N}(\bm{x}|0, \bm{u}^T \bm{u} + \sigma^2) \\
+p(z|\bm{x}) &= \mathcal{N}(z|\bm{C}(\bm{u}^T(\sigma^2)^{-1}\bm{x}),\bm{C}) \\
+&= \mathcal{N}(z|\frac{\bm{u}^T\bm{x}}{\sigma^2+\bm{u}^T\bm{u}},
+\frac{\sigma^2}{\sigma^2+\bm{u}^T\bm{u}})
 \end{aligned}
 \end{gather*}
-Therefore, $\pi_k$ must be proportional to $\sum_{i=1}^{N} r_k^{(i)} + a_k - 1$,
+As a result, 
 \begin{gather*}
 \begin{aligned}
-\pi_k & \leftarrow \frac{\sum_{i=1}^{N} r_k^{(i)} + a_k - 1}{\sum_{k'=1}^K \sum_{i=1}^{N} r_{k'}^{(i)} + a_{k'} - 1} \\
-& =  \frac{ a_k - 1 + \sum_{i=1}^{N} r_k^{(i)} }{ N - K + \sum_{k'=1}^K a_{k'} } =\frac{a-1+\sum_{i=1}^{N} r_k^{(i)}}{K(a-1)+N}
-\end{aligned}
-\end{gather*}
-To get the derivative of F on $\theta_{k,j}$,
-\begin{gather*}
-\begin{aligned}
-\frac{\partial F}{\partial \theta_{k,j}} & = \frac{\partial \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)} \log{p(x^{(i)}|z^{(i)}=k)} + \log{p(\theta_{k,j})} }{\partial \theta_{k,j}} \\
-& = \frac{\partial \sum_{i=1}^{N}\sum_{k=1}^{K}r_k^{(i)} \sum_{j=1}^D [x_j^{(i)} \log{\theta_{k,j}} + (1-x_j^{(i)}) \log{(1-\theta_{k,j})}] + (a-1) \log{\theta_{k,j}} + (b-1) \log{1-\theta_{k,j}} }{\partial \theta_{k,j}} \\
-& = \frac{ \sum_{i=1}^{N} r_k^{(i)} x_j^{(i)} + a - 1 }{\theta_{k,j}} - \frac{ \sum_{i=1}^{N} r_k^{(i)} (1 - x_j^{(i)}) + b - 1 }{1 - \theta_{k,j}} \\
-\end{aligned}
-\end{gather*}
-Let $ \frac{\partial F}{\partial \theta_{k,j}} = 0$,
-\begin{gather*}
-\begin{aligned}
-\frac{ \sum_{i=1}^{N} r_k^{(i)} x_j^{(i)} + a - 1 }{\theta_{k,j}} & - \frac{ \sum_{i=1}^{N} r_k^{(i)} (1 - x_j^{(i)}) + b - 1 }{1 - \theta_{k,j}} = 0 \\
-(1 - \theta_{k,j}) (\sum_{i=1}^{N} r_k^{(i)} x_j^{(i)} + a - 1) & = \theta_{k,j} (\sum_{i=1}^{N} r_k^{(i)} (1 - x_j^{(i)}) + b - 1)
- \\
- (\sum_{i=1}^{N} r_k^{(i)} + a + b - 2) \theta_{k,j} & = \sum_{i=1}^{N} r_k^{(i)} x_j^{(i)} + a - 1 \\
- \theta_{k,j} & \leftarrow \frac{\sum_{i=1}^{N} r_k^{(i)} x_j^{(i)} + a - 1}{\sum_{i=1}^{N} r_k^{(i)} + a + b - 2}
+m=E[z|\bm{x}] &= \frac{\bm{u}^T\bm{x}}{\sigma^2+\bm{u}^T\bm{u}} \\
+Var[z|\bm{x}] &= \frac{\sigma^2}{\sigma^2+\bm{u}^T\bm{u}} \\
+s=E[z^2|\bm{x}] &= Var[z|\bm{x}] + E[z|\bm{x}]^2 \\
+&= \frac{\sigma^4+\sigma^2\bm{u}^T\bm{u}+(\bm{u}^T\bm{x})^2}{(\sigma^2+\bm{u}^T\bm{u})^2}
 \end{aligned}
 \end{gather*}
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}	
-\emph{Take these formulas and use them to implement the functions Model.update\_pi and Model.update\_theta in mixture.py. Show the output of running mixture.print\_part\_1\_values(). } \\
-\\
-pi[0] 0.085 \\
-pi[1] 0.13 \\
-theta[0, 239] 0.6427106227106232 \\
-theta[3, 298] 0.46573612495845823
+\emph{M-step. Re-estimate the parameters, which consist of the vector $\bm{u}$. derive a formula for $\bm{u}_{new}$ that maximizes the expected log-likelihood, i.e.,} 
+\begin{gather*}
+\bm{u}_{new} = \arg\max_{\bm{u}} \frac{1}{N} \sum_{i=1}^N \mathbb{E}_{q(z^{(i)})} 
+[\log p(z^{(i)}, \bm{x}^{(i)})]
+\end{gather*}
+Denote the function to be maximized as 
+\begin{gather*}
+\begin{aligned}
+\mathbb{F} &= \frac{1}{N} \sum_{i=1}^N \mathbb{E}_{q(z^{(i)})} 
+[\log p(z^{(i)}, \bm{x}^{(i)})] \\
+&= \frac{1}{N} \sum_{i=1}^N \mathbb{E}_{q(z^{(i)})} 
+[\log q(z^{(i)})p(\bm{x}^{(i)})] \\
+\end{aligned}
+\end{gather*}
+Then, 
+\begin{gather*}
+\begin{aligned}
+\log p(\bm{x}^{(i)})q(z^{(i)}) &= \log 
+\frac{1}{\sqrt{2\pi (\bm{u}^T\bm{u}+\sigma^2)}} e^{-\frac{\bm{x}^{(i)2}}{2(\bm{u}^T\bm{u}+\sigma^2)}}
+\frac{1}{\sqrt{2\pi \frac{\sigma^2}{\bm{u}^T\bm{u}+\sigma^2}}} e^{-\frac{(z^{(i)} - \frac{\bm{u}^T\bm{x}^{(i)}}{\sigma^2+\bm{u}^T\bm{u}})^2}{2 \frac{\sigma^2}{\bm{u}^T\bm{u}+\sigma^2} }} \\
+&\propto -\frac{\bm{x}^{(i)2}}{2(\bm{u}^T\bm{u}+\sigma^2)} -\frac{(z^{(i)} - \frac{\bm{u}^T\bm{x}^{(i)}}{\sigma^2+\bm{u}^T\bm{u}})^2}{2 \frac{\sigma^2}{\bm{u}^T\bm{u}+\sigma^2} } \\
+&\propto -\frac{\bm{x}^{(i)2} \sigma^2 + [\bm{u}^T\bm{x}^{(i)}-(\sigma^2+\bm{u}^T\bm{u})z^{(i)}]^2}{2\sigma^2 (\bm{u}^T\bm{u}+\sigma^2)} \\
+&\propto -\frac{z^{(i)2}(\sigma^2+\bm{u}^T\bm{u})}{2\sigma^2} 
++ \frac{z^{(i)}\bm{u}^T\bm{x}^{(i)}}{\sigma^2} \\
+&\propto -\frac{z^{(i)2} \bm{u}^T\bm{u} }{2\sigma^2} 
++ \frac{z^{(i)}\bm{u}^T\bm{x}^{(i)}}{\sigma^2}
+\end{aligned}
+\end{gather*}
+Apply the liearity of expectation, 
+\begin{gather*}
+\begin{aligned}
+\mathbb{F} &= \frac{1}{N} \sum_{i=1}^N \mathbb{E}
+[\log p(\bm{x}^{(i)})q(z^{(i)})] \\
+&= \frac{1}{N} \sum_{i=1}^N [-\frac{\mathbb{E} [z^{(i)2}|\bm{x}^{(i)}] \bm{u}^T\bm{u}}{2\sigma^2} 
++ \frac{\mathbb{E} [z^{(i)}|\bm{x}^{(i)}] \bm{u}^T \bm{x}^{(i)} }{\sigma^2}] \\
+&= \frac{1}{N} \sum_{i=1}^N [-\frac{ m \bm{u}^T\bm{u}}{2\sigma^2} 
++ \frac{ s \bm{u}^T\bm{x}^{(i)}}{\sigma^2}] \\
+&= -\frac{ m \bm{u}^T\bm{u}}{2\sigma^2} + 
+\frac{ s \frac{1}{N} \sum_{i=1}^N \bm{u}^T \bm{x}^{(i)} }{\sigma^2}
+\end{aligned}
+\end{gather*}
+To get the gradient with repect to $\bm{u}$,
+\begin{gather*}
+\frac{\partial \mathbb{F}}{\partial \bm{u}} = 
+-\frac{m\bm{u}}{\sigma^2} + \frac{s \frac{1}{N} \sum_{i=1}^N \bm{x}^{(i)} \bm{I}}{\sigma^2} = 0 \\
+\bm{u} \leftarrow \frac{s \frac{1}{N} \sum_{i=1}^N \bm{x}^{(i)} \bm{I} }{m}
+\end{gather*}
 \end{homeworkSection}
 \end{homeworkProblem}
 
 
 %% Question 2
 \begin{homeworkProblem}
-\textbf{Posterior Inference}
+\textbf{Contraction Maps}
 %%% Subquestion 1
 \begin{homeworkSection}
-\emph{Derive the rule for computing the posterior probability distribution $p(z|x)$. } \\
-\\
-For the whole image, 
-\begin{gather*}
-\begin{aligned}
-Pr(z=k|x^{(i)}) & = \frac{Pr(x^{(i)}|z=k) Pr(z=k)}{\sum_{k'=1}^K Pr(x^{(i)}|z=k') Pr(z=k') } \\
-& = \frac{ \prod_{j=1}^D [ \theta_{k,j}^{x_j^{(i)}} (1-\theta_{k,j})^{1-x_j^{(i)}} ] \pi_k }{ \sum_{k'=1}^K \prod_{j=1}^D [ \theta_{k',j}^{x_j^{(i)}} (1-\theta_{k',j})^{1-x_j^{(i)}} ] \pi_{k'}}
-\end{aligned}
-\end{gather*}
-For the partially observed image, the term, of which pixel is observed, should be to $m_j$ power; thus, 
-\begin{gather*}
-\begin{aligned}
-Pr(z=k|x^{(i)}) & = \frac{ \prod_{j=1}^D [ \theta_{k,j}^{x_j^{(i)}} (1-\theta_{k,j})^{1-x_j^{(i)}} ]^{m_j} \pi_k }{ \sum_{k'=1}^K \prod_{j=1}^D [ \theta_{k',j}^{x_j^{(i)}} (1-\theta_{k',j})^{1-x_j^{(i)}} ]^{m_j} \pi_{k'}}
-\end{aligned}
-\end{gather*}
-\end{homeworkSection}
-%%% Subquestion 2
-\begin{homeworkSection}
-\emph{Implement the method Model.compute\_posterior using your solution to the previous question. } \\
-\\
-R[0, 2] 0.17488951492117283 \\
-R[1, 0] 0.6885376761092292 \\
-P[0, 183] 0.6516151998131037 \\
-P[2, 628] 0.4740801724913301 \\
+\emph{} \\
 \\
 \end{homeworkSection}
 \end{homeworkProblem}
@@ -120,62 +124,16 @@ P[2, 628] 0.4740801724913301 \\
 
 %% Question 3
 \begin{homeworkProblem}
-\textbf{Conceptual Questions}
+\textbf{Q-Learning}
 %%% Subquestion 1
 \begin{homeworkSection}	
-\emph{In the code, the default parameters for the beta prior over $\Theta$ were $a = b = 2$. If we instead used $a = b = 1$ (which corresponds to a uniform distribution), the MAP learning algorithm would have the problem that it might assign zero probability to images in the test set. Why might this happen?} \\
+\emph{} \\
 \\
-If $a=1$ and $b=1$, then 
-\begin{gather*}
-\begin{aligned}
-\theta_{k,j} & \leftarrow \frac{\sum_{i=1}^{N} r_k^{(i)} x_j^{(i)}}{\sum_{i=1}^{N} r_k^{(i)}}
-\end{aligned}
-\end{gather*}
-If a pixel is always 0 in the training set, i.e. we set $x_1^{(i)}=0$; then, 
-\begin{gather*}
-\begin{aligned}
-\theta_{k,1} = 0
-\end{aligned}
-\end{gather*}
-Put the $\theta_{k,1}$ into $Pr(z=k, x^{(i)})$, 
-\begin{gather*}
-\begin{aligned}
-Pr(x^{(i)}|z=k) & = \prod_{j=1}^D \theta_{k,j}^{x_j^{(i)}} (1-\theta_{k,j})^{1-x_j^{(i)}} \\
-& = [ \theta_{k,1}^{x_1^{(i)}} (1-\theta_{k,1})^{1-x_1^{(i)}} ]^{m_1} \prod_{j=2}^D [ \theta_{k,j}^{x_j^{(i)}} (1-\theta_{k,j})^{1-x_j^{(i)}} ]^{m_j} \\
-& = [ 0^{x_1^{(i)}} 1^{1-x_1^{(i)}} ]^{m_1} \prod_{j=2}^D [ \theta_{k,j}^{x_j^{(i)}} (1-\theta_{k,j})^{1-x_j^{(i)}} ]^{m_j} = 0 \\
-\end{aligned}
-\end{gather*}
-As the probability of images $x^{(i)}$ assigned $z=k$ is proportional to $Pr(x^{(i)}|z=k)$, the MAP learning algorithm would have the problem that it might assign zero probability to images in the test set. \\
-However, if we put the $\theta_{k,1}$ into $Pr(z=k|x^{(i)})$, 
-\begin{gather*}
-\begin{aligned}
-Pr(z=k|x^{(i)}) & = \frac{  [ \theta_{k,1}^{x_1^{(i)}} (1-\theta_{k,1})^{1-x_1^{(i)}} ]^{m_1} \prod_{j=2}^D [ \theta_{k,j}^{x_j^{(i)}} (1-\theta_{k,j})^{1-x_j^{(i)}} ]^{m_j} \pi_k }{ \sum_{k'=1}^K \prod_{j=1}^D [ \theta_{k',j}^{x_j^{(i)}} (1-\theta_{k',j})^{1-x_j^{(i)}} ]^{m_j} \pi_{k'}} \\
-& = \frac{  [ 0^{x_1^{(i)}} 1^{1-x_1^{(i)}} ]^{m_1} \prod_{j=2}^D [ \theta_{k,j}^{x_j^{(i)}} (1-\theta_{k,j})^{1-x_j^{(i)}} ]^{m_j} \pi_k }{ \sum_{k'=1}^K [ 0^{x_1^{(i)}} 1^{1-x_1^{(i)}} ]^{m_1} \prod_{j=2}^D [ \theta_{k',j}^{x_j^{(i)}} (1-\theta_{k',j})^{1-x_j^{(i)}} ]^{m_j} \pi_{k'}} = \frac{0}{\sum_{k'=1}^K 0} = NaN \\
-\end{aligned}
-\end{gather*}
-This is another problem. 
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}	
-\emph{The model from Part 2 can still get higher average log probabilities on both the training and test sets, compared with the model from Part 1, even if the number of latent components is set to 10. This is counterintuitive, since the Part 1 model has access to additional information: labels which are part of a true causal explanation of the data (i.e. what digit someone was trying to write). Why do you think the Part 2 model still does better?} \\
+\emph{} \\
 \\
-For the method of part 1, they use the true labels as $R$, so as the values of $R$ are fixed. Then, this method uses the fixed $R$ to get the $\theta$ and $\pi$. 
-For the method of part 2, they choose the $\theta$ and $\pi$ randomly at first; then, iterate $R$ to get higher average log probabilities. Besides, the clusters extracted from part 2 may be different from 0-9 digits, such as it may cluster 8 and 0 together, which will contribute to higher average log probabilities.
-If the number of iterations is enough, the method of part 2 will get optimal log probabilities, which should be higher than the probabilities from the method of part 1. 
-\end{homeworkSection}
-%%% Subquestion 3
-\begin{homeworkSection}	
-\emph{The function print\_log\_probs\_by\_digit\_class computes the average log-probabilities for different digit classes in both the training and test sets. In both cases, images of 1’s are assigned far higher log-probability than images of 8’s. Does this mean the model thinks 1’s are far more common than 8’s? I.e., if you sample from its distribution, will it generate far more 1’s than 8’s? Why or why not?} \\
-\\
-This method uses Multinomial distribution to generate class and uses a collection of Bernoulli distribution to generate images. Thus, the model treats the parameter $\pi_1$ and $\pi_8$ as the probabilities to generate 1's and 8's. 
-As shown in the Equation of $\pi_k$, 
-\begin{gather*}
-\begin{aligned}
-\pi_k & \leftarrow \frac{a-1+\sum_{i=1}^{N} r_k^{(i)}}{K(a-1)+N}
-\end{aligned}
-\end{gather*}
-$\pi_k$ is decided by $r_k^{(i)}$. \\
-However, some digits, like 8's, is hard to be detected, as it may be considered as 0's or 9's, which means the model has less confidence to recognize 8's, so as to make the value of $\sum_{i-1}^N r_8$ smaller than $\sum_{i-1}^N  r_1$. As a result, the value of $\pi_8$ is smaller than $\pi_1$, which will make the model computes higher the average log-probabilities for 1's than 8's and, thus, sample more 1's than 8's from its distribution.
 \end{homeworkSection}
 \end{homeworkProblem}
 
