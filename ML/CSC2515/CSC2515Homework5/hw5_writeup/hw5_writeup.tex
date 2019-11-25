@@ -89,23 +89,34 @@ Then,
 \end{aligned}
 \end{gather*}
 Apply the liearity of expectation, 
+%\begin{gather*}
+%\begin{aligned}
+%\mathbb{F} &= \frac{1}{N} \sum_{i=1}^N \mathbb{E}
+%[\log p(\bm{x}^{(i)})q(z^{(i)})] \\
+%&= \frac{1}{N} \sum_{i=1}^N [-\frac{\mathbb{E} [z^{(i)2}|\bm{x}^{(i)}] \bm{u}^T\bm{u}}{2\sigma^2} 
+%+ \frac{\mathbb{E} [z^{(i)}|\bm{x}^{(i)}] \bm{u}^T \bm{x}^{(i)} }{\sigma^2}] \\
+%&= \frac{1}{N} \sum_{i=1}^N [-\frac{ m \bm{u}^T\bm{u}}{2\sigma^2} 
+%+ \frac{ s \bm{u}^T\bm{x}^{(i)}}{\sigma^2}] \\
+%&= -\frac{ m \bm{u}^T\bm{u}}{2\sigma^2} + 
+%\frac{ s \frac{1}{N} \sum_{i=1}^N \bm{u}^T \bm{x}^{(i)} }{\sigma^2}
+%\end{aligned}
+%\end{gather*}
 \begin{gather*}
 \begin{aligned}
 \mathbb{F} &= \frac{1}{N} \sum_{i=1}^N \mathbb{E}
 [\log p(\bm{x}^{(i)})q(z^{(i)})] \\
 &= \frac{1}{N} \sum_{i=1}^N [-\frac{\mathbb{E} [z^{(i)2}|\bm{x}^{(i)}] \bm{u}^T\bm{u}}{2\sigma^2} 
 + \frac{\mathbb{E} [z^{(i)}|\bm{x}^{(i)}] \bm{u}^T \bm{x}^{(i)} }{\sigma^2}] \\
-&= \frac{1}{N} \sum_{i=1}^N [-\frac{ m \bm{u}^T\bm{u}}{2\sigma^2} 
-+ \frac{ s \bm{u}^T\bm{x}^{(i)}}{\sigma^2}] \\
-&= -\frac{ m \bm{u}^T\bm{u}}{2\sigma^2} + 
-\frac{ s \frac{1}{N} \sum_{i=1}^N \bm{u}^T \bm{x}^{(i)} }{\sigma^2}
+&= \frac{1}{N} \sum_{i=1}^N [-\frac{ m^{(i)} \bm{u}^T\bm{u}}{2\sigma^2} 
++ \frac{ s^{(i)} \bm{u}^T\bm{x}^{(i)}}{\sigma^2}] \\
 \end{aligned}
 \end{gather*}
 To get the gradient with repect to $\bm{u}$,
 \begin{gather*}
 \frac{\partial \mathbb{F}}{\partial \bm{u}} = 
--\frac{m\bm{u}}{\sigma^2} + \frac{s \frac{1}{N} \sum_{i=1}^N \bm{x}^{(i)} \bm{I}}{\sigma^2} = 0 \\
-\bm{u} \leftarrow \frac{s \frac{1}{N} \sum_{i=1}^N \bm{x}^{(i)} \bm{I} }{m}
+-\frac{1}{N} \sum_{i=1}^N [\frac{m^{(i)} \bm{u}}{\sigma^2} + \frac{s^{(i)} \bm{x}^{(i)} \bm{I}}{\sigma^2}] = 0 \\
+\bm{u} \leftarrow \frac{\frac{1}{N} \sum_{i=1}^N s^{(i)} \bm{x}^{(i)} \bm{I} }{\frac{1}{N} \sum_{i=1}^N m^{(i)}} \\
+\bm{u} \leftarrow \frac{\sum_{i=1}^N s^{(i)} \bm{x}^{(i)} \bm{I} }{\sum_{i=1}^N m^{(i)}}
 \end{gather*}
 \end{homeworkSection}
 \end{homeworkProblem}
