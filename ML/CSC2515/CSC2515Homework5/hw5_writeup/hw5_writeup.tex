@@ -107,16 +107,16 @@ Apply the liearity of expectation,
 [\log p(\bm{x}^{(i)})q(z^{(i)})] \\
 &= \frac{1}{N} \sum_{i=1}^N [-\frac{\mathbb{E} [z^{(i)2}|\bm{x}^{(i)}] \bm{u}^T\bm{u}}{2\sigma^2} 
 + \frac{\mathbb{E} [z^{(i)}|\bm{x}^{(i)}] \bm{u}^T \bm{x}^{(i)} }{\sigma^2}] \\
-&= \frac{1}{N} \sum_{i=1}^N [-\frac{ m^{(i)} \bm{u}^T\bm{u}}{2\sigma^2} 
-+ \frac{ s^{(i)} \bm{u}^T\bm{x}^{(i)}}{\sigma^2}] \\
+&= \frac{1}{N} \sum_{i=1}^N [-\frac{ s^{(i)} \bm{u}^T\bm{u}}{2\sigma^2} 
++ \frac{ m^{(i)} \bm{u}^T\bm{x}^{(i)}}{\sigma^2}] \\
 \end{aligned}
 \end{gather*}
 To get the gradient with repect to $\bm{u}$,
 \begin{gather*}
 \frac{\partial \mathbb{F}}{\partial \bm{u}} = 
--\frac{1}{N} \sum_{i=1}^N [\frac{m^{(i)} \bm{u}}{\sigma^2} + \frac{s^{(i)} \bm{x}^{(i)}}{\sigma^2}] = 0 \\
-\bm{u} \leftarrow \frac{\frac{1}{N} \sum_{i=1}^N s^{(i)} \bm{x}^{(i)}}{\frac{1}{N} \sum_{i=1}^N m^{(i)}} \\
-\bm{u} \leftarrow \frac{\sum_{i=1}^N s^{(i)} \bm{x}^{(i)}}{\sum_{i=1}^N m^{(i)}}
+-\frac{1}{N} \sum_{i=1}^N [\frac{s^{(i)} \bm{u}}{\sigma^2} + \frac{m^{(i)} \bm{x}^{(i)}}{\sigma^2}] = 0 \\
+\bm{u} \leftarrow \frac{\frac{1}{N} \sum_{i=1}^N m^{(i)} \bm{x}^{(i)}}{\frac{1}{N} \sum_{i=1}^N s^{(i)}} \\
+\bm{u} \leftarrow \frac{\sum_{i=1}^N m^{(i)} \bm{x}^{(i)}}{\sum_{i=1}^N s^{(i)}}
 \end{gather*}
 \end{homeworkSection}
 \end{homeworkProblem}
@@ -127,8 +127,39 @@ To get the gradient with repect to $\bm{u}$,
 \textbf{Contraction Maps}
 %%% Subquestion 1
 \begin{homeworkSection}
-\emph{} \\
+\emph{Show that the Bellman backup operator $T^\pi$ is a contraction map in the $||\cdot||_\infty$ norm.} \\
 \\
+Our claim is that the Bellman backup  operator $T^\pi$ is a contraction map, which means
+\begin{gather*}
+\begin{aligned}
+||T^\pi Q_1 - T^\pi Q_2||_\infty \leq \gamma||Q_1 - Q_2||_\infty \\
+\end{aligned}
+\end{gather*}
+By applying Bellman equation:
+\begin{gather*}
+\begin{aligned}
+Q_{k+1}(s,a) \leftarrow r(s,a) + \gamma \sum_{s'} P(s'|a,s) \sum_{a'} \pi(a'|s') Q_k(s', a')
+\end{aligned}
+\end{gather*}
+we have 
+\begin{gather*}
+\begin{aligned}
+& |T^\pi Q_1 (s,a) - T^\pi Q_2 (s,a)|_\infty \\
+=& |[r(s,a) + \gamma \sum_{s'} P(s'|a,s) \sum_{a'} \pi(a'|s') Q_1(s', a')] - 
+[r(s,a) + \gamma \sum_{s'} P(s'|a,s) \sum_{a'} \pi(a'|s') Q_2(s', a')]|_\infty \\
+=& \gamma|\sum_{s'} P(s'|a,s) \sum_{a'} \pi(a'|s') [Q_1(s', a') - Q_2(s', a')]|_\infty \\
+\leq& \gamma\sum_{s'} P(s'|a,s) \sum_{a'} \pi(a'|s') |Q_1(s', a') - Q_2(s', a')|_\infty \\
+\leq& \gamma |Q_1(s', a') - Q_2(s', a')|_\infty \sum_{s'} P(s'|a,s) \sum_{a'} \pi(a'|s') \\
+=& \gamma |Q_1(s', a') - Q_2(s', a')|_\infty
+\end{aligned}
+\end{gather*}
+This is true for any $(s, a)$, so 
+\begin{gather*}
+\begin{aligned}
+||T^\pi Q_1 - T^\pi Q_2||_\infty \leq \gamma||Q_1 - Q_2||_\infty \\
+\end{aligned}
+\end{gather*}
+which is what we wanted to show.
 \end{homeworkSection}
 \end{homeworkProblem}
 
@@ -138,13 +169,93 @@ To get the gradient with repect to $\bm{u}$,
 \textbf{Q-Learning}
 %%% Subquestion 1
 \begin{homeworkSection}	
-\emph{} \\
+\emph{Determine the optimal policy and the Q-function for the optimal policy.} \\
 \\
+The optimal policy will be 
+\begin{gather*}
+\begin{aligned}
+\pi(Stay|s_1) = 0; 
+\pi(Switch|s_1) = 1; 
+\pi(Stay|s_2) = 1; 
+\pi(Switch|s_2) = 2; 
+\end{aligned}
+\end{gather*}
+Then, by applying Bellman equation
+\begin{gather*}
+\begin{aligned}
+Q^*(s,a) = r(s,a) + \gamma \sum_{s'} P(s'|a,s) \max_{a'} Q^*(s',a')
+\end{aligned}
+\end{gather*}
+, we get
+\begin{gather*}
+\begin{aligned}
+Q^*(s_1,Stay) = 1 + 0.9 \max_{a'} Q^*(s_1,a') \\
+Q^*(s_1,Switch) = 1 + 0.9 \max_{a'} Q^*(s_2,a') \\
+Q^*(s_2,Stay) = 2 + 0.9 \max_{a'} Q^*(s_2,a') \\
+Q^*(s_2,Switch) = 2 + 0.9 \max_{a'} Q^*(s_1,a') 
+\end{aligned}
+\end{gather*}
+To solve it, we get
+\begin{gather*}
+\begin{aligned}
+Q^*(s_1,Stay) = 18.1;
+Q^*(s_1,Switch) = 19;
+Q^*(s_2,Stay) = 20; 
+Q^*(s_2,Switch) = 19.1 
+\end{aligned}
+\end{gather*}
+or
+\begin{center}
+\begin{tabular}{c|c|c}
+  & Stay & Switch \\ 
+ \hline
+ $s_1$ & 18.1 & 19 \\  
+ \hline
+ $s_2$ & 20 & 19.1    
+\end{tabular}
+\end{center}
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}	
-\emph{} \\
+\emph{Now suppose we apply Q-learning, except that instead of the $\epsilon$-greedy policy, the agent follows the greedy policy which always chooses $\pi(s) = \arg \max_a Q(s,a)$. Assume the agent starts in state $S_0 = s_1$. Give an example of a Q-function that is in equilibrium (i.e. it will never change after the Q-learning update rule is applied), but which results in a suboptimal policy.} \\
 \\
+According to Q-Learning, we should initialize $Q(s,a)$ for all the $(s,a) \in \mathcal{S} \times \mathcal{A}$. \\
+We could assign them as 0's, where the Q-function is shown as 
+\begin{center}
+\begin{tabular}{c|c|c}
+  & Stay & Switch \\ 
+ \hline
+ $s_1$ & 0 & 0 \\  
+ \hline
+ $s_2$ & 0 & 0    
+\end{tabular} 
+\end{center} 
+For the time step $t=0$, \\
+Choose $A_t$ according to the greedy policy, i.e., 
+$A_0 \leftarrow \arg\max_{a\in\mathcal{A}}Q(S_0, a)=\arg\max_{a\in\mathcal{A}}Q(s_1, a)$ \\
+Because all the $Q(s_1,a)'s$ are 0, we could just choose $A_0 = Stay$. \\
+Then, the new state becomes $S_1=s_1$, as we choose to \emph{Stay}. \\
+Also, $R_0 = r(s_1,Stay)=1$. \\
+Finally, we update the action-value function at state-action $(s_1,Stay)$ as 
+\begin{gather*}
+\begin{aligned}
+Q(s_1,Stay) &\leftarrow Q(s_1,Stay) + \alpha [R_0 + \gamma \max_{a'\in\mathcal{A}}Q(S_1,a')-Q(S_0,A_t)] \\
+&= 0 + \alpha [1 + 0.9 \times 1 - 0] \\
+&= 1.9 \alpha
+\end{aligned}
+\end{gather*}
+The table of Q-function becomes 
+\begin{center}
+\begin{tabular}{c|c|c}
+  & Stay & Switch \\ 
+ \hline
+ $s_1$ & $1.9\alpha$ & 0 \\  
+ \hline
+ $s_2$ & 0 & 0    
+\end{tabular} 
+\end{center}
+Continue the algorithm, we will find it choose \emph{Stay} all the time. \\
+It is an equilibrium situation, but never converging to the optimal policy.
 \end{homeworkSection}
 \end{homeworkProblem}
 
