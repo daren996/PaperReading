@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.11.13)  25 NOV 2019 21:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.11.13)  27 NOV 2019 00:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1619,28 +1619,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 172--175
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 220--224
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 260--263
 
  []
 
-[3]
-No complaints by nag.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 263.
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--273
+
+ []
+
 [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 263.
+No complaints by nag.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 312.
+[5]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 312.
  (./hw5_writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 263.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 263.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 312.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 312.
  ) 
 Here is how much of TeX's memory you used:
- 25896 strings out of 492982
- 491894 string characters out of 6134895
+ 25897 strings out of 492982
+ 491900 string characters out of 6134895
  602485 words of memory out of 5000000
  29031 multiletter control sequences out of 15000+600000
  582036 words of font info for 146 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,19n,45p,10439b,929s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,19n,45p,10439b,923s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dis
@@ -1656,10 +1661,10 @@ live/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/palatino/uplbi8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/pal
 atino/uplri8a.pfb>
-Output written on hw5_writeup.pdf (4 pages, 139674 bytes).
+Output written on hw5_writeup.pdf (5 pages, 142354 bytes).
 PDF statistics:
- 122 PDF objects out of 1000 (max. 8388607)
- 100 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
+ 127 PDF objects out of 1000 (max. 8388607)
+ 103 compressed objects within 2 object streams
+ 14 named destinations out of 1000 (max. 500000)
  32321 words of extra memory for PDF output out of 35830 (max. 10000000)
 

@@ -189,19 +189,59 @@ Q^*(s,a) = r(s,a) + \gamma \sum_{s'} P(s'|a,s) \max_{a'} Q^*(s',a')
 , we get
 \begin{gather*}
 \begin{aligned}
-Q^*(s_1,Stay) = 1 + 0.9 \max_{a'} Q^*(s_1,a') \\
-Q^*(s_1,Switch) = 1 + 0.9 \max_{a'} Q^*(s_2,a') \\
-Q^*(s_2,Stay) = 2 + 0.9 \max_{a'} Q^*(s_2,a') \\
-Q^*(s_2,Switch) = 2 + 0.9 \max_{a'} Q^*(s_1,a') 
+Q^*(s_1,Stay) = R(s_1) + 0.9 \max_{a'} Q^*(s_1,a') \\
+Q^*(s_1,Switch) = R(s_1) + 0.9 \max_{a'} Q^*(s_2,a') \\
+Q^*(s_2,Stay) = R(s_2) + 0.9 \max_{a'} Q^*(s_2,a') \\
+Q^*(s_2,Switch) = R(s_2) + 0.9 \max_{a'} Q^*(s_1,a') 
 \end{aligned}
 \end{gather*}
-To solve it, we get
+Applying to this question's setting, 
 \begin{gather*}
 \begin{aligned}
-Q^*(s_1,Stay) = 18.1;
-Q^*(s_1,Switch) = 19;
-Q^*(s_2,Stay) = 20; 
-Q^*(s_2,Switch) = 19.1 
+R(s_1) + 0.9 \max_{a'\in\mathcal{A}} Q^*(s_1,a') - Q^*(s_1, Stay) &= 0 \\
+R(s_1) + 0.9 \max_{a'\in\mathcal{A}} Q^*(s_2,a') - Q^*(s_1, Switch) &= 0 \\
+R(s_2) + 0.9 \max_{a'\in\mathcal{A}} Q^*(s_2,a') - Q^*(s_2, Stay) &= 0 \\
+R(s_2) + 0.9 \max_{a'\in\mathcal{A}} Q^*(s_1,a') - Q^*(s_2, Switch) &= 0 \\
+\end{aligned}
+\end{gather*}
+that is,
+\begin{gather*}
+\begin{aligned}
+1 + 0.9 \max \{Q^*(s_1,Stay),Q^*(s_1,Switch)\} - Q^*(s_1, Stay) &= 0 \\
+1 + 0.9 \max \{Q^*(s_2,Stay),Q^*(s_2,Switch)\} - Q^*(s_1, Switch) &= 0 \\
+2 + 0.9 \max \{Q^*(s_2,Stay),Q^*(s_2,Switch)\} - Q^*(s_2, Stay) &= 0 \\
+2 + 0.9 \max \{Q^*(s_1,Stay),Q^*(s_1,Switch)\} - Q^*(s_2, Switch) &= 0 \\
+\end{aligned}
+\end{gather*}
+so
+\begin{gather*}
+\begin{aligned}
+Q^*(s_2,Stay) &= 1 + Q^*(s_1,Switch) \\
+Q^*(s_2,Switch) &= 1 + Q^*(s_1,Stay) \\
+\end{aligned}
+\end{gather*}
+Apply them,
+\begin{gather*}
+\begin{aligned}
+1 + 0.9 \max \{Q^*(s_1,Stay),Q^*(s_1,Switch)\} - Q^*(s_1, Stay) &= 0 \\
+1.9 + 0.9 \max \{Q^*(s_1,Stay),Q^*(s_1,Switch)\} - Q^*(s_1, Switch) &= 0 \\
+\end{aligned}
+\end{gather*}
+so
+\begin{gather*}
+\begin{aligned}
+Q^*(s_1,Switch) &= Q^*(s_1,Stay) + 0.9 \\ 
+Q^*(s_2,Stay) &= Q^*(s_1,Stay) + 1.9 \\ 
+Q^*(s_2,Switch) &= Q^*(s_1,Stay) + 1 \\ 
+\end{aligned}
+\end{gather*}
+Finally, we have
+\begin{gather*}
+\begin{aligned}
+Q^*(s_1,Stay) &= 18.1 \\
+Q^*(s_1,Switch) &= Q^*(s_1,Stay) + 0.9 = 19 \\ 
+Q^*(s_2,Stay) &= Q^*(s_1,Stay) + 1.9 = 20 \\ 
+Q^*(s_2,Switch) &= Q^*(s_1,Stay) + 1 = 19.1 \\ 
 \end{aligned}
 \end{gather*}
 or
@@ -219,6 +259,15 @@ or
 \begin{homeworkSection}	
 \emph{Now suppose we apply Q-learning, except that instead of the $\epsilon$-greedy policy, the agent follows the greedy policy which always chooses $\pi(s) = \arg \max_a Q(s,a)$. Assume the agent starts in state $S_0 = s_1$. Give an example of a Q-function that is in equilibrium (i.e. it will never change after the Q-learning update rule is applied), but which results in a suboptimal policy.} \\
 \\
+To be in equilibrium, the expected change in $Q(S, A)$ should be zero, i.e.
+\begin{gather*}
+\begin{aligned}
+\mathbb{E} [R + \gamma \max_{a'\in\mathcal{A}} Q(S',a') - Q(S,A)|S,A] = 0
+\end{aligned}
+\end{gather*}
+\\
+\\
+It also causes another problem. \\
 According to Q-Learning, we should initialize $Q(s,a)$ for all the $(s,a) \in \mathcal{S} \times \mathcal{A}$. \\
 We could assign them as 0's, where the Q-function is shown as 
 \begin{center}
