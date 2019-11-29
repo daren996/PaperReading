@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.3)  28 NOV 2019 19:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.3)  28 NOV 2019 23:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1315,12 +1315,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 260--263
 
 [4]
 No complaints by nag.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 310.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 316.
 [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 310.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 316.
  (./hw5_writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 310.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 310.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 316.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 316.
  ) 
 Here is how much of TeX's memory you used:
  25574 strings out of 492649
@@ -1346,7 +1346,7 @@ t/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2018/texmf-dist/fonts
 /type1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1
 /urw/palatino/uplr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/pa
 latino/uplri8a.pfb>
-Output written on hw5_writeup.pdf (5 pages, 142076 bytes).
+Output written on hw5_writeup.pdf (5 pages, 142267 bytes).
 PDF statistics:
  127 PDF objects out of 1000 (max. 8388607)
  103 compressed objects within 2 object streams

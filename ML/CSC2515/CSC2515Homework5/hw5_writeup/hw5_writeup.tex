@@ -267,12 +267,12 @@ To be in equilibrium, the expected change in $Q(S, A)$ should be zero, i.e.
 \end{gather*}
 %It also causes another problem. \\
 According to Q-Learning, we should initialize $Q(s,a)$ for all the $(s,a) \in \mathcal{S} \times \mathcal{A}$. \\
-We could assign them as 0's, where the Q-function is shown as 
+We could assign them as 10 and 0's, where the Q-function is shown as 
 \begin{center}
 \begin{tabular}{c|c|c}
   & Stay & Switch \\ 
  \hline
- $s_1$ & 0 & 0 \\  
+ $s_1$ & 10 & 0 \\  
  \hline
  $s_2$ & 0 & 0    
 \end{tabular} 
@@ -280,28 +280,34 @@ We could assign them as 0's, where the Q-function is shown as
 For the time step $t=0$, \\
 Choose $A_t$ according to the greedy policy, i.e., 
 $A_0 \leftarrow \arg\max_{a\in\mathcal{A}}Q(S_0, a)=\arg\max_{a\in\mathcal{A}}Q(s_1, a)$ \\
-Because all the $Q(s_1,a)'s$ are 0, we could just choose $A_0 = Stay$. \\
+Because $Q(s_1,Stay)=10$ and $Q(s_1,Switch)  = 0$, we will choose $A_0 = Stay$. \\
 Then, the new state becomes $S_1=s_1$, as we choose to \emph{Stay}. \\
 Also, $R_0 = r(s_1,Stay)=1$. \\
 Finally, we update the action-value function at state-action $(s_1,Stay)$ as 
 \begin{gather*}
 \begin{aligned}
 Q(s_1,Stay) &\leftarrow Q(s_1,Stay) + \alpha [R_0 + \gamma \max_{a'\in\mathcal{A}}Q(s_1,a')-Q(s_1,Stay)] \\
-&= 0 + \alpha [1 + 0.9 \times 0 - 0] \\
-&= \alpha
+&= 10 + \alpha [1 + 0.9 \times 10 - 10] \\
+&= 10
 \end{aligned}
 \end{gather*}
-The table of Q-function becomes 
+The table of Q-function still is 
 \begin{center}
 \begin{tabular}{c|c|c}
   & Stay & Switch \\ 
  \hline
- $s_1$ & $\alpha$ & 0 \\  
+ $s_1$ & 10 & 0 \\  
  \hline
  $s_2$ & 0 & 0    
 \end{tabular} 
 \end{center}
 Continue the algorithm, we will find it choose \emph{Stay} all the time and will never visit $s_2$. \\
+And the expected change in $Q(S, A)$ should be zero, i.e.
+\begin{gather*}
+\begin{aligned}
+\mathbb{E} [R(s_1) + \gamma \max_{a'\in\mathcal{A}} Q(s_1,a') - Q(s_1,Stay)|s_1,Stay] = 0
+\end{aligned}
+\end{gather*}
 It is an equilibrium situation, but never converging to the optimal policy.
 \end{homeworkSection}
 \end{homeworkProblem}
