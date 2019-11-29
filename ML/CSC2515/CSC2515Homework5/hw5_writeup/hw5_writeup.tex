@@ -265,9 +265,7 @@ To be in equilibrium, the expected change in $Q(S, A)$ should be zero, i.e.
 \mathbb{E} [R + \gamma \max_{a'\in\mathcal{A}} Q(S',a') - Q(S,A)|S,A] = 0
 \end{aligned}
 \end{gather*}
-\\
-\\
-It also causes another problem. \\
+%It also causes another problem. \\
 According to Q-Learning, we should initialize $Q(s,a)$ for all the $(s,a) \in \mathcal{S} \times \mathcal{A}$. \\
 We could assign them as 0's, where the Q-function is shown as 
 \begin{center}
@@ -288,9 +286,9 @@ Also, $R_0 = r(s_1,Stay)=1$. \\
 Finally, we update the action-value function at state-action $(s_1,Stay)$ as 
 \begin{gather*}
 \begin{aligned}
-Q(s_1,Stay) &\leftarrow Q(s_1,Stay) + \alpha [R_0 + \gamma \max_{a'\in\mathcal{A}}Q(S_1,a')-Q(S_0,A_t)] \\
-&= 0 + \alpha [1 + 0.9 \times 1 - 0] \\
-&= 1.9 \alpha
+Q(s_1,Stay) &\leftarrow Q(s_1,Stay) + \alpha [R_0 + \gamma \max_{a'\in\mathcal{A}}Q(s_1,a')-Q(s_1,Stay)] \\
+&= 0 + \alpha [1 + 0.9 \times 0 - 0] \\
+&= \alpha
 \end{aligned}
 \end{gather*}
 The table of Q-function becomes 
@@ -298,12 +296,12 @@ The table of Q-function becomes
 \begin{tabular}{c|c|c}
   & Stay & Switch \\ 
  \hline
- $s_1$ & $1.9\alpha$ & 0 \\  
+ $s_1$ & $\alpha$ & 0 \\  
  \hline
  $s_2$ & 0 & 0    
 \end{tabular} 
 \end{center}
-Continue the algorithm, we will find it choose \emph{Stay} all the time. \\
+Continue the algorithm, we will find it choose \emph{Stay} all the time and will never visit $s_2$. \\
 It is an equilibrium situation, but never converging to the optimal policy.
 \end{homeworkSection}
 \end{homeworkProblem}
