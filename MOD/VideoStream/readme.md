@@ -1,8 +1,8 @@
 # video streams
 
-Structure:
 
-1. [Papers](#Papers)
+
+1. [Papers](#papers)
 2. [Reports](#reports)
 
 
