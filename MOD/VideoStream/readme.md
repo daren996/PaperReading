@@ -2,8 +2,8 @@
 
 Structure:
 
-1. Papers
-2. Reports
+1. [Papers](#Papers)
+2. [Reports](#reports)
 
 
 
