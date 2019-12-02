@@ -1,4 +1,4 @@
-# video streams
+# Video Streams
 
 
 
@@ -26,14 +26,51 @@ Human Action Recognition:
 
 
 
-### Detecting and Recognizing Human-Object Interaction
+#### Detecting and Recognizing Human-Object Interaction
 
 - Get <human, verb, object>
 - InteractNet
 
-### Other directions
+#### Other directions
 
-learn action or poses from video clips.
+learn action or poses from video clips. 
+
+### Two-Stream Convolutional Networks
+
+1. Original Two-Stream Model. [paper](http://papers.nips.cc/paper/5353-two-stream-convolutional)
+2. 3D-fused two-stream model. [paper](https://www.cv-foundation.org/openaccess/content_cvpr_2016/html/Feichtenhofer_Convolutional_Two-Stream_Network_CVPR_2016_paper.html)
+3. Two-stream inflated 3D model, short as **I3D**. [paper](http://openaccess.thecvf.com/content_cvpr_2017/html/Carreira_Quo_Vadis_Action_CVPR_2017_paper.html)
+
+It should be noted that their architectures and comparisons have been mentioned in the last paper (J Carreira et.).
+
+Referring [action_quires](https://github.com/daren996/action_queries):
+
+- The I3D source code and experiences on [kinetics data set](https://deepmind.com/research/open-source/kinetics).
+
+- I have written the pre-process code including generating RGB data and optical FLOW data from video clips. The input of the I3D model is a sequence of RGB data and a sequence of [optical FLOW data](https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html). 
+
+### Sampler and Scanner
+
+**Scan Statistics** Fast online anomaly detection using scan statistics. [paper](https://ieeexplore.ieee.org/abstract/document/5589151)
+
+In a T-length video, all w-length clips cannot contain more than $k_{Cirt}$ events:
+
+- Hypothesis $H_0$: $P(S_w \geq k_{Crit} | \mu_0, L) \leq \alpha$
+
+**SCSampler**: sampling salient clips from video for efficient action recognition. [paper](https://arxiv.org/abs/1904.04289)
+
+SCSampler scores the clips with a light-weight model. 
+
+- Traditional way: 
+  - split original video $v$ to produce clips $v^{(i)}$; 
+  - get the action classifications $f(v^{(i)})$; 
+  - use aggregation methods to define the final classification $\hat{f}(v)=aggr(\{f(v^{(i)})\}_{i=1}^L)$. 
+
+- SCSampler: 
+  - split original video $v$ to produce clips $v^{(i)}$; 
+  - extract clip features $\phi(v^{(i)}) \in R^d$; (compressed video / audio features)
+  - use a saliency model $s(.)$ to get saliency scores $s(\phi^{(i)}) \in [0,1]$; 
+  - choose top K - $S(v;K)$, and use these K clips generate the aggregation classification.
 
 
 
