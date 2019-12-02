@@ -1,5 +1,10 @@
 # video streams
 
+Structure:
+
+1. Papers
+2. Reports
+
 
 
 # Papers
@@ -31,9 +36,14 @@ Human Action Recognition:
 learn action or poses from video clips.
 
 
+
 # Reports
 
+This is also a research class project of [CSC 2508](https://koudas.github.io/csc2508-fall2019.html): Working on a research project and file a single submission. The project will be broken down to three assignments: (1) initial research proposal, (2) Intermediate report, (3) final report and presentation.
+
 ##  Project Proposal
+
+Oct 21st, 2019
 
 - Topic to be addressed and the nature of the problem.
 - State of the art (prior work, what remains unsolved, etc.)
@@ -159,8 +169,9 @@ I will refer to the definition of SQL-like language of video stream queries in p
 }
 ```
 
-
 ##  Progress Report
+
+Nov 11th, 2019
 
 ### Progress Description
 
