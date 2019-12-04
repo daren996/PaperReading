@@ -72,6 +72,14 @@ SCSampler scores the clips with a light-weight model.
   - use a saliency model $s(.)$ to get saliency scores $s(\phi^{(i)}) \in [0,1]$; 
   - choose top K - $S(v;K)$, and use these K clips generate the aggregation classification.
 
+For referring: Compressed Video Action Recognition. [code](https://github.com/chaoyuaw/pytorch-coviar)
+
+### Action Localisation
+
+**SlowFast**: SlowFast Networks for Video Recognition.
+
+**TURN TAP**: Temporal Unit Regression Network for Temporal Action Proposals.
+
 
 
 # Reports
