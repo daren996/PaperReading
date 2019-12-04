@@ -242,3 +242,35 @@ Finally, the video display for both our approach and full model's approach will 
 **[2]**  K. He, G. Gkioxari, P. Doll ́ar, and R. Girshick. Mask r-cnn. In 2017 IEEE International Conference on Computer Vision (ICCV), pages 2980–2988, Oct 2017.
 
 **[3]**  Ioannis  Xarchakos  and  Nick  Koudas. Svq: Streaming  video  queries. In Proceedings of the 2019 International Conference on Management of Data, SIGMOD ’19, pages 2013–2016, New York, NY, USA, 2019. ACM.
+
+
+
+## Related Work
+
+- NoScope:
+
+- - Specialized Models. (clow, chigh)
+  - Difference Detector. Reference images or earlier frames. (δdiff)
+  - Cost-Based Optimizer.
+
+- BlazeIt:
+
+- - FrameQL.
+  - Aggregation algorithm.
+  - Scrubbing Queries.
+  - Content-based selection.
+
+- NoScope and BlazeIt’s Limitations:
+
+- - Fixed-Angle Video.
+  - Model Drift. If the scene changes dramatically, they need to re-optimize the models for the new data distribution.
+
+- Daniel Kang et. are still working on: 
+
+- - Scalability. Explore fast methods of specializing these weaker object detection models in restricted scenarios.
+  - Storage and indexing. 
+  - Real-time analytics and actuation. 
+  - Usability via debugging. Use model assertion to help identify and fix model issues.
+
+
+
