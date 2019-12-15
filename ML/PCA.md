@@ -1,20 +1,20 @@
-## PCA
-
-Principal Component Analysis
+## PCA & Autoencoder & K-Means
 
 
 
 ## Term
 
-- In **dimensionality reduction**, we try to learn a mapping to a lower dimensional space that preserves as much information as possible about the input. Goal: save computation/memory; reduce overfitting; visualize in 2 dimensions. 
-- The **projection** of a point x onto S is the point  ̃x ∈ S closest to x. In machine learning,  ̃x is also called the **reconstruction** of x. z is its **representation**, or code. z = U^⊤(x − μ) 
-- 
+- In **dimensionality reduction**, we try to learn a mapping to a lower dimensional space that preserves as much information as possible about the input. 
+- The **projection** of a point x onto S is the point   ̃x ∈ S closest to x. In machine learning,  ̃x is also called the **reconstruction** of x. z is its **representation**, or code. z = U^⊤(x − μ) 
+- An **autoencoder** is a feed-forward neural net whose job it is to take an input x and predict x.
 
 
 
 ## Dimensionality Reduction
 
-In dimensionality reduction, we try to learn a mapping to a lower dimensional space that preserves as much information as possible about the input.
+In dimensionality reduction, we try to learn a mapping to a lower dimensional space that preserves as much information as possible about the input. 
+
+Motivations: Save computation/memory; Reduce overfitting; Visualize in 2 dimensions.
 
 Dimensionality reduction can be linear or nonlinear. 
 
@@ -45,3 +45,66 @@ What if the plane does not pass the origin? Data centering! Translate the origin
 Assuming that the data has a small noise on the z' axis, then we still use the above two-dimensional representation of the data, because we believe that the information of the two axes is the principal component of the data, and this information is enough for our further analysis.
 
 At the same time, if there is noise or redundancy in the features, we also need a feature dimension reduction method to reduce the number of features, reduce noise and redundancy, the possibility of overfitting. 
+
+## PCA
+
+Choosing a subspace to maximize the projected variance, or minimize the reconstruction error, is called **principal component analysis (PCA)**.
+
+Σ is the empirical covariance matrix. Covariance matrices are symmetric and positive semidefinite.
+
+The optimal PCA subspace is spanned by the top K eigenvectors of Σ. More precisely, choose the first K of any orthonormal eigenbasis for Σ.
+
+These eigenvectors are called **principal components**, analogous to the principal axes of an ellipse.
+
+
+
+Dimensionality reduction aims to find a low-dimensional representation of the data.
+
+PCA projects the data onto a subspace which maximizes the projected variance, or equivalently, minimizes the reconstruction error.
+
+The optimal subspace is given by the top eigenvectors of the empirical covariance matrix.
+
+PCA gives a set of decorrelated features.
+
+
+
+## Autoencoder
+
+Why autoencoders?
+
+1. Map high-dimensional data to two dimensions for visualization.
+
+2. Learn abstract features in an unsupervised way so you can apply them to a supervised task. 
+   1. Unlabled data can be much more plentiful than labeled data
+
+For Linear Autoencoders: 
+
+​	The optimal weights for a linear autoencoder are just the principal components.
+
+Deep nonlinear autoencoders learn to project the data, not onto a subspace, but onto a nonlinear manifold. Nonlinear autoencoders can learn more powerful codes for a given dimensionality, compared with linear autoencoders.
+
+
+
+## K-Means
+
+Grouping data points into clusters, with no labels, is called **clustering**.
+
+### Process
+
+Initialization: randomly initialize cluster centers, m_1 , . . . , m_K
+
+Repeat until convergence (until assignments do not change):
+
+1. Assignment step: Assign each data point to the closest cluster, k_n = argmin d(m_k, x^n)
+2. Refitting step: Move each cluster center to the center of gravity of the data assigned to it
+
+### Why K-means Converges
+
+Whenever an assignment is changed, the sum squared distances J of data points from their assigned cluster centers is reduced.
+
+Whenever a cluster center is moved, J is reduced.
+
+Test for convergence: If the assignments do not change in the assignment step, we have converged (to at least a local minimum).
+
+Test for convergence: If the assignments do not change in the assignment step, we have converged (to at least a local minimum).
+
