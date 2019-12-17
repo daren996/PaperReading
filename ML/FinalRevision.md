@@ -146,10 +146,6 @@ Claim: the **Laplace mechanism** is differentially private.
 
 
 
-
-
-
-
 ### MAP and Full Bayesian 
 
 Full Bayesian inference means that you learn a full posterior distribution ...
