@@ -246,7 +246,9 @@ After the first step of gradient descent, the $\hat{w}(1)$ becomes $\begin{bmatr
 &= 2 ( \begin{bmatrix} 10m-4 \\ 5m-2 \end{bmatrix} ) = 2 ( \begin{bmatrix} 2(5m-2) \\ 5m-2 \end{bmatrix} )
 \end{aligned}
 \end{gather*}
-Thus, the direction will not change along the trajectory. 
+Thus, at the beginning of the learning process, the direction will not be changed.
+The direction will not change, if learning rate is low enough. \\
+However, if learning rate is relatively high, the direction could flip from $\begin{bmatrix} 2 \\ 1 \end{bmatrix}$ to $\begin{bmatrix} -2 \\ -1 \end{bmatrix}$.
 
 \begin{figure}[ht]
   \centering
