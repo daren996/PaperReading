@@ -142,13 +142,13 @@ I listed several clusters in \textbf{tsne\_plot\_representation} here: \\
 do, did, does; 
 can, could, will, should, may, might; 
 say, says, said \\
-The words in each cluster here are grouped together according to their perporties, such as numbers, auxiliary verbs. \\
+The words in each cluster here are grouped together according to their characteristics / properties, such as numbers, auxiliary verbs. \\
 \\
 I also listed several clusters in \textbf{tsne\_plot\_GLoVE\_representation} here: \\
 new, york, city; several times; every day; ... \\
 The adjacent words in each cluster here are grouped together. \\
 \\
-Compared with the GLoVE word embedding model, the trained word embedding model uses the properties of words to cluster them, while the GLoVE considers their adjacency. \\
+Compared with the GLoVE word embedding model, the trained word embedding model uses the characteristics of words to cluster them, while the GLoVE considers their adjacency. \\
 \\
 2d-GLoVE is an underfitting phenomenon. 
 The white space (with no point) in the 2d-GLoVE figure using t-SNE is more than without t-SNE, indicating that t-SNE can effectively aggregate similar/near points in the original representation.
@@ -157,11 +157,15 @@ The white space (with no point) in the 2d-GLoVE figure using t-SNE is more than 
 \begin{homeworkSection}
 \emph{Are the words ‘new’ and ‘york’ close together in the learned representation? Why or why not?} \\
 \\
-No. 
+No. \\
+The reason is that the learned representation uses the meaning / characteristics of words to measure their similarity, instead of whether they appear nearby in the training data. \\
+The trained word embedding is only used to provide the features of words in the neural network. The hidden layer will learn the features of each word and analyze the three words input to make a prediction.
 \end{homeworkSection}
 %%% Subquestion 4
 \begin{homeworkSection}
-\emph{Which pair of words is closer together in the learned representation: (‘government’, ‘political’), or (‘government’, ‘university’)? Why do you think this is?}
+\emph{Which pair of words is closer together in the learned representation: (‘government’, ‘political’), or (‘government’, ‘university’)? Why do you think this is?} \\
+\\
+'government' and 'university' is closer than 'government' and 'political', as 'government' and 'university' are more similar (they are nouns, where 'political' is an adjective).
 \end{homeworkSection}
 \end{homeworkProblem}
 
