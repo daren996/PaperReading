@@ -124,22 +124,40 @@ param\_gradient.output\_bias[3] 0.21235172051123635
 \textbf{Training the Neural Network.}
 %%% Subquestion 1
 \begin{homeworkSection}
-\emph{Use the model to predict the next word. Does the model give sensible predictions? Try to find an example where it makes a plausible prediction even though the 4-gram wasn’t present in the dataset (raw\_sentences.txt). To help you out, the function find\_occurrences lists the words that appear after a given 3-gram in the training set.} \\
+\emph{Use the model to predict the next word. Does the model give sensible predictions? Try to find an example where it makes a plausible prediction even though the 4-gram wasn’t present in the dataset (raw\_sentences.txt). } \\
 \\
 For 'government of united', the predictions in the order of probabilities are '.', 'life', 'own'. \\
 For 'city of new', the predictions in the order of probabilities are 'york', '.', 'home'.\\
 For 'life in the', the predictions in the order of probabilities are 'world', 'united', 'game'.\\
 For 'he is the', the predictions in the order of probabilities are 'best', 'same', 'way'. \\
 \\
-I tried a tri-gram, 'where', 'might', 'you', and found "where might you" did not occur in the training set. The predictions made by the model in probability order are 'go', 'be', 'come'.
+I tried a tri-gram, 'where', 'might', 'you', and found "where might you" did not occur in the training set. The predictions made by the model in probability order are 'go', 'be', 'come'. \\
+This is a reasonable prediction.
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}
-\emph{Plot the 2-dimensional visualization using the method tsne\_plot\_representation. Look at the plot and find a few clusters of related words. What do the words in each cluster have in common? Plot the 2-dimensional visualization using the method tsne\_plot\_GLoVE\_representation for a 256 dimensional embedding. How do the t-SNE embeddings for both models compare? Plot the 2-dimensional visualization using the method plot\_2d\_GLoVE\_representation. How does this compare to the t-SNE embeddings? (You don’t need to include the plots with your submission.)}
+\emph{Plot the 2-dimensional visualization using the method tsne\_plot\_representation. Look at the plot and find a few clusters of related words. What do the words in each cluster have in common? Plot the 2-dimensional visualization using the method tsne\_plot\_GLoVE\_representation for a 256 dimensional embedding. How do the t-SNE embeddings for both models compare? Plot the 2-dimensional visualization using the method plot\_2d\_GLoVE\_representation. How does this compare to the t-SNE embeddings? (You don’t need to include the plots with your submission.)} \\
+\\
+I listed several clusters in \textbf{tsne\_plot\_representation} here: \\
+do, did, does; 
+can, could, will, should, may, might; 
+say, says, said \\
+The words in each cluster here are grouped together according to their perporties, such as numbers, auxiliary verbs. \\
+\\
+I also listed several clusters in \textbf{tsne\_plot\_GLoVE\_representation} here: \\
+new, york, city; several times; every day; ... \\
+The adjacent words in each cluster here are grouped together. \\
+\\
+Compared with the GLoVE word embedding model, the trained word embedding model uses the properties of words to cluster them, while the GLoVE considers their adjacency. \\
+\\
+2d-GLoVE is an underfitting phenomenon. 
+The white space (with no point) in the 2d-GLoVE figure using t-SNE is more than without t-SNE, indicating that t-SNE can effectively aggregate similar/near points in the original representation.
 \end{homeworkSection}
 %%% Subquestion 3
 \begin{homeworkSection}
-\emph{Are the words ‘new’ and ‘york’ close together in the learned representation? Why or why not?}
+\emph{Are the words ‘new’ and ‘york’ close together in the learned representation? Why or why not?} \\
+\\
+No. 
 \end{homeworkSection}
 %%% Subquestion 4
 \begin{homeworkSection}
