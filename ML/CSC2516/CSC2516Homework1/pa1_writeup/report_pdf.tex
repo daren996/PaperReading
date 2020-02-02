@@ -1,0 +1,149 @@
+\documentclass{myhw}
+\linespread{1.05}        % Palatino needs more leading (space between lines)
+\usepackage{extarrows}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{amsmath}
+\usepackage{listings}
+
+\titleformat{\section}[runin]{\sffamily\bfseries}{}{}{}[]
+\titleformat{\subsection}[runin]{\sffamily\bfseries}{}{}{}[]
+\renewcommand{\exname}{Question }
+\renewcommand{\subexcounter}{(\alph{homeworkSectionCounter})}
+\newcommand{\id}{\text{Id}}
+\newcommand{\tr}{\text{Tr}}
+\newcommand{\rib}{\text{Rib}}
+
+\title{CSC 2516 Programming Assignment 1}
+
+\begin{document}
+
+
+%% Question 1
+\begin{homeworkProblem}
+\textbf{Linear Embedding - GLoVE.}
+%%% Subquestion 1
+\begin{homeworkSection}
+\emph{Given the vocabulary size V and embedding dimensionality d, how many trainable parameters does the GLoVE model have?} 
+\begin{gather*}
+\begin{aligned}
+V (d + 1)
+\end{aligned}
+\end{gather*}
+\end{homeworkSection}
+%%% Subquestion 2
+\begin{homeworkSection}
+\emph{Write the gradient of the loss function with respect to one parameter vector $w_i$.}
+\begin{gather*}
+\begin{aligned}
+\frac{\partial L}{\partial w_i} &= 
+4 (w_i^T w_i + 2 b_i - \log X_{ii}) w_i + 
+2 \sum_{j = 1, j \neq i}^V 2 (w_i^T w_j + b_i + b_j - \log X_{ij}) w_j \\
+&= 4 (w_i^T w_i + 2 b_i - \log X_{ii}) w_i + 
+\sum_{j = 1, j \neq i}^V 4 (w_i^T w_j + b_i + b_j - \log X_{ij}) w_j \\
+&= \sum_{j = 1}^V 4 (w_i^T w_j + b_i + b_j - \log X_{ij}) w_j 
+\end{aligned}
+\end{gather*}
+Or vectorized format,
+\begin{gather*}
+\begin{aligned}
+\frac{\partial L}{\partial w} &= 
+4 (WW^T + b\mathbb{1}^T + \mathbb{1} b^T - \log X) W
+\end{aligned}
+\end{gather*}
+\end{homeworkSection}
+%%% Subquestion 3
+\begin{homeworkSection}
+\emph{Implement the gradient update of GLoVE in language model.ipynb.}
+\end{homeworkSection}
+%%% Subquestion 4
+\begin{homeworkSection}
+\emph{Train the model with varying dimensionality d. Which d leads to optimal validation performance? Why does / doesn’t larger d always lead to better validation error?} \\
+\\
+$d=12$ (with learning rate 0.2) leads to the optimal validation performance. \\
+Larger d doesn’t always lead to better validation error. \\
+As $d$ increases, the model over-fits, causing more validation error.
+\end{homeworkSection}
+\end{homeworkProblem}
+
+
+%% Question 2
+\begin{homeworkProblem}
+\textbf{Network architecture.}
+%%% Subquestion 1
+\begin{homeworkSection} 
+\emph{As above, assume we have 250 words in the dictionary and use the previous 3 words as inputs. Suppose we use a 16-dimensional word embedding and a hidden layer with 128 units. The trainable parameters of the model consist of 3 weight matrices and 2 sets of biases. What is the total number of trainable parameters in the model? Which part of the model has the largest number of trainable parameters?} \\
+\\
+For Word Embedding layer, there are $250 \times 16 = 4,000$ weight parameters. 
+For Hidden layer, there are $48 \times 128 = 6,144$ weight parameters and $128$ bias parameters.
+For Output layer, there are $128 \times 250 = 32,000$ weight parameters and $250$ bias parameters.
+Totally, $42,144$ weight parameters and $378$ bias parameters. The Output layer has the largest number of trainable parameters.
+\end{homeworkSection}
+%%% Subquestion 2
+\begin{homeworkSection}
+\emph{Another method for predicting the next word is an n-gram model, which was mentioned in Lecture 7. If we wanted to use an n-gram model with the same context length as our network, we’d need to store the counts of all possible 4-grams. If we stored all the counts explicitly, how many entries would this table have?} \\
+\\
+To store all the counts of 4-grams explicitly, we will get a table with $250^4 = 3,906,250,000$ entries. 
+\end{homeworkSection}
+\end{homeworkProblem}
+
+
+%% Question 3
+\begin{homeworkProblem}
+\textbf{Training the Neural Network.} \\
+\\
+\emph{Write the output of print\_gradients().} \\
+\\
+loss\_derivative[2, 5] 0.001112231773782498 \\
+loss\_derivative[2, 121] -0.9991004720395987\\
+loss\_derivative[5, 33] 0.0001903237803173703\\
+loss\_derivative[5, 31] -0.7999757709589483\\
+\\
+param\_gradient.word\_embedding\_weights[27, 2] -0.27199539981936866\\
+param\_gradient.word\_embedding\_weights[43, 3] 0.8641722267354154\\
+param\_gradient.word\_embedding\_weights[22, 4] -0.2546730202374648\\
+param\_gradient.word\_embedding\_weights[2, 5] 0.0\\
+\\
+param\_gradient.embed\_to\_hid\_weights[10, 2] -4.138866687736867\\
+param\_gradient.embed\_to\_hid\_weights[15, 3] -0.9328500707379445\\
+param\_gradient.embed\_to\_hid\_weights[30, 9] 0.5733078167314357\\
+param\_gradient.embed\_to\_hid\_weights[35, 21] -0.8028894072837369\\
+\\
+param\_gradient.hid\_bias[10] 3.230356978224281\\
+param\_gradient.hid\_bias[20] 0.48056811939114435\\
+\\
+param\_gradient.output\_bias[0] -2.0627596032173052\\
+param\_gradient.output\_bias[1] 0.0390200857392169\\
+param\_gradient.output\_bias[2] -0.7561537928318482\\
+param\_gradient.output\_bias[3] 0.21235172051123635
+\end{homeworkProblem}
+
+
+%% Question 4
+\begin{homeworkProblem}
+\textbf{Training the Neural Network.}
+%%% Subquestion 1
+\begin{homeworkSection}
+\emph{Pick three words from the vocabulary that go well together (for example, ‘government of united’, ‘city of new’, ‘life in the’, ‘he is the’ etc.). Use the model to predict the next word. Does the model give sensible predictions? Try to find an example where it makes a plausible prediction even though the 4-gram wasn’t present in the dataset (raw\_sentences.txt). To help you out, the function find\_occurrences lists the words that appear after a given 3-gram in the training set.}
+\end{homeworkSection}
+%%% Subquestion 2
+\begin{homeworkSection}
+\emph{Plot the 2-dimensional visualization using the method tsne\_plot\_representation. Look at the plot and find a few clusters of related words. What do the words in each cluster have in common? Plot the 2-dimensional visualization using the method tsne\_plot\_GLoVE\_representation for a 256 dimensional embedding. How do the t-SNE embeddings for both models compare? Plot the 2-dimensional visualization using the method plot\_2d\_GLoVE\_representation. How does this compare to the t-SNE embeddings? (You don’t need to include the plots with your submission.)}
+\end{homeworkSection}
+%%% Subquestion 3
+\begin{homeworkSection}
+\emph{Are the words ‘new’ and ‘york’ close together in the learned representation? Why or why not?}
+\end{homeworkSection}
+%%% Subquestion 4
+\begin{homeworkSection}
+\emph{Which pair of words is closer together in the learned representation: (‘government’, ‘political’), or (‘government’, ‘university’)? Why do you think this is?}
+\end{homeworkSection}
+\end{homeworkProblem}
+
+\end{document}
+
+%\begin{gather*}
+%\end{gather*}
+
+
+
