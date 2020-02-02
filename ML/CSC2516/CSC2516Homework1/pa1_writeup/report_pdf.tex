@@ -124,7 +124,14 @@ param\_gradient.output\_bias[3] 0.21235172051123635
 \textbf{Training the Neural Network.}
 %%% Subquestion 1
 \begin{homeworkSection}
-\emph{Pick three words from the vocabulary that go well together (for example, ‘government of united’, ‘city of new’, ‘life in the’, ‘he is the’ etc.). Use the model to predict the next word. Does the model give sensible predictions? Try to find an example where it makes a plausible prediction even though the 4-gram wasn’t present in the dataset (raw\_sentences.txt). To help you out, the function find\_occurrences lists the words that appear after a given 3-gram in the training set.}
+\emph{Use the model to predict the next word. Does the model give sensible predictions? Try to find an example where it makes a plausible prediction even though the 4-gram wasn’t present in the dataset (raw\_sentences.txt). To help you out, the function find\_occurrences lists the words that appear after a given 3-gram in the training set.} \\
+\\
+For 'government of united', the predictions in the order of probabilities are '.', 'life', 'own'. \\
+For 'city of new', the predictions in the order of probabilities are 'york', '.', 'home'.\\
+For 'life in the', the predictions in the order of probabilities are 'world', 'united', 'game'.\\
+For 'he is the', the predictions in the order of probabilities are 'best', 'same', 'way'. \\
+\\
+I tried a tri-gram, 'where', 'might', 'you', and found "where might you" did not occur in the training set. The predictions made by the model in probability order are 'go', 'be', 'come'.
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}
