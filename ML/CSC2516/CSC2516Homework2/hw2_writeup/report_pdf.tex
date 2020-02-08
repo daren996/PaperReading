@@ -17,9 +17,58 @@
 
 %% Question 1
 \begin{homeworkProblem}
-.
+Optimization.
 %%% Subquestion 1
 \begin{homeworkSection}
+Stochastic Gradient Descent (SGD). \\ \\
+\emph{1.1.1 Minimum Norm Solution. Show that SGD solution is identical to the minimum norm solution $w^*$ obtained by gradient descent, i.e., $\hat{w} = w^*$ .} \\
+\\
+The unique minimum norm solution $w^*$, obtained by gradient descent, is
+\begin{gather*}
+\begin{aligned}
+w^* = X^T(XX^T)^{-1}t
+\end{aligned}
+\end{gather*}
+We just need to show that the SGD converged solution $\hat{w}$ is identical to $w^*$, i.e., 
+\begin{gather*}
+\begin{aligned}
+\hat{w} = X^T(XX^T)^{-1}t
+\end{aligned}
+\end{gather*}
+As we can see,
+\begin{gather*}
+\begin{aligned}
+\mathcal{L} &= \frac{1}{n} || X \hat{w} - t ||_2^2 \\
+\mathcal{L}_i(x_i, w) &= || \hat{w}^T x_i - t_i ||^2 \\
+\frac{\partial \mathcal{L}_i}{\partial \hat{w}} &= 2(\hat{w}^T x_i - t_i) x_i \\
+\hat{w}_{t+1} &\leftarrow \hat{w}_t - 2 \eta (\hat{w_t}^T x_i - t_i) x_i
+\end{aligned}
+\end{gather*}
+Since $x_i$ is $d \times 1$, $x_i$ can be written as $x_i = X^T \mathit{1}$, where $X^T$ is $d \times n$ and $\mathit{1}$ is $n \times 1$. \\
+Given $i$, $\mathit{1}^T$ will become [0 ... 1 ... 0], where the $i_{th}$ entry is 1. \\
+Thus, we have
+\begin{gather*}
+\begin{aligned}
+\hat{w}_{t+1} &\leftarrow \hat{w}_t - 2 \eta X^T \mathit{1} (\hat{w_t}^T x_i - t_i)
+\end{aligned}
+\end{gather*}
+Then, we can use the same proof method applied on last homework to show that if 
+$w_0 = 0$, we have
+\begin{gather*}
+\begin{aligned}
+\hat{w} \propto X^T d
+\end{aligned}
+\end{gather*}
+where d is $n \times 1$ vector. \\
+To show SGD from zero initialization finds a minimum norm unique minimizer: 
+\begin{gather*}
+\begin{aligned}
+X\hat{w} &= t \\
+X X^T d &= t \\
+d &= (XX^T)^{-1} t \\
+\hat{w} &= X^T (XX^T)^{-1} t
+\end{aligned}
+\end{gather*}
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}
