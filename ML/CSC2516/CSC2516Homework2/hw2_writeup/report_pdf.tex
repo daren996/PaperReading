@@ -11,6 +11,8 @@
 \newcommand{\tr}{\text{Tr}}
 \newcommand{\rib}{\text{Rib}}
 
+%\usepackage{amsmath}
+
 \title{CSC 2516 Homework 2}
 
 \begin{document}
@@ -70,41 +72,117 @@ d &= (XX^T)^{-1} t \\
 \end{aligned}
 \end{gather*}
 \end{homeworkSection}
-%%% Subquestion 2
-\begin{homeworkSection}
-\end{homeworkSection}
-%%% Subquestion 3
-\begin{homeworkSection}
-\end{homeworkSection}
 \end{homeworkProblem}
 
 
 %% Question 2
 \begin{homeworkProblem}
-.
+Gradient-based Hyper-parameter Optimization.
 %%% Subquestion 1
 \begin{homeworkSection}
+Computation Graph of Learning Rates. \\ \\
+2.1.1 \emph{Draw the computation graph.} \\ \\
+The computation graph is shown as Figure \ref{fig:2.1.1}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.6\textwidth]{q2.1.1.jpeg} 
+  \caption{Computation graph. }
+  \label{fig:2.1.1}
+\end{figure}
+\\ \\
+2.1.2 \emph{What is the memory complexity for the forward-propagation to compute $\mathcal{L}_t$ in terms of t? What is the memory complexity for using the standard back-propagation to compute the gradient w.r.t. the learning rate, $\nabla_{\eta} \mathcal{L}_t$ in terms of t?} \\ \\
+To compute $\mathcal{L}_t$, we need to store $w_t$; 
+to compute $w_t$, we need to store $w_{t-1}$ and $\nabla_{w_{t-1}} \mathcal{L}_{t-1}$. \\
+The shape of $w_{t-1}$ and $\nabla_{w_{t-1}} \mathcal{L}_{t-1}$ are both $d \times 1$.\\
+Thus, the memory complexity for the forward-propagation to compute $\mathcal{L}_t$ is O(d). In terms of $t$, the memory complexity for the forward-propagation is O(1). 
+\begin{gather*}
+\begin{aligned}
+\overline{\nabla_{\eta} \mathcal{L}_{t-1}} &= \eta \overline{w_t} \\
+\overline{w_t} &= \overline{w_{t+1}} + \frac{2}{n} X^T X \overline{\nabla_{\eta} \mathcal{L}_t}
+\end{aligned}
+\end{gather*}
+The shape of $\overline{w_t}$ and $\overline{\nabla_{\eta} \mathcal{L}_t}$ are both $d \times 1$.\\
+Thus, the memory complexity for using the standard back-propagation to compute a specific gradient is O(d). In terms of $t$, the memory complexity for using the standard back-propagation to compute a specific gradient is O(1). \\For computing all the gradients and \textbf{saving} them, the memory complexity is O(t).
+\\ \\
+2.1.3 \emph{Explain one potential problem for applying gradient-based hyper-parameter optimization in more realistic examples where models often take many iterations to converge.} \\ \\
+One potential problem can be that for a realistic example where models often take many iterations to converge, if the optimized learning rate $\eta_t$ becomes less with the increase of iteration $t$, the decreasing rate of $\mathcal{L}$ will also become less, which will drive the model for more iterations, i.e., take more time to converge. 
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}
-\end{homeworkSection}
-%%% Subquestion 3
-\begin{homeworkSection}
+Learning Learning Rates. \\ \\
+2.2.1 \emph{Write down the expression of $w_1$ in terms of $w_0$, $\eta$, $t$ and $X$. Then, using the expression to derive the loss $\mathcal{L}_1$ after single GD iteration in terms of $\eta$.} \\ \\
+We have
+\begin{gather*}
+\begin{aligned}
+\frac{\partial \mathcal{L}}{\partial w} &= \frac{2}{n} X^T(X w - t) \\
+w_1 &\leftarrow w_0 - \frac{2 \eta}{n} X^T (X w_0 - t) = w_0 - \frac{2 \eta}{n} X^T a \\
+\mathcal{L}_1 &= \frac{1}{n} ||X w_1 - t||_2^2 = \frac{1}{n} ||a - \frac{2 \eta}{n} X X^T a||_2^2
+\end{aligned}
+\end{gather*}
+2.2.2 \emph{Determine if this $\mathcal{L}_1$ is convex w.r.t. the learning rate $\eta$.} 
+\begin{gather*}
+\begin{aligned}
+\frac{\partial \mathcal{L}_1}{\partial \eta} &= \frac{4}{n^2} a^T XX^T (a-\frac{2\eta}{n}XX^Ta) \\
+&= \frac{4}{n^2} a^T XX^T a - \frac{8\eta}{n^3} a^T XX^T XX^Ta\\
+\frac{\partial \mathcal{L}_1^2}{\partial^2 \eta} &= \frac{8}{n^3} a^T XX^T XX^Ta = \frac{8}{n^3} ||XX^Ta||^2
+\end{aligned}
+\end{gather*}
+As the second order derivative of $\mathcal{L}$ is positive, $\mathcal{L}_1$ is convex w.r.t. the learning rate $\eta$.
+\\ \\
+2.2.3 \emph{Write down the derivative of $\mathcal{L}_1$ w.r.t. $\eta$ and use it to find the optimal learning rate $\eta^*$ that minimizes the loss after one GD iteration.} 
+\begin{gather*}
+\begin{aligned}
+\frac{\partial \mathcal{L}_1}{\partial \eta} &= 0 \\
+\frac{4}{n^2} a^T XX^T a - \frac{8\eta}{n^3} a^T XX^T XX^Ta &= 0 \\
+\eta^* &= \frac{n a^T XX^T a}{2 a^T XX^T XX^Ta}
+\end{aligned}
+\end{gather*}
 \end{homeworkSection}
 \end{homeworkProblem}
 
 
 %% Question 3
 \begin{homeworkProblem}
-.
+Convolutional Neural Networks.
 %%% Subquestion 1
 \begin{homeworkSection}
+Convolutional Filters. \emph{Write down the values of the resulting matrix. What feature does this convolutional filter detect?} 
+\begin{gather*}
+\begin{aligned}
+\textbf{I} * \textbf{J} = \begin{bmatrix}
+-1 & 2 & 2 & -2 & 0\\
+-2 & 1 & 0 & 2 & -1\\
+3 & 0 & 0 & 1 & -1\\
+-2 & 2 & 0 & 2 & -1\\
+0 & -2 & 3 & -2 & 0
+\end{bmatrix}
+\end{aligned}
+\end{gather*}
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}
-\end{homeworkSection}
-%%% Subquestion 3
-\begin{homeworkSection}
+Size of ConvNets. \emph{Calculate the number of parameters for this conv net including the bias units.} \\ 
+\begin{center}
+\begin{tabular}[h]{ |c|c|c| } 
+\hline
+Layers & Output Units & Parameters \\
+\hline
+Image & 112*112*3 & - \\
+Conv3-64 & 112*112*64 & 3*3*3*64+64=1,792 \\
+MaxPool & 56*56*64 & - \\
+Conv3-128 & 56*56*128 & 64*3*3*128+128=73,856 \\
+MaxPool & 28*28*128 & - \\
+Conv3-256 & 28*28*256 & 128*3*3*256+256=295,168 \\
+Conv3-256 & 28*28*256 & 256*3*3*256+256=590,080 \\
+MaxPool & 14*14*256 & - \\
+FC-1024 & 1024 & 14*14*256*1024+1024=51,381,248 \\
+FC-100 & 100 & 1024*100+100=102,500 \\
+Soft-max & 100 & - \\
+\hline
+Total & - & 52,444,644 \\
+\hline
+\end{tabular}
+\end{center}
 \end{homeworkSection}
 \end{homeworkProblem}
 
