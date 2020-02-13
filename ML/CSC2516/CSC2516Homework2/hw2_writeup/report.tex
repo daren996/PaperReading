@@ -85,7 +85,7 @@ Computation Graph of Learning Rates. \\ \\
 The computation graph is shown as Figure \ref{fig:2.1.1}.
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.6\textwidth]{q2.1.1.jpeg} 
+  \includegraphics[width=.5\textwidth]{q2.1.1.jpeg} 
   \caption{Computation graph. }
   \label{fig:2.1.1}
 \end{figure}
@@ -97,15 +97,19 @@ The shape of $w_{t-1}$ and $\nabla_{w_{t-1}} \mathcal{L}_{t-1}$ are both $d \tim
 Thus, the memory complexity for the forward-propagation to compute $\mathcal{L}_t$ is O(d). In terms of $t$, the memory complexity for the forward-propagation is O(1). 
 \begin{gather*}
 \begin{aligned}
-\overline{\nabla_{\eta} \mathcal{L}_{t-1}} &= \eta \overline{w_t} \\
-\overline{w_t} &= \overline{w_{t+1}} + \frac{2}{n} X^T X \overline{\nabla_{\eta} \mathcal{L}_t}
+\overline{\nabla_{w_i} \mathcal{L}_i} &= - \eta \overline{w_{i+1}} \\
+\overline{w_i} &= \overline{w_{i+1}} - \frac{2}{n} X^T X \overline{\nabla_{w_i} \mathcal{L}_i} 
+= \overline{w_{i+1}} - \frac{2 \eta}{n} X^T X \overline{w_{i+1}} \\
+\overline{\nabla_{\eta} \mathcal{L}_t} &= \sum_{i=1}^t \overline{w_i}^T \frac{\partial w_i}{\partial \eta} \\
 \end{aligned}
 \end{gather*}
-The shape of $\overline{w_t}$ and $\overline{\nabla_{\eta} \mathcal{L}_t}$ are both $d \times 1$.\\
-Thus, the memory complexity for using the standard back-propagation to compute a specific gradient is O(d). In terms of $t$, the memory complexity for using the standard back-propagation to compute a specific gradient is O(1). \\For computing all the gradients and \textbf{saving} them, the memory complexity is O(t).
+The shape of $\overline{w_t}$ and $\overline{\nabla_{w_t} \mathcal{L}_t}$ are both $d \times 1$.\\
+The memory complexity for using the standard back-propagation to compute the gradient w.r.t. $w_i$ is O(1). However, we need to store all the $\overline{w_i}$ to compute $\overline{\nabla_{\eta} \mathcal{L}_t}$.
+Thus, the memory complexity for using the standard back-propagation to compute the gradient w.r.t. the learning rate is O(t). 
 \\ \\
-2.1.3 \emph{Explain one potential problem for applying gradient-based hyper-parameter optimization in more realistic examples where models often take many iterations to converge.} \\ \\
-One potential problem can be that for a realistic example where models often take many iterations to converge, if the optimized learning rate $\eta_t$ becomes less with the increase of iteration $t$, the decreasing rate of $\mathcal{L}$ will also become less, which will drive the model for more iterations, i.e., take more time to converge. 
+2.1.3 \emph{Explain one potential problem for applying gradient-based hyper-parameter optimization in more realistic examples where models often take many iterations to converge.} \\ 
+\\
+One potential problem can be that for a realistic example where models often take many iterations to converge, if the optimized learning rate $\eta_t$ becomes less with the increase of iteration $t$, the decreasing rate of $\mathcal{L}$ will also become less, which will drive the model for more iterations, i.e., take more time to converge and need more space/memory to calculate $\eta^*$. 
 \end{homeworkSection}
 %%% Subquestion 2
 \begin{homeworkSection}

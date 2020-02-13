@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.3)  10 FEB 2020 16:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.3)  10 FEB 2020 16:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**report_pdf.tex
-(./report_pdf.tex
+**report.tex
+(./report.tex
 LaTeX2e <2018-04-01> patch level 2
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (./myhw.cls
@@ -1047,9 +1047,8 @@ Package: extarrows 2008/05/15 v1.0b Some extensible arrows
 Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 \symrsfs=\mathgroup10
 )
-(/usr/local/texlive/2018/texmf-dist/tex/latex/braket/braket.sty)
-(./report_pdf.aux)
-\openout1 = `report_pdf.aux'.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/braket/braket.sty) (./report.aux)
+\openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
@@ -1065,14 +1064,15 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 18.
- (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 18.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
 LaTeX Font Info:    Try loading font information for T1+pplx on input line 18.
- (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/t1pplx.fd
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/t1pplx.fd
 File: t1pplx.fd 2004/09/06 font definitions for T1/pplx.
 )
 Package nag Info: Command \frontmatter not defined, skipping amendment on input
@@ -1324,51 +1324,51 @@ LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
 [1{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 105--115
+Underfull \hbox (badness 10000) in paragraph at lines 105--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--115
+Underfull \hbox (badness 10000) in paragraph at lines 105--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--118
+Underfull \hbox (badness 10000) in paragraph at lines 116--119
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--118
+Underfull \hbox (badness 10000) in paragraph at lines 116--119
 
  []
 
 [2 <./q2.1.1.jpeg>]
-Underfull \hbox (badness 10000) in paragraph at lines 132--136
+Underfull \hbox (badness 10000) in paragraph at lines 133--137
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--168
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
 
  []
 
 No complaints by nag.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 192.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 193.
 [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 192.
- (./report_pdf.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 192.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 192.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 193.
+ (./report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 193.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 193.
  ) 
 Here is how much of TeX's memory you used:
  25538 strings out of 492649
- 490057 string characters out of 6129623
- 602560 words of memory out of 5000000
+ 490021 string characters out of 6129623
+ 602544 words of memory out of 5000000
  29005 multiletter control sequences out of 15000+600000
  571178 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,19n,45p,10438b,875s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,19n,45p,10434b,875s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
@@ -1379,7 +1379,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2018/texmf-di
 st/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2018/texmf-dist/font
 s/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1
 /urw/palatino/uplri8a.pfb>
-Output written on report_pdf.pdf (3 pages, 216282 bytes).
+Output written on report.pdf (3 pages, 216386 bytes).
 PDF statistics:
  97 PDF objects out of 1000 (max. 8388607)
  81 compressed objects within 1 object stream
