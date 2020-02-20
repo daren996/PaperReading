@@ -1,8 +1,10 @@
-Gradient Descent
+# CSC2516
+
+Materials for CSC2516.
 
 
 
-
+### Gradient Descen
 
 Why gradient descent, if we can find the optimum directly? 
 
