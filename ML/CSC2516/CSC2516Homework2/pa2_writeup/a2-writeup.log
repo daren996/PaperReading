@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.3)  18 FEB 2020 16:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.3)  20 FEB 2020 19:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1048,44 +1048,65 @@ Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 \symrsfs=\mathgroup10
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/braket/braket.sty)
-(./a2-writeup.aux)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip83
+\subfigcapskip=\skip84
+\subfigcaptopadj=\dimen263
+\subfigbottomskip=\skip85
+\subfigcapmargin=\dimen264
+\subfiglabelskip=\skip86
+\c@subfigure=\count304
+\c@lofdepth=\count305
+\c@subtable=\count306
+\c@lotdepth=\count307
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2018/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip87
+\subfig@bottom=\skip88
+)
+No file a2-writeup.aux.
 \openout1 = `a2-writeup.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 18.
- (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 20.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Try loading font information for T1+pplx on input line 18.
- (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/t1pplx.fd
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Try loading font information for T1+pplx on input line 20.
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/t1pplx.fd
 File: t1pplx.fd 2004/09/06 font definitions for T1/pplx.
 )
 Package nag Info: Command \frontmatter not defined, skipping amendment on input
- line 18.
+ line 20.
 Package nag Info: Command \mainmatter not defined, skipping amendment on input 
-line 18.
+line 20.
 Package nag Info: Command \backmatter not defined, skipping amendment on input 
-line 18.
+line 20.
 Package nag Info: Command \RaggedLeft not defined, skipping amendment on input 
-line 18.
+line 20.
 Package nag Info: Command \RaggedRight not defined, skipping amendment on input
- line 18.
-LaTeX Info: Redefining \microtypecontext on input line 18.
+ line 20.
+LaTeX Info: Redefining \microtypecontext on input line 20.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1101,16 +1122,16 @@ File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count304
-\scratchdimen=\dimen263
+\scratchcounter=\count308
+\scratchdimen=\dimen265
 \scratchbox=\box56
-\nofMPsegments=\count305
-\nofMParguments=\count306
+\nofMPsegments=\count309
+\nofMParguments=\count310
 \everyMPshowfont=\toks36
-\MPscratchCnt=\count307
-\MPscratchDim=\dimen264
-\MPnumerator=\count308
-\makeMPintoPDFobject=\count309
+\MPscratchCnt=\count311
+\MPscratchDim=\dimen266
+\MPnumerator=\count312
+\makeMPintoPDFobject=\count313
 \everyMPtoPDFconversion=\toks37
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -1172,78 +1193,78 @@ Dictionary: translator-basic-dictionary, Language: English
 File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 )
 \AtBeginShipoutBox=\box57
-Package hyperref Info: Link coloring OFF on input line 18.
+Package hyperref Info: Link coloring OFF on input line 20.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count310
+\c@section@level=\count314
 )
-LaTeX Info: Redefining \ref on input line 18.
-LaTeX Info: Redefining \pageref on input line 18.
-LaTeX Info: Redefining \nameref on input line 18.
+LaTeX Info: Redefining \ref on input line 20.
+LaTeX Info: Redefining \pageref on input line 20.
+LaTeX Info: Redefining \nameref on input line 20.
 Package nag Info: Command \caption@xlabel not defined, skipping amendment on in
-put line 18.
+put line 20.
 Package nag Info: Command \captionabove not defined, skipping amendment on inpu
-t line 18.
+t line 20.
 Package nag Info: Command \captionbelow not defined, skipping amendment on inpu
-t line 18.
+t line 20.
 Package nag Info: Command \hc@caption not defined, skipping amendment on input 
-line 18.
+line 20.
 Package nag Info: Command \topcaption not defined, skipping amendment on input 
-line 18.
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 18.
+line 20.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 20.
 
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 18.
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 20.
 
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 18.
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 20.
 
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 18.
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 20.
 
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 18.
+(Font)              scaled to size 10.42007pt on input line 20.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 18.
+(Font)              scaled to size 7.91925pt on input line 20.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 18.
+(Font)              scaled to size 6.25204pt on input line 20.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 18.
+(Font)              scaled to size 10.42007pt on input line 20.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 18.
+(Font)              scaled to size 7.91925pt on input line 20.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 18.
+(Font)              scaled to size 6.25204pt on input line 20.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 18.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 20.
 
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/ot1zplm.fd
@@ -1253,7 +1274,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zplm' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 18.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 20.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -1266,52 +1287,182 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 22.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 24.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 22.
+(Font)              scaled to size 9.49997pt on input line 24.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 22.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 24.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.49997pt on input line 22.
+(Font)              scaled to size 9.49997pt on input line 24.
 
-No complaints by nag.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 57.
+Underfull \hbox (badness 10000) in paragraph at lines 29--33
+
+ []
+
+
+Overfull \hbox (23.25478pt too wide) in paragraph at lines 35--54
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--60
+
+ []
+
+
+Overfull \hbox (13.77742pt too wide) in paragraph at lines 55--60
+\T1/pplx/m/n/10 (-20) when each in-put di-men-sion (width/height) is dou-bled, 
+these val-ues are weights=(9NF+72$[][]$+9NF$\OMS/zplm/m/n/10 ^^A$\T1/pplx/m/n/1
+0 (-20) NC+9$[][]$),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--66
+
+ []
+
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 57.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 78.
+
+LaTeX Warning: Reference `fig:curve_unet' on page 1 undefined on input line 78.
+
+
+<training_curve_unet.png, id=4, 433.62pt x 289.08pt>
+File: training_curve_unet.png Graphic file (type png)
+<use training_curve_unet.png>
+Package pdftex.def Info: training_curve_unet.png  used on input line 81.
+(pdftex.def)             Requested size: 234.8775pt x 156.58607pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--87
+
+ []
+
 [1{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 57.
 
-(./a2-writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 57.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 57.
+LaTeX Warning: Reference `fig:results' on page 2 undefined on input line 90.
+
+
+Package nag Warning: \label in float, but not after \caption on input line 96.
+
+<train_24_cnn.png, id=23, 433.62pt x 289.08pt>
+File: train_24_cnn.png Graphic file (type png)
+<use train_24_cnn.png>
+Package pdftex.def Info: train_24_cnn.png  used on input line 96.
+(pdftex.def)             Requested size: 220.78543pt x 84.67053pt.
+
+Package nag Warning: \label in float, but not after \caption on input line 101.
+
+
+<train_24_unet.png, id=25, 433.62pt x 289.08pt>
+File: train_24_unet.png Graphic file (type png)
+<use train_24_unet.png>
+Package pdftex.def Info: train_24_unet.png  used on input line 101.
+(pdftex.def)             Requested size: 220.78543pt x 84.67053pt.
+
+Package nag Warning: \label in float, but not after \caption on input line 106.
+
+
+<test_24_cnn.png, id=27, 433.62pt x 289.08pt>
+File: test_24_cnn.png Graphic file (type png)
+<use test_24_cnn.png>
+Package pdftex.def Info: test_24_cnn.png  used on input line 106.
+(pdftex.def)             Requested size: 220.78543pt x 84.67053pt.
+
+Package nag Warning: \label in float, but not after \caption on input line 111.
+
+
+<test_24_unet.png, id=29, 433.62pt x 289.08pt>
+File: test_24_unet.png Graphic file (type png)
+<use test_24_unet.png>
+Package pdftex.def Info: test_24_unet.png  used on input line 111.
+(pdftex.def)             Requested size: 220.78543pt x 84.67053pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--120
+
+ []
+
+[2 <./train_24_cnn.png> <./train_24_unet.png> <./test_24_cnn.png> <./test_24_un
+et.png> <./training_curve_unet.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 120--128
+
+ []
+
+
+Package nag Warning: \label in float, but not after \caption on input line 146.
+
+
+<trained.png, id=52, 583.17876pt x 742.775pt>
+File: trained.png Graphic file (type png)
+<use trained.png>
+Package pdftex.def Info: trained.png  used on input line 146.
+(pdftex.def)             Requested size: 187.89914pt x 239.31358pt.
+
+Package nag Warning: \label in float, but not after \caption on input line 151.
+
+
+<notrained.png, id=53, 581.17125pt x 741.77126pt>
+File: notrained.png Graphic file (type png)
+<use notrained.png>
+Package pdftex.def Info: notrained.png  used on input line 151.
+(pdftex.def)             Requested size: 187.89914pt x 239.82776pt.
+
+LaTeX Warning: Reference `fig:seg_vis' on page 3 undefined on input line 155.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--165
+
+ []
+
+[3 <./trained.png> <./notrained.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 165--171
+
+ []
+
+
+Package nag Warning: 6 complaints in total.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 172.
+[4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 172.
+ (./a2-writeup.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 172.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 172.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 25469 strings out of 492649
- 489299 string characters out of 6129623
- 594563 words of memory out of 5000000
- 28979 multiletter control sequences out of 15000+600000
- 555620 words of font info for 90 fonts, out of 8000000 for 9000
+ 25793 strings out of 492649
+ 493501 string characters out of 6129623
+ 604452 words of memory out of 5000000
+ 29174 multiletter control sequences out of 15000+600000
+ 568113 words of font info for 172 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,11n,45p,10438b,837s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2018/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/
-2018/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2018/te
-xmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2018/texmf-dis
-t/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on a2-writeup.pdf (1 page, 46561 bytes).
+exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
+xlive/2018/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2
+018/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2018/tex
+mf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2018/texmf-dist
+/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on a2-writeup.pdf (4 pages, 3336982 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
- 24641 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 149 PDF objects out of 1000 (max. 8388607)
+ 118 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 31932 words of extra memory for PDF output out of 35830 (max. 10000000)
 
