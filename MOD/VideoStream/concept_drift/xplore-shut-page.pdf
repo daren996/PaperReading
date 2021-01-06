@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>IEEE Xplore is temporarily unavailable</title>
+
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico" />
+<style>
+
+
+input::-webkit-input-placeholder {
+  color: #7d7d7d;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+}
+input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #7d7d7d;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+}
+input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #7d7d7d;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+}
+input:-ms-input-placeholder {
+  color: #7d7d7d;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+}
+/* || Global Styles || */
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  background: url('assets/img/home-back.jpg') repeat-x scroll 0 0 #e5e3e4;
+  margin: 0px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+body.notransition * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+a {
+  color: #00649a;
+  text-decoration: none;
+}
+a:hover {
+  color: #00649a;
+  text-decoration: underline;
+}
+#pagebody {
+  width: 100%;
+  height: 350px;
+  background-image: url('assets/img/shutdown_bg_image.png');
+  zoom: 1;
+  color: #FFFFFF;
+}
+#pagebody h1 {
+  color: #FFFFFF;
+  display: inline-block;
+  font: normal 2.2em Arial;
+  padding-bottom: 1rem;
+  line-height: .05em;
+}
+#pagebody p {
+  font: normal 1.2em Arial;
+  margin: 0;
+}
+#disclaimer p {
+  font: normal 0.7em Arial;
+}
+
+
+
+
+/* || Print Styles || */
+@media print {
+  body {
+    background: none;
+  }
+}
+
+.logo-container {
+  background-image: url('assets/img/sprites.png');
+  background-position: 0 0;
+  width: 116px;
+  height: 65px;
+}
+[class*=logo-] {
+  display: inline-block;
+  vertical-align: middle;
+}
+.Menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.Menu--horizontal li {
+  display: inline-block;
+  position: relative;
+}
+.Menu--dividers.Menu--horizontal .Menu-item:first-child:before {
+  content: "";
+  margin-right: 0;
+}
+.Menu--dividers.Menu--horizontal .Menu-item:before {
+  content: "|";
+  color: #aaa;
+  margin-right: 5px;
+  font-size: .8em;
+  position: relative;
+  top: -1px;
+}
+.Footer-bottom-terms {
+  margin: 0;
+  font-size: .8em;
+}
+.u-mb-1 {
+  margin-bottom: 1em!important;
+}
+.Menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.Footer-sections {
+  margin: 0 1em 2em;
+}
+.Footer-signIn {
+  margin-right: 1em;
+}
+.Footer-signIn li a {
+  font-size: 15px;
+  line-height: 22.5px;
+}
+.Menu--horizontal li {
+  display: inline-block;
+  position: relative;
+}
+.Menu--dividers.Menu--horizontal .Menu-item:first-child:before {
+  content: "";
+  margin-right: 0;
+}
+.Menu--dividers.Menu--horizontal .Menu-item:before {
+  content: "|";
+  color: #aaa;
+  margin-right: 5px;
+  font-size: .8em;
+  position: relative;
+  top: -1px;
+}
+.Footer-header {
+  font-size: 1.05em;
+  color: #666;
+  margin-bottom: 1em;
+  line-height: 1.3;
+}
+.Footer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: #999;
+  font-size: .9em;
+}
+.Footer-list > li {
+  margin-bottom: 7.19px;
+  font-size: 13.5px;
+  line-height: 20.25px;
+}
+.Footer-list > li:before {
+  content: '\00bb';
+  margin-right: 2px;
+  color: #f6a93d;
+}
+/* || Header || */
+#header {
+  font-size: 15px;
+  line-height: 1.5;
+}
+#header .Metanav {
+  background-color: #d2e4ed;
+  padding: 0 .4em;
+}
+#header .Menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+#header .Menu--horizontal li {
+  display: inline-block;
+  position: relative;
+}
+#header .Menu--dividers.Menu--horizontal .Menu-item:first-child:before {
+  content: "";
+  margin-right: 0;
+}
+#header .Menu--dividers.Menu--horizontal .Menu-item:before {
+  content: "|";
+  color: #aaa;
+  margin-right: 5px;
+  font-size: .8em;
+  position: relative;
+  top: -1px;
+}
+#header .Header {
+  background-color: #fff;
+  padding: 17px 0;
+}
+#header .Header .logo-container {
+  padding: 20px 0;
+}
+#header .Header .logo-xplore {
+  margin-left: 20px;
+}
+#header .logo-xplore {
+  background-image: url('assets/img/sprites.png');
+  background-position: 0 -135px;
+  margin-left: auto;
+  width: 200px;
+  height: 49px;
+}
+#header [class*=logo-] {
+  display: inline-block;
+  vertical-align: middle;
+}
+#header .Header .institutional-signin {
+  border-left: 1px solid #CCE1EE;
+  border-right: 1px solid #CCE1EE;
+  text-align: center;
+  font-size: 1em;
+  font-weight: 700;
+  width: 250px;
+  margin: 4% auto 0;
+  padding: 5px 0;
+}
+#header .icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+#header .u-alignMiddle {
+  vertical-align: middle!important;
+}
+#header .Header .logo-ieee {
+  margin-right: 20px;
+  margin-left: auto;
+}
+#header .logo-ieee {
+  background-image: url('assets/img/sprites.png');
+  background-position: -120px -75px;
+  width: 100px;
+  height: 35px;
+}
+#header .Menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+#header .u-noMargin {
+  margin: 0!important;
+}
+#header .u-noPad {
+  padding: 0!important;
+}
+#shutdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 1260px;
+  background: #fff;
+  height: 100vh;
+  margin: auto;
+}
+#maintenance-message {
+  margin: 3rem 0 0 2rem;
+  max-width: 750px;
+}
+#disclaimer {
+  text-align: left;
+}
+#disclaimer p {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+}
+.Header {
+  display: flex;
+}
+
+</style>
+
+
+</head>
+<body>
+  <div id="shutdown-wrapper">
+    <!-- IEEE Client Header -->
+    <div id="header">
+      <div class="Metanav">
+        <ul class="Menu Menu--horizontal Menu--dividers">
+          <li class="Menu-item stats-extLink"><a href="http://www.ieee.org/" id="u-home" class="ieeeorg">IEEE.org</a></li>
+          <li class="Menu-item stats-extLink">IEEE <em>Xplore</em> Digital Library</li>
+          <li class="Menu-item stats-extLink"><a href="http://standards.ieee.org/" id="u-standards" class="exitstandardsorg">IEEE
+              Standards</a></li>
+          <li class="Menu-item stats-extLink"><a href="http://spectrum.ieee.org/" id="u-spectrum" class="exitspectrum">IEEE
+              Spectrum</a></li>
+          <li class="Menu-item stats-extLink"><a href="http://www.ieee.org/sitemap.html" id="u-more" class="exitmoreieeesites">More
+              Sites</a></li>
+        </ul>
+      </div>
+      <div class="Header" id="xplore-header" data-service="true" data-inst="" data-web="false">
+        <div class="logo-xplore"></div>
+        <div class="logo-ieee"></div>
+      </div>
+    </div>
+    <!--|||| End Header ||||-->
+    <div id="pagebody">
+      <div id="maintenance-message">
+        <h1>IEEE <i>Xplore</i> is temporarily unavailable</h1>
+        <p>
+          We are working to restore service as soon as possible. Please try again later or email questions to onlinesupport@ieee.org. Thank you for your patience.
+        </p>
+      </div>
+    </div>
+    <div id="disclaimer">
+      <p>&copy; Copyright <span id='copy-right-year'></span> IEEE - All rights reserved. Use of this website signifies
+        your agreement to the terms and conditions.</p>
+    </div>
+  </div>
+</body>
+
+<script type="text/JavaScript">
+  document.getElementById('copy-right-year').innerText = new Date().getFullYear();
+</script>
+
+</html>
